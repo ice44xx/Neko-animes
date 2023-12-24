@@ -1,10 +1,13 @@
-import Navbar from "../components/common/navbar";
+import Head from 'next/head';
 
-const Home = () => {
+const HomePagePublic = () => {
   return (
-    <div>
-      <Navbar />
-    </div>
+    <>
+      <Head>
+        <title>Neko Animes</title>
+      </Head>
+      <main></main>
+    </>
   );
 };
-export default Home;
+export default HomePagePublic;
