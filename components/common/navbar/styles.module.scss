@@ -41,6 +41,8 @@
     padding: 0 40px;
     background-color: $blackColor15;
     .logo {
+      max-width: 350px;
+      max-height: 170px;
       margin-top: -25px;
       transition: all 0.3s;
       cursor: pointer;
@@ -56,6 +58,8 @@
       justify-content: center;
       align-items: center;
       .imgSearch {
+        width: 40px;
+        height: 40px;
         cursor: pointer;
         transition: all 0.4s;
         &:hover {

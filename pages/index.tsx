@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import SlidesAnimes from '../components/slidesAnimes';
 
 const HomePagePublic = () => {
   return (
@@ -6,7 +7,9 @@ const HomePagePublic = () => {
       <Head>
         <title>Neko Animes</title>
       </Head>
-      <main></main>
+      <main>
+        <SlidesAnimes />
+      </main>
     </>
   );
 };
