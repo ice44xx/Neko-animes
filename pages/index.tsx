@@ -5,7 +5,7 @@ const HomePagePublic = () => {
   return (
     <>
       <Head>
-        <title>Neko Animes</title>
+        <title>Neko Animes - </title>
       </Head>
       <main>
         <SlidesAnimes />

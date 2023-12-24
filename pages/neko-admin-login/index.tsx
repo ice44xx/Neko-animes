@@ -1,25 +1,25 @@
+import { Form, FormGroup } from 'reactstrap';
+import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
 import Image from 'next/image';
 import styles from './styles.module.scss';
 import Logo from '/public/assets/logo.png';
-import { Form, FormGroup } from 'reactstrap';
-import InputComponent from '../../../components/common/inputs';
-import LabelComponent from '../../../components/common/label';
-import Button from '../../../components/common/button';
-import { FormEvent, useState } from 'react';
-import auth_service from '../../../services/auth/auth.service';
-import { useRouter } from 'next/router';
+import auth_service from '../../services/auth/auth.service';
+import InputComponent from '../../components/common/inputs';
+import LabelComponent from '../../components/common/label';
+import ButtonComponent from '../../components/common/button';
 
 const DashboardLogin = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
     try {
-      const login = await auth_service.login({ email, password });
-
+      const login = await auth_service.login({ email, password }, dispatch);
       if (login.success) {
         console.log('Usuário autenticado:', login);
         router.push('/dashboard');
@@ -59,7 +59,7 @@ const DashboardLogin = () => {
                 />
                 <LabelComponent htmlFor="password" value={'Senha'} className={styles.label} />
               </FormGroup>
-              <Button value="Entrar" className="mt-3" />
+              <ButtonComponent value="Entrar" className="mt-3" />
             </Form>
           </div>
         </div>

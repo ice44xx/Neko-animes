@@ -36,7 +36,9 @@ export const Navbar = () => {
         </p>
       </div>
       <div className={styles.container_nav}>
-        <Image src={Logo} alt="Neko Animes" className={styles.logo} />
+        <Link href={'/'}>
+          <Image src={Logo} alt="Neko Animes" className={styles.logo} />
+        </Link>
         <div className={styles.container_content}>
           <Image
             src={Search}

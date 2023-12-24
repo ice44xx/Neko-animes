@@ -4,10 +4,15 @@ import styles from './styles.module.scss';
 interface ButtonProps {
   value: string;
   className?: string;
+  onClick?: () => void;
 }
-const ButtonComponent: React.FC<ButtonProps> = ({ value, className }) => {
+const ButtonComponent: React.FC<ButtonProps> = ({ value, className, onClick }) => {
   const combinedClassName = className ? `${styles.button} ${className}` : styles.button;
-  return <Button className={combinedClassName}>{value}</Button>;
+  return (
+    <Button className={combinedClassName} onClick={onClick}>
+      {value}
+    </Button>
+  );
 };
 
 export default ButtonComponent;
