@@ -1,5 +1,5 @@
+import SplideCarousel from '../../common/carousel';
 import styles from './styles.module.scss';
-import SplideCarousel from '../common/carousel';
 
 const images = [
   'https://res.cloudinary.com/doupbxhfd/image/upload/v1690580161/Thumbnails/Tenchi_Muyou_GXP_Paradise_Shidou-hen_rh3blh.webp',

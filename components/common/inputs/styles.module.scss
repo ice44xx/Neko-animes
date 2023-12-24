@@ -1,0 +1,9 @@
+.input {
+  width: 100%;
+  height: 45px;
+  border: none;
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}

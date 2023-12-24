@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import SlidesAnimes from '../components/slidesAnimes';
+import SlidesAnimes from '../components/slides/slidesAnimes';
 
 const HomePagePublic = () => {
   return (
