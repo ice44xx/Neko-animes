@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 import React, { ChangeEvent } from 'react';
 import { Input } from 'reactstrap';
 
-interface InputProps {
+interface Props {
   name?: string;
   id?: string;
   value?: string | number;
@@ -11,14 +11,7 @@ interface InputProps {
   className?: string;
 }
 
-const InputComponent: React.FC<InputProps> = ({
-  value,
-  onChange,
-  placeholder,
-  id,
-  name,
-  className,
-}) => {
+const InputComponent: React.FC<Props> = ({ value, onChange, placeholder, id, name, className }) => {
   const combinedClassName = className ? `${styles.input} ${className}` : styles.input;
   return (
     <Input

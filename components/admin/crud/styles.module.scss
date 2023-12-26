@@ -1,0 +1,59 @@
+@import '@/styles/colors.scss';
+
+.form {
+  width: 100%;
+  .form_group {
+    .form_group_flex {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      .form_group_flex_d {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .form_group_flex_id {
+        @extend .form_group_flex_d;
+        width: 50%;
+      }
+    }
+  }
+  .btn {
+    border: none;
+    &:hover {
+      background-color: $blackColor50;
+    }
+  }
+}
+.container_table {
+  width: 100%;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: $white;
+    font-size: 18px;
+    cursor: pointer;
+    th,
+    td {
+      border: 1px solid $white_grey;
+      padding: 10px;
+      text-align: center;
+      color: $blackColor40;
+      &:hover {
+        background-color: $white_smoke;
+      }
+    }
+    th {
+      text-align: center;
+      background-color: $white_smoke;
+      color: $blackColor40;
+    }
+    img {
+      width: 100px;
+      object-fit: contain;
+    }
+  }
+}

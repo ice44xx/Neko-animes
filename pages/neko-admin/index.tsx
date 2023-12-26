@@ -22,7 +22,7 @@ const DashboardLogin = () => {
       const login = await auth_service.login({ email, password }, dispatch);
       if (login.success) {
         console.log('Usuário autenticado:', login);
-        router.push('/dashboard');
+        router.push('/neko-admin/dashboard');
       } else {
         console.log(login.error);
       }

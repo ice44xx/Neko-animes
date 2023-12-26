@@ -11,7 +11,12 @@ interface LayoutProps {
 
 const DefaultLayout = ({ children }: LayoutProps) => {
   const router = useRouter();
-  const isRouteAdmin = router.asPath.startsWith('/dashboard');
+  const isRouteAdmin = router.asPath.startsWith('/neko-admin/dashboard');
+  const isRouteLoginAdmin = router.asPath === '/neko-admin';
+
+  if (isRouteLoginAdmin) {
+    return <>{children}</>;
+  }
 
   return (
     <div>

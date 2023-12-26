@@ -10,7 +10,7 @@ const NavbarAdmin = () => {
   const [navbarOpen, setNavbarOpen] = useState(true);
   const Logout = () => {
     sessionStorage.clear();
-    router.push('/neko-admin-login');
+    router.push('/neko-admin');
   };
 
   const toggleNavbar = () => setNavbarOpen(!navbarOpen);
@@ -18,7 +18,7 @@ const NavbarAdmin = () => {
   return (
     <>
       <div className={styles.navbar}>
-        <Link href={'/dashboard'}>
+        <Link href={'/neko-admin/dashboard'}>
           <img src="/assets/logo.png" alt="" />
         </Link>
         <Button onClick={toggleNavbar} className={styles.btn}>
@@ -32,22 +32,25 @@ const NavbarAdmin = () => {
           <Button onClick={toggleNavbar} className={styles.btn}>
             <img src="/assets/fechar.png" alt="fechar" className={styles.close} />
           </Button>
-          <Link href={'/dashboard/animes'} className={styles.link}>
+          <Link href={'/neko-admin/dashboard/animes'} className={styles.link}>
             <p>Animes</p>
           </Link>
-          <Link href={'/dashboard/firstcategory'} className={styles.link}>
+          <Link href={'/neko-admin/dashboard/categories'} className={styles.link}>
             <p>Categorias</p>
           </Link>
-          <Link href={'/dashboard/seasons'} className={styles.link}>
+          <Link href={'/neko-admin/dashboard/classifications'} className={styles.link}>
+            <p>Classificação</p>
+          </Link>
+          <Link href={'/neko-admin/dashboard/seasons'} className={styles.link}>
             <p>Temporadas</p>
           </Link>
-          <Link href={'/dashboard/episodes'} className={styles.link}>
+          <Link href={'/neko-admin/dashboard/episodes'} className={styles.link}>
             <p>Episódios</p>
           </Link>
-          <Link href={'/dashboard/backgrounds'} className={styles.link}>
+          <Link href={'/neko-admin/dashboard/backgrounds'} className={styles.link}>
             <p>Planos de fundos</p>
           </Link>
-          <Link href={'/dashboard/users'} className={styles.link}>
+          <Link href={'/neko-admin/dashboard/users'} className={styles.link}>
             <p>Usuários</p>
           </Link>
           <ButtonComponent value="Sair" onClick={Logout} className={styles.loggout} />

@@ -9,7 +9,7 @@ interface ButtonProps {
 const ButtonComponent: React.FC<ButtonProps> = ({ value, className, onClick }) => {
   const combinedClassName = className ? `${styles.button} ${className}` : styles.button;
   return (
-    <Button className={combinedClassName} onClick={onClick}>
+    <Button type="submit" className={combinedClassName} onClick={onClick}>
       {value}
     </Button>
   );
