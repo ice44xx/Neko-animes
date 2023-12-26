@@ -5,7 +5,7 @@ import classifications_service, {
   Classifications,
 } from '../../../../../services/classifications/classifications.service';
 import ButtonComponent from '../../../../common/button';
-import InputComponent from '../../../../common/inputs';
+import InputComponent from '../../../../common/input';
 import LabelComponent from '../../../../common/label';
 import TextAreaComponent from '../../../../common/textarea';
 

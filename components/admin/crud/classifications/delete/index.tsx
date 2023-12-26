@@ -2,7 +2,7 @@ import styles from '../../styles.module.scss';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import LabelComponent from '../../../../common/label';
-import InputComponent from '../../../../common/inputs';
+import InputComponent from '../../../../common/input';
 import ButtonComponent from '../../../../common/button';
 import classifications_service from '../../../../../services/classifications/classifications.service';
 

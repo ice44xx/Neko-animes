@@ -6,7 +6,7 @@ import Image from 'next/image';
 import styles from './styles.module.scss';
 import Logo from '/public/assets/logo.png';
 import auth_service from '../../services/auth/auth.service';
-import InputComponent from '../../components/common/inputs';
+import InputComponent from '../../components/common/input';
 import LabelComponent from '../../components/common/label';
 import ButtonComponent from '../../components/common/button';
 

@@ -5,7 +5,7 @@ import categories_service, {
   Categories,
 } from '../../../../../services/categories/categories.service';
 import ButtonComponent from '../../../../common/button';
-import InputComponent from '../../../../common/inputs';
+import InputComponent from '../../../../common/input';
 import LabelComponent from '../../../../common/label';
 
 const CategoriessUpdate = () => {
