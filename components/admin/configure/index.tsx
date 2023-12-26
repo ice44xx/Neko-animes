@@ -34,20 +34,20 @@ const Configure: React.FC<Props> = ({ options, components }) => {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.container_eng} onClick={() => setShow(!show)}>
-          <Image src={Eng} alt="" className={styles.eng} />
+        <div className={styles.container_eng}>
+          <Image src={Eng} alt="" className={styles.eng} onClick={() => setShow(!show)} />
+          <div className={`${styles.container_choice} ${show ? styles.show : ''}`}>
+            {options.map((option, index) => (
+              <ButtonComponent
+                key={index}
+                value={option}
+                onClick={() => handleOptionClick(option)}
+                className={styles.btn}
+              />
+            ))}
+          </div>
         </div>
 
-        <div className={`${styles.container_choice} ${show ? styles.show : ''}`}>
-          {options.map((option, index) => (
-            <ButtonComponent
-              key={index}
-              value={option}
-              onClick={() => handleOptionClick(option)}
-              className={styles.btn}
-            />
-          ))}
-        </div>
         {render()}
       </div>
     </>

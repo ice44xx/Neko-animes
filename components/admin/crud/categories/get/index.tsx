@@ -1,3 +1,4 @@
+import { Table } from 'reactstrap';
 import categories_service, {
   Categories,
 } from '../../../../../services/categories/categories.service';
@@ -23,7 +24,7 @@ const CategoriesGet = () => {
   return (
     <div className={styles.container_table}>
       <h2>Categorias</h2>
-      <table>
+      <Table hover>
         <thead>
           <tr>
             <th>ID</th>
@@ -38,7 +39,7 @@ const CategoriesGet = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };

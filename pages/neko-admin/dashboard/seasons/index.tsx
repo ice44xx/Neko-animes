@@ -1,15 +1,18 @@
 import Configure from '../../../../components/admin/configure';
 import SeasonsCreate from '../../../../components/admin/crud/seasons/create';
+import SeasonsDelete from '../../../../components/admin/crud/seasons/delete';
+import SeasonsGet from '../../../../components/admin/crud/seasons/get';
+import SeasonsUpdate from '../../../../components/admin/crud/seasons/update';
 import styles from '../styles.module.scss';
 
 const DashboardSeasons = () => {
   const options = ['Buscar', 'Criar', 'Atualizar', 'Deletar'];
 
   const components = {
-    Buscar: SeasonsCreate,
+    Buscar: SeasonsGet,
     Criar: SeasonsCreate,
-    Atualizar: SeasonsCreate,
-    Deletar: SeasonsCreate,
+    Atualizar: SeasonsUpdate,
+    Deletar: SeasonsDelete,
   };
 
   return (

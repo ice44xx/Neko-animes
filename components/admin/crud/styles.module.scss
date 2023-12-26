@@ -2,6 +2,7 @@
 
 .form {
   width: 100%;
+  height: 100%;
   .form_group {
     .form_group_flex {
       width: 100%;
@@ -17,7 +18,7 @@
       }
       .form_group_flex_id {
         @extend .form_group_flex_d;
-        width: 100%;
+        width: 30%;
       }
     }
   }
@@ -33,30 +34,19 @@
   }
 }
 .container_table {
+  width: 100%;
+  font-size: 20px;
+  .container_search {
+    padding: 20px 0;
+    .form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+    }
+  }
   table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: $white;
-    font-size: 18px;
+    text-align: center;
     cursor: pointer;
-    th,
-    td {
-      border: 1px solid $white_grey;
-      padding: 10px;
-      text-align: center;
-      color: $blackColor40;
-      &:hover {
-        background-color: $white_smoke;
-      }
-    }
-    th {
-      text-align: center;
-      background-color: $white_smoke;
-      color: $blackColor40;
-    }
-    img {
-      width: 100px;
-      object-fit: contain;
-    }
   }
 }

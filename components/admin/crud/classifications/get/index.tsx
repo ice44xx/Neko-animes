@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import classifications_service, {
   Classifications,
 } from '../../../../../services/classifications/classifications.service';
+import { Table } from 'reactstrap';
+import Image from 'next/image';
 
 const ClassificationsGet = () => {
   const [data, setData] = useState<Classifications[]>([]);
@@ -23,7 +25,7 @@ const ClassificationsGet = () => {
   return (
     <div className={styles.container_table}>
       <h2>Classificações</h2>
-      <table>
+      <Table hover>
         <thead>
           <tr>
             <th>ID</th>
@@ -39,12 +41,12 @@ const ClassificationsGet = () => {
               <td>{item.name}</td>
               <td>{item.desc}</td>
               <td>
-                <img src={item.thumbnail} alt={`Thumbnail ${item.id}`} />
+                <Image src={item.thumbnail} alt={item.name} width={100} height={120} />
               </td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };

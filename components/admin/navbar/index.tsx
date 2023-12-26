@@ -27,7 +27,10 @@ const NavbarAdmin = () => {
           <div className={styles.line}></div>
         </Button>
       </div>
-      <div className={`${styles.navbarOpen} ${navbarOpen ? styles.active : ''}`}>
+      <div
+        className={`${styles.navbarOpen} ${navbarOpen ? styles.active : ''}`}
+        onClick={toggleNavbar}
+      >
         <div className={styles.container_navbar}>
           <Button onClick={toggleNavbar} className={styles.btn}>
             <img src="/assets/fechar.png" alt="fechar" className={styles.close} />

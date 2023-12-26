@@ -2,6 +2,8 @@ import styles from '../../styles.module.scss';
 import animes_services, { Animes } from '../../../../../services/animes/animes.service';
 import React, { useEffect, useState } from 'react';
 import { Categories } from '../../../../../services/categories/categories.service';
+import Image from 'next/image';
+import { Table } from 'reactstrap';
 
 const AnimesGet = () => {
   const [data, setData] = useState<Animes[]>([]);
@@ -27,7 +29,7 @@ const AnimesGet = () => {
   return (
     <div className={styles.container_table}>
       <h2>Animes</h2>
-      <table>
+      <Table hover>
         <thead>
           <tr>
             <th>ID</th>
@@ -44,15 +46,19 @@ const AnimesGet = () => {
             <tr key={item.id}>
               <td>{item.id}</td>
               <td>{item.name}</td>
-              <td>{item.synopsis}</td>
-              <td>{item.thumbnailUrl}</td>
+              <td>
+                {item.synopsis.length > 10 ? `${item.synopsis.substring(0, 50)}...` : item.synopsis}
+              </td>
+              <td>
+                <Image src={item.thumbnailUrl} alt={item.name} width={40} height={50} />
+              </td>
               <td>{item.feature ? 'Sim' : 'Não'}</td>
               <td>{item.categoryNames}</td>
               <td>{item.classificationName}</td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };
