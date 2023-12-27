@@ -1,4 +1,5 @@
 import styles from '../../styles.module.scss';
+import Swal from 'sweetalert2';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import users_service, { AdminsUpdate } from '../../../../../services/users/users.service';
@@ -19,9 +20,8 @@ const UsersUpdate = () => {
   });
 
   const handleUpdate = async (e: FormEvent) => {
-    e.preventDefault();
-
     try {
+      e.preventDefault();
       await users_service.updateAdmin(Number(users.id), {
         firstName: users.firstName,
         userName: users.userName,
@@ -33,9 +33,9 @@ const UsersUpdate = () => {
 
       setUsers({ firstName: '', userName: '', email: '', roleId: 1, profile: '', birthday: '' });
 
-      alert('Usuário atualizado');
-    } catch (error) {
-      console.error('Erro ao atualizar o usuário:', error);
+      Swal.fire('Sucesso!', 'Usuário atualizado com sucesso!', 'success');
+    } catch (error: any) {
+      Swal.fire('Erro!', `${error.message}`, 'error');
     }
   };
 
@@ -50,6 +50,7 @@ const UsersUpdate = () => {
           <div className={styles.form_group_flex_d}>
             <LabelComponent htmlFor="name" value={'Nome'} />
             <InputComponent
+              placeholder="Exemplo: Neko Animes"
               id="name"
               name="name"
               onChange={(e) => setUsers({ ...users, firstName: e.target.value })}
@@ -58,6 +59,7 @@ const UsersUpdate = () => {
           <div className={styles.form_group_flex_id}>
             <LabelComponent htmlFor="id" value={'ID do usuário'} />
             <InputComponent
+              placeholder="Exemplo: 2"
               id="id"
               name="id"
               onChange={(e) => setUsers({ ...users, id: parseInt(e.target.value) })}
@@ -70,6 +72,7 @@ const UsersUpdate = () => {
           <div className={styles.form_group_flex_d}>
             <LabelComponent htmlFor="email" value={'Email'} />
             <InputComponent
+              placeholder="Exemplo: neko@gmail.com"
               type="email"
               id="email"
               name="email"
@@ -79,6 +82,7 @@ const UsersUpdate = () => {
           <div className={styles.form_group_flex_d}>
             <LabelComponent htmlFor="userName" value={'Nickname'} />
             <InputComponent
+              placeholder="Exemplo: Neko "
               id="userName"
               name="userName"
               onChange={(e) => setUsers({ ...users, userName: e.target.value })}
@@ -89,6 +93,7 @@ const UsersUpdate = () => {
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="profile" value={'Profile'} />
         <InputComponent
+          placeholder="Exemplo: https://res.cloudinary.com/doupbxhfd/image/upload/v1703559298/Classifica%C3%A7%C3%B5es/Shounen_xfflya.webp"
           id="profile"
           name="profile"
           onChange={(e) => setUsers({ ...users, profile: e.target.value })}

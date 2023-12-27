@@ -30,7 +30,7 @@ const SeasonsGet = () => {
     <div className={styles.container_table}>
       <h2>Temporadas</h2>
       <SearchAdmin onChange={(e) => setSearch(e.target.value)} placeholder="Buscar pelo nome..." />
-      <Table hover>
+      <Table responsive hover>
         <thead>
           <tr>
             <th>ID</th>

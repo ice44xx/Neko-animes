@@ -1,4 +1,5 @@
 import styles from '../../styles.module.scss';
+import Swal from 'sweetalert2';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import LabelComponent from '../../../../common/label';
@@ -14,10 +15,10 @@ const AnimesDelete = () => {
     try {
       if (animesId !== undefined) {
         await animes_services.delete(animesId);
-        alert(`Anime ${animesId} deletado`);
+        Swal.fire('Sucesso!', 'Anime criado com sucesso!', 'success');
       }
-    } catch (error) {
-      console.error('Erro ao excluir o anime:', error);
+    } catch (error: any) {
+      Swal.fire('Erro!', `${error.message}`, 'error');
     }
   };
 
@@ -25,7 +26,12 @@ const AnimesDelete = () => {
     <Form className={styles.form} onSubmit={handleDelete}>
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="id" value={'Anime ID'} />
-        <InputComponent id="id" name="id" onChange={(e) => setAnimesId(parseInt(e.target.value))} />
+        <InputComponent
+          placeholder="Exemplo: 2"
+          id="id"
+          name="id"
+          onChange={(e) => setAnimesId(parseInt(e.target.value))}
+        />
       </FormGroup>
       <ButtonComponent value="Deletar anime" className={styles.btn} />
     </Form>

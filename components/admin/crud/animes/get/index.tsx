@@ -29,7 +29,7 @@ const AnimesGet = () => {
   return (
     <div className={styles.container_table}>
       <h2>Animes</h2>
-      <Table hover>
+      <Table responsive hover>
         <thead>
           <tr>
             <th>ID</th>

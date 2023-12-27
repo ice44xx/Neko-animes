@@ -1,4 +1,5 @@
 import styles from '../../styles.module.scss';
+import Swal from 'sweetalert2';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import LabelComponent from '../../../../common/label';
@@ -14,10 +15,10 @@ const EpisodesDelete = () => {
     try {
       if (episodesId !== undefined) {
         await episodes_service.delete(episodesId);
-        alert(`Episódio ${episodesId} deletado`);
+        Swal.fire('Sucesso!', 'Episódio deletado com sucesso!', 'success');
       }
-    } catch (error) {
-      console.error('Erro ao excluir o episódio:', error);
+    } catch (error: any) {
+      Swal.fire('Erro!', `${error.message}`, 'error');
     }
   };
 
@@ -26,6 +27,7 @@ const EpisodesDelete = () => {
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="id" value={'Episódio ID'} />
         <InputComponent
+          placeholder="Exemplo: 2"
           id="id"
           name="id"
           onChange={(e) => setEpisodesId(parseInt(e.target.value))}

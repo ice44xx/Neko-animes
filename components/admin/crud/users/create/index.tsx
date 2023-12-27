@@ -1,4 +1,5 @@
 import styles from '../../styles.module.scss';
+import Swal from 'sweetalert2';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import users_service, { AdminsCreate } from '../../../../../services/users/users.service';
@@ -24,9 +25,9 @@ const UsersCreate = () => {
       const res = await users_service.createAdmin(users);
       setUsers({ firstName: '', userName: '', email: '', birthday: '', password: '', roleId: 0 });
 
-      alert('Usuário criado com sucesso!' + JSON.stringify(res));
+      Swal.fire('Sucesso!', 'Usuário criado com sucesso!', 'success');
     } catch (error: any) {
-      alert('Erro ao criar usuário: ' + error.message);
+      Swal.fire('Erro!', `${error.message}`, 'error');
     }
   };
 
@@ -41,6 +42,7 @@ const UsersCreate = () => {
           <div className={styles.form_group_flex_d}>
             <LabelComponent htmlFor="firstName" value={'Nome'} />
             <InputComponent
+              placeholder="Exemplo: Neko Animes"
               id="firstName"
               name="firstName"
               onChange={(e) => setUsers({ ...users, firstName: e.target.value })}
@@ -49,6 +51,7 @@ const UsersCreate = () => {
           <div className={styles.form_group_flex_d}>
             <LabelComponent htmlFor="userName" value={'Nickname'} />
             <InputComponent
+              placeholder="Exemplo: Neko "
               id="userName"
               name="userName"
               onChange={(e) => setUsers({ ...users, userName: e.target.value })}
@@ -59,6 +62,7 @@ const UsersCreate = () => {
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="email" value={'Email'} />
         <InputComponent
+          placeholder="Exemplo: neko@gmail.com"
           id="email"
           name="email"
           onChange={(e) => setUsers({ ...users, email: e.target.value })}

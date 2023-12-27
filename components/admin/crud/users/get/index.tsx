@@ -42,7 +42,7 @@ const UsersGet = () => {
     <div className={styles.container_table}>
       <h2>Usuários</h2>
       <SearchAdmin placeholder="Buscar..." onChange={(e) => setSearch(e.target.value)} />
-      <Table hover>
+      <Table responsive hover>
         <thead>
           <tr>
             <th>Usuário ID</th>

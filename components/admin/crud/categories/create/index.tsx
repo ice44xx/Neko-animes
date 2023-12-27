@@ -1,4 +1,5 @@
 import styles from '../../styles.module.scss';
+import Swal from 'sweetalert2';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import categories_service, {
@@ -16,12 +17,12 @@ const CategoriesCreate = () => {
   const handleSubmit = async (e: FormEvent) => {
     try {
       e.preventDefault();
-      const res = await categories_service.create(categories);
+      await categories_service.create(categories);
       setCategories({ name: '' });
 
-      alert('Background criado com sucesso!' + JSON.stringify(res));
+      Swal.fire('Sucesso!', 'Categoria criada com sucesso!', 'success');
     } catch (error: any) {
-      alert('Erro ao criar o background: ' + error.message);
+      Swal.fire('Erro!', `${error.message}`, 'error');
     }
   };
 
@@ -30,6 +31,7 @@ const CategoriesCreate = () => {
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="name" value={'Nome da categoria'} />
         <InputComponent
+          placeholder="Exemplo: aventura"
           id="name"
           name="name"
           onChange={(e) => setCategories({ ...categories, name: e.target.value })}

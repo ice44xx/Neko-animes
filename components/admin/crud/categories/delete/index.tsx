@@ -1,4 +1,5 @@
 import styles from '../../styles.module.scss';
+import Swal from 'sweetalert2';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import LabelComponent from '../../../../common/label';
@@ -14,10 +15,10 @@ const CategoriesDelete = () => {
     try {
       if (categoriesId !== undefined) {
         await categories_service.delete(categoriesId);
-        alert(`Categoria ${categoriesId} deletada`);
+        Swal.fire('Sucesso!', 'Categoria deletada com sucesso!', 'success');
       }
-    } catch (error) {
-      console.error('Erro ao excluir categoria:', error);
+    } catch (error: any) {
+      Swal.fire('Erro!', `${error.message}`, 'error');
     }
   };
 
@@ -26,6 +27,7 @@ const CategoriesDelete = () => {
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="id" value={'Categoria ID'} />
         <InputComponent
+          placeholder="Exemplo: 2"
           id="id"
           name="id"
           onChange={(e) => setCategoriesId(parseInt(e.target.value))}

@@ -1,4 +1,5 @@
 import styles from '../../styles.module.scss';
+import Swal from 'sweetalert2';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import ButtonComponent from '../../../../common/button';
@@ -26,9 +27,9 @@ const BackgroundsUpdate = () => {
 
       setBackgrounds({ url: '', order: 0 });
 
-      alert('Background atualizado');
-    } catch (error) {
-      console.error('Erro ao atualizar background:', error);
+      Swal.fire('Sucesso!', 'Background atualizado com sucesso!', 'success');
+    } catch (error: any) {
+      Swal.fire('Error!', `${error.message}`, 'error');
     }
   };
 
@@ -39,6 +40,7 @@ const BackgroundsUpdate = () => {
           <div className={styles.form_group_flex_d}>
             <LabelComponent htmlFor="url" value={'Background URL'} />
             <InputComponent
+              placeholder="Exemplo: https://res.cloudinary.com/doupbxhfd/image/upload/v1703559297/Classifica%C3%A7%C3%B5es/Seinen_zwjfhg.webp"
               id="url"
               name="url"
               onChange={(e) => setBackgrounds({ ...backgrounds, url: e.target.value })}
@@ -47,6 +49,7 @@ const BackgroundsUpdate = () => {
           <div className={styles.form_group_flex_id}>
             <LabelComponent htmlFor="id" value={'ID do background'} />
             <InputComponent
+              placeholder="Exemplo: 2"
               id="id"
               name="id"
               onChange={(e) => setBackgrounds({ ...backgrounds, id: parseInt(e.target.value) })}
@@ -57,6 +60,7 @@ const BackgroundsUpdate = () => {
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="order" value={'Ordem'} />
         <InputComponent
+          placeholder="Example: 2"
           id="order"
           name="order"
           onChange={(e) => setBackgrounds({ ...backgrounds, order: parseInt(e.target.value) })}

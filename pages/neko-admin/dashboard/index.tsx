@@ -11,6 +11,7 @@ import seasons_service from '../../../services/seasons/seasons.service';
 import episodes_service from '../../../services/episodes/episodes.service';
 import Image from 'next/image';
 import Cat from '@/public/assets/catid.png';
+import Link from 'next/link';
 
 const Dashboard = () => {
   const [userInfo, setUserInfo] = useState<UserInfo>();
@@ -24,14 +25,22 @@ const Dashboard = () => {
   const [commentsCount, setCommentsCount] = useState(0);
 
   const counters = [
-    { title: 'Animes', count: animesCount },
-    { title: 'Usuários', count: usersCount },
-    { title: 'Planos de fundos', count: backgroundsCount },
-    { title: 'Categorias', count: categoriesCount },
-    { title: 'Classificações', count: classificationsCount },
-    { title: 'Temporadas', count: seasonsCount },
-    { title: 'Episódios', count: episodesCount },
-    { title: 'Comentários', count: episodesCount },
+    { title: 'Animes', count: animesCount, link: '/neko-admin/dashboard/animes' },
+    { title: 'Usuários', count: usersCount, link: '/neko-admin/dashboard/users' },
+    {
+      title: 'Planos de fundos',
+      count: backgroundsCount,
+      link: '/neko-admin/dashboard/backgrounds',
+    },
+    { title: 'Categorias', count: categoriesCount, link: '/neko-admin/dashboard/categories' },
+    {
+      title: 'Classificações',
+      count: classificationsCount,
+      link: '/neko-admin/dashboard/classifications',
+    },
+    { title: 'Temporadas', count: seasonsCount, link: '/neko-admin/dashboard/seasons' },
+    { title: 'Episódios', count: episodesCount, link: '/neko-admin/dashboard/episodes' },
+    { title: 'Comentários', count: commentsCount, link: '/neko-admin/dashboard/comments' },
   ];
 
   useEffect(() => {
@@ -70,19 +79,17 @@ const Dashboard = () => {
         <title>Neko Admin</title>
       </Head>
       <div className={styles.container}>
-        {userInfo?.userName ? (
-          <p className={styles.welcome}>{`Bem-vindo ${userInfo?.userName} !`}</p>
-        ) : (
-          <p className={styles.welcome}>{'Bem-vindo'}</p>
-        )}
+        <p className={styles.welcome}>{'Dashboard Neko Animes'}</p>
         <div className={styles.container_content}>
           <Image src={Cat} alt="Gatinho" className={styles.img} />
           <div className={styles.container_dashboard}>
             {counters.map((counter, index) => (
-              <div key={index} className={styles.card}>
-                <p className={styles.count}>{counter.count}</p>
-                <p className={styles.title}>{counter.title}</p>
-              </div>
+              <Link href={counter.link} key={index} className={styles.link}>
+                <div className={styles.card}>
+                  <p className={styles.count}>{counter.count}</p>
+                  <p className={styles.title}>{counter.title}</p>
+                </div>
+              </Link>
             ))}
           </div>
         </div>

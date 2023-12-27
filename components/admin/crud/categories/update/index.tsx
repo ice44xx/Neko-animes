@@ -1,4 +1,5 @@
 import styles from '../../styles.module.scss';
+import Swal from 'sweetalert2';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import categories_service, {
@@ -24,9 +25,9 @@ const CategoriessUpdate = () => {
 
       setCategories({ id: '', name: '' });
 
-      alert('Categoria atualizada');
-    } catch (error) {
-      console.error('Erro ao atualizar a categoria:', error);
+      Swal.fire('Sucesso!', 'Categoria atualizada com sucesso!', 'success');
+    } catch (error: any) {
+      Swal.fire('Erro!', `${error.message}`, 'error');
     }
   };
 
@@ -37,6 +38,7 @@ const CategoriessUpdate = () => {
           <div className={styles.form_group_flex_id}>
             <LabelComponent htmlFor="name" value={'Nome da categoria'} />
             <InputComponent
+              placeholder="Exemplo: aventura"
               id="name"
               name="name"
               value={categories.name}
@@ -46,6 +48,7 @@ const CategoriessUpdate = () => {
           <div className={styles.form_group_flex_id}>
             <LabelComponent htmlFor="id" value={'ID da categoria'} />
             <InputComponent
+              placeholder="Exemplo: 2"
               id="id"
               name="id"
               value={categories.id}

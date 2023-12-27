@@ -1,4 +1,5 @@
 import styles from '../../styles.module.scss';
+import Swal from 'sweetalert2';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import seasons_service, { SeasonsCreate } from '../../../../../services/seasons/seasons.service';
@@ -17,12 +18,12 @@ const SeasonsCreate = () => {
     try {
       e.preventDefault();
 
-      const res = await seasons_service.create(seasons);
+      await seasons_service.create(seasons);
       setSeasons({ name: '', animeId: 0, order: 0 });
 
-      alert('Temporada criada com sucesso!' + JSON.stringify(res));
+      Swal.fire('Sucesso!', 'Temporada criada com sucesso!', 'success');
     } catch (error: any) {
-      alert('Erro ao criar a temporada: ' + error.message);
+      Swal.fire('Erro!', `${error.message}`, 'error');
     }
   };
 
@@ -31,6 +32,7 @@ const SeasonsCreate = () => {
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="name" value={'Nome da Temporada'} />
         <InputComponent
+          placeholder="Exemplo: Temporada 1 jujutsu no kaisen"
           id="name"
           name="name"
           onChange={(e) => setSeasons({ ...seasons, name: e.target.value })}
@@ -41,6 +43,7 @@ const SeasonsCreate = () => {
           <div className={styles.form_group_flex_d}>
             <LabelComponent htmlFor="order" value={'Ordem'} />
             <InputComponent
+              placeholder="Exemplo: 2"
               id="order"
               name="order"
               onChange={(e) => setSeasons({ ...seasons, order: parseInt(e.target.value) })}
@@ -49,6 +52,7 @@ const SeasonsCreate = () => {
           <div className={styles.form_group_flex_d}>
             <LabelComponent htmlFor="id" value={'ID do anime'} />
             <InputComponent
+              placeholder="Exemplo: 2"
               id="id"
               name="id"
               onChange={(e) => setSeasons({ ...seasons, animeId: parseInt(e.target.value) })}

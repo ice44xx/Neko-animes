@@ -1,4 +1,5 @@
 import styles from '../../styles.module.scss';
+import Swal from 'sweetalert2';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import LabelComponent from '../../../../common/label';
@@ -14,10 +15,10 @@ const BackgroundsDelete = () => {
     try {
       if (backgroundId !== undefined) {
         await seasons_service.delete(backgroundId);
-        alert(`Background ${backgroundId} deletado`);
+        Swal.fire('Sucesso!', 'Background deletado com sucesso!', 'success');
       }
-    } catch (error) {
-      console.error('Erro ao excluir background:', error);
+    } catch (error: any) {
+      Swal.fire('Error!', `${error.message}`, 'error');
     }
   };
 
@@ -26,6 +27,7 @@ const BackgroundsDelete = () => {
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="id" value={'Background ID'} />
         <InputComponent
+          placeholder="Exemplo: 2"
           id="id"
           name="id"
           onChange={(e) => setBackgroundId(parseInt(e.target.value))}

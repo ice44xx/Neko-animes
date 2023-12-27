@@ -93,3 +93,20 @@
   left: -800px;
   transition: all 0.4s;
 }
+
+@media (max-width: 450px) {
+  .navbarOpen {
+    .container_navbar {
+      width: 100%;
+      border-right: none;
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .navbar {
+    img {
+      left: 10px;
+    }
+  }
+}

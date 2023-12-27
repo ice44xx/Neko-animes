@@ -1,4 +1,5 @@
 import styles from '../../styles.module.scss';
+import Swal from 'sweetalert2';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import LabelComponent from '../../../../common/label';
@@ -14,10 +15,10 @@ const ClassificationsDelete = () => {
     try {
       if (classificationId !== undefined) {
         await classifications_service.delete(classificationId);
-        alert(`Classificação ${classificationId} deletada`);
+        Swal.fire('Sucesso!', 'Classificação deletada com sucesso!', 'success');
       }
-    } catch (error) {
-      console.error('Erro ao excluir classificação:', error);
+    } catch (error: any) {
+      Swal.fire('Erro!', `${error.message}`, 'error');
     }
   };
 
@@ -26,6 +27,7 @@ const ClassificationsDelete = () => {
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="id" value={'Classificação ID'} />
         <InputComponent
+          placeholder="Exemplo: 2"
           id="id"
           name="id"
           onChange={(e) => setClassificationId(parseInt(e.target.value))}
