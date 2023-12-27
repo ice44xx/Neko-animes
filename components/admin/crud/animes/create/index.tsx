@@ -72,7 +72,7 @@ const AnimesCreate = () => {
       </FormGroup>
       <FormGroup className={styles.form_group_select}>
         <LabelComponent value={'Em destaque ?'} />
-        <SelectInput value={animes.feature} onChange={handleSelectChange} />
+        <SelectInput value={animes.feature} optionsType="feature" onChange={handleSelectChange} />
       </FormGroup>
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="classificationName" value={'Classificação'} />

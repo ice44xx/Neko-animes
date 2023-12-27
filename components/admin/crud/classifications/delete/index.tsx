@@ -24,8 +24,12 @@ const ClassificationsDelete = () => {
   return (
     <Form className={styles.form} onSubmit={handleDelete}>
       <FormGroup className={styles.form_group}>
-        <LabelComponent value={'Classificação ID'} />
-        <InputComponent onChange={(e) => setClassificationId(parseInt(e.target.value))} />
+        <LabelComponent htmlFor="id" value={'Classificação ID'} />
+        <InputComponent
+          id="id"
+          name="id"
+          onChange={(e) => setClassificationId(parseInt(e.target.value))}
+        />
       </FormGroup>
       <ButtonComponent value="Deletar classificação" className={styles.btn} />
     </Form>

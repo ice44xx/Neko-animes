@@ -1,13 +1,13 @@
 import styles from '../../styles.module.scss';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
+import seasons_service, { SeasonsCreate } from '../../../../../services/seasons/seasons.service';
 import LabelComponent from '../../../../common/label';
 import InputComponent from '../../../../common/input';
 import ButtonComponent from '../../../../common/button';
-import seasons_service, { Seasons } from '../../../../../services/seasons/seasons.service';
 
 const SeasonsCreate = () => {
-  const [seasons, setSeasons] = useState<Seasons>({
+  const [seasons, setSeasons] = useState<SeasonsCreate>({
     name: '',
     animeId: 0,
     order: 0,
@@ -29,20 +29,28 @@ const SeasonsCreate = () => {
   return (
     <Form className={styles.form} onSubmit={handleSubmit}>
       <FormGroup className={styles.form_group}>
-        <LabelComponent value={'Nome da Temporada'} />
-        <InputComponent onChange={(e) => setSeasons({ ...seasons, name: e.target.value })} />
+        <LabelComponent htmlFor="name" value={'Nome da Temporada'} />
+        <InputComponent
+          id="name"
+          name="name"
+          onChange={(e) => setSeasons({ ...seasons, name: e.target.value })}
+        />
       </FormGroup>
       <FormGroup className={styles.form_group}>
         <div className={styles.form_group_flex}>
           <div className={styles.form_group_flex_d}>
-            <LabelComponent value={'Ordem'} />
+            <LabelComponent htmlFor="order" value={'Ordem'} />
             <InputComponent
+              id="order"
+              name="order"
               onChange={(e) => setSeasons({ ...seasons, order: parseInt(e.target.value) })}
             />
           </div>
           <div className={styles.form_group_flex_d}>
-            <LabelComponent value={'ID do anime'} />
+            <LabelComponent htmlFor="id" value={'ID do anime'} />
             <InputComponent
+              id="id"
+              name="id"
               onChange={(e) => setSeasons({ ...seasons, animeId: parseInt(e.target.value) })}
             />
           </div>

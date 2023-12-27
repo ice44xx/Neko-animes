@@ -39,5 +39,8 @@
   table {
     text-align: center;
     cursor: pointer;
+    .img {
+      object-fit: contain;
+    }
   }
 }

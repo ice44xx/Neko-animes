@@ -31,14 +31,18 @@ const ClassificationsCreate = () => {
   return (
     <Form className={styles.form} onSubmit={handleSubmit}>
       <FormGroup className={styles.form_group}>
-        <LabelComponent value={'Nome da classificação'} />
+        <LabelComponent htmlFor="name" value={'Nome da classificação'} />
         <InputComponent
+          id="name"
+          name="name"
           onChange={(e) => setClassification({ ...classification, name: e.target.value })}
         />
       </FormGroup>
       <FormGroup className={styles.form_group}>
-        <LabelComponent value={'Thumbnail'} />
+        <LabelComponent htmlFor="thumbnail" value={'Thumbnail'} />
         <InputComponent
+          id="thumbnail"
+          name="thumbnail"
           onChange={(e) => setClassification({ ...classification, thumbnail: e.target.value })}
         />
       </FormGroup>

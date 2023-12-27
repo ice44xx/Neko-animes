@@ -40,24 +40,28 @@ const ClassificationsUpdate = () => {
       <FormGroup className={styles.form_group}>
         <div className={styles.form_group_flex}>
           <div className={styles.form_group_flex_id}>
-            <LabelComponent value={'Nome da classificação'} />
+            <LabelComponent htmlFor="name" value={'Nome da classificação'} />
             <InputComponent
-              value={classification.name}
+              id="name"
+              name="name"
               onChange={(e) => setClassification({ ...classification, name: e.target.value })}
             />
           </div>
           <div className={styles.form_group_flex_id}>
-            <LabelComponent value={'ID da classificação'} />
+            <LabelComponent htmlFor="id" value={'ID da classificação'} />
             <InputComponent
-              value={classification.id}
+              id="id"
+              name="id"
               onChange={(e) => setClassification({ ...classification, id: e.target.value })}
             />
           </div>
         </div>
       </FormGroup>
       <FormGroup className={styles.form_group}>
-        <LabelComponent value={'Thumbnail'} />
+        <LabelComponent htmlFor="thumbnail" value={'Thumbnail'} />
         <InputComponent
+          id="thumbnail"
+          name="thumbnail"
           value={classification.thumbnail}
           onChange={(e) => setClassification({ ...classification, thumbnail: e.target.value })}
         />

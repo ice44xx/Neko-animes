@@ -24,8 +24,8 @@ const AnimesDelete = () => {
   return (
     <Form className={styles.form} onSubmit={handleDelete}>
       <FormGroup className={styles.form_group}>
-        <LabelComponent value={'Anime ID'} />
-        <InputComponent onChange={(e) => setAnimesId(parseInt(e.target.value))} />
+        <LabelComponent htmlFor="id" value={'Anime ID'} />
+        <InputComponent id="id" name="id" onChange={(e) => setAnimesId(parseInt(e.target.value))} />
       </FormGroup>
       <ButtonComponent value="Deletar anime" className={styles.btn} />
     </Form>

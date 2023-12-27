@@ -24,8 +24,12 @@ const SeasonsDelete = () => {
   return (
     <Form className={styles.form} onSubmit={handleDelete}>
       <FormGroup className={styles.form_group}>
-        <LabelComponent value={'Temporada ID'} />
-        <InputComponent onChange={(e) => setSeasonsId(parseInt(e.target.value))} />
+        <LabelComponent htmlFor="id" value={'Temporada ID'} />
+        <InputComponent
+          id="id"
+          name="id"
+          onChange={(e) => setSeasonsId(parseInt(e.target.value))}
+        />
       </FormGroup>
       <ButtonComponent value="Deletar temporada" className={styles.btn} />
     </Form>

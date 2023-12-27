@@ -37,12 +37,18 @@ const SeasonsUpdate = () => {
       <FormGroup className={styles.form_group}>
         <div className={styles.form_group_flex}>
           <div className={styles.form_group_flex_d}>
-            <LabelComponent value={'Nome da temporada'} />
-            <InputComponent onChange={(e) => setSeasons({ ...seasons, name: e.target.value })} />
+            <LabelComponent htmlFor="name" value={'Nome da temporada'} />
+            <InputComponent
+              id="name"
+              name="name"
+              onChange={(e) => setSeasons({ ...seasons, name: e.target.value })}
+            />
           </div>
           <div className={styles.form_group_flex_id}>
-            <LabelComponent value={'ID da temporada'} />
+            <LabelComponent htmlFor="id" value={'ID da temporada'} />
             <InputComponent
+              id="id"
+              name="id"
               onChange={(e) => setSeasons({ ...seasons, id: parseInt(e.target.value) })}
             />
           </div>
@@ -51,14 +57,18 @@ const SeasonsUpdate = () => {
       <FormGroup className={styles.form_group}>
         <div className={styles.form_group_flex}>
           <div className={styles.form_group_flex_d}>
-            <LabelComponent value={'Ordem'} />
+            <LabelComponent htmlFor="order" value={'Ordem'} />
             <InputComponent
+              id="order"
+              name="order"
               onChange={(e) => setSeasons({ ...seasons, order: parseInt(e.target.value) })}
             />
           </div>
           <div className={styles.form_group_flex_d}>
-            <LabelComponent value={'ID do anime'} />
+            <LabelComponent htmlFor="animeId" value={'ID do anime'} />
             <InputComponent
+              id="animeId"
+              name="animeId"
               onChange={(e) => setSeasons({ ...seasons, animeId: parseInt(e.target.value) })}
             />
           </div>
