@@ -1,19 +1,18 @@
 import styles from '../../styles.module.scss';
-import { Form, Table } from 'reactstrap';
+import { Table } from 'reactstrap';
 import React, { useEffect, useState } from 'react';
-import seasons_service, { Seasons } from '../../../../../services/seasons/seasons.service';
-import InputComponent from '../../../../common/input';
+import seasons_service, { SeasonsGet } from '../../../../../services/seasons/seasons.service';
 import Image from 'next/image';
 import SearchAdmin from '../../../search';
 
 const SeasonsGet = () => {
-  const [data, setData] = useState<Seasons[]>([]);
+  const [data, setData] = useState<SeasonsGet[]>([]);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await seasons_service.get(search);
+        const res = await seasons_service.getByName(search);
         if (res) {
           setData(Array.isArray(res) ? res : [res]);
         } else {
@@ -42,7 +41,7 @@ const SeasonsGet = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((season: Seasons) => (
+          {data.map((season: SeasonsGet) => (
             <tr key={season.id}>
               <td>{season.id}</td>
               <td>{season.anime?.name}</td>
