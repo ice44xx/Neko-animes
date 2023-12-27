@@ -56,7 +56,7 @@ const AnimesUpdate = () => {
     <Form className={styles.form} onSubmit={handleSubmit}>
       <FormGroup className={styles.form_group}>
         <div className={styles.form_group_flex}>
-          <div className={styles.form_group_flex_id}>
+          <div className={styles.form_group_flex_d}>
             <LabelComponent htmlFor="name" value={'Nome do anime'} />
             <InputComponent
               id="name"

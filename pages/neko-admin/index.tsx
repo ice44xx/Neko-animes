@@ -53,6 +53,7 @@ const DashboardLogin = () => {
                 <InputComponent
                   id="password"
                   name="password"
+                  type="password"
                   className={styles.input}
                   placeholder=""
                   onChange={(e) => setPassword(e.target.value)}

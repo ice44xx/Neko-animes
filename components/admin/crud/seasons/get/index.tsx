@@ -1,10 +1,10 @@
 import styles from '../../styles.module.scss';
+import { Form, Table } from 'reactstrap';
 import React, { useEffect, useState } from 'react';
 import seasons_service, { Seasons } from '../../../../../services/seasons/seasons.service';
-import { Form, Table } from 'reactstrap';
-import Image from 'next/image';
 import InputComponent from '../../../../common/input';
-import ButtonComponent from '../../../../common/button';
+import Image from 'next/image';
+import SearchAdmin from '../../../search';
 
 const SeasonsGet = () => {
   const [data, setData] = useState<Seasons[]>([]);
@@ -30,21 +30,14 @@ const SeasonsGet = () => {
   return (
     <div className={styles.container_table}>
       <h2>Temporadas</h2>
-      <div className={styles.container_search}>
-        <Form className={styles.form} onSubmit={(e) => e.preventDefault()}>
-          <InputComponent
-            placeholder="Buscar por nome..."
-            onChange={(e) => setSearch(e.target.value)}
-            className={styles.input}
-          />
-        </Form>
-      </div>
+      <SearchAdmin onChange={(e) => setSearch(e.target.value)} placeholder="Buscar pelo nome..." />
       <Table hover>
         <thead>
           <tr>
             <th>ID</th>
             <th>Anime</th>
             <th>Anime ID</th>
+            <th>Thumbnail</th>
             <th>Temporada</th>
           </tr>
         </thead>
@@ -54,6 +47,14 @@ const SeasonsGet = () => {
               <td>{season.id}</td>
               <td>{season.anime?.name}</td>
               <td>{season.anime?.id}</td>
+              <td>
+                <Image
+                  src={season.anime?.thumbnailUrl}
+                  alt={season.anime.name}
+                  width={40}
+                  height={50}
+                />
+              </td>
               <td>{season.name}</td>
             </tr>
           ))}

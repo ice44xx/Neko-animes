@@ -1,13 +1,21 @@
 import api from '../database/boot';
 
-export interface Seasons {
+export interface SeasonsCreate {
   id?: number | string;
   name: string;
   animeId: number;
   order?: number;
-  anime?: {
+}
+
+export interface SeasonsGet {
+  id?: number | string;
+  name: string;
+  animeId: number;
+  order?: number;
+  anime: {
     id: number;
     name: string;
+    thumbnailUrl: string;
   };
 }
 
@@ -20,7 +28,7 @@ const seasons_service = {
       throw new Error(error.response.data.message || 'Erro ao buscar as temporadas.');
     }
   },
-  create: async (attributes: Seasons) => {
+  create: async (attributes: SeasonsCreate) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
       const res = await api.post('/seasons/create', attributes, {
@@ -33,7 +41,7 @@ const seasons_service = {
       throw new Error(error.response.data.message || 'Erro ao criar a temporada.');
     }
   },
-  update: async (id: number, attributes: Partial<Seasons>) => {
+  update: async (id: number, attributes: Partial<SeasonsCreate>) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
       const res = await api.put(`/seasons/${id}`, attributes, {

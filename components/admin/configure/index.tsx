@@ -13,6 +13,8 @@ const Configure: React.FC<Props> = ({ options, components }) => {
   const [select, setSelect] = useState('');
   const [show, setShow] = useState(true);
 
+  const toggle = () => setShow(!show);
+
   useEffect(() => {
     if (options && options.length > 0) {
       setSelect(options[0]);
@@ -21,7 +23,7 @@ const Configure: React.FC<Props> = ({ options, components }) => {
 
   const handleOptionClick = (option: string) => {
     setSelect(option);
-    setShow(false);
+    setShow(true);
   };
 
   const render = () => {
@@ -35,16 +37,18 @@ const Configure: React.FC<Props> = ({ options, components }) => {
     <>
       <div className={styles.container}>
         <div className={styles.container_eng}>
-          <Image src={Eng} alt="" className={styles.eng} onClick={() => setShow(!show)} />
-          <div className={`${styles.container_choice} ${show ? styles.show : ''}`}>
-            {options.map((option, index) => (
-              <ButtonComponent
-                key={index}
-                value={option}
-                onClick={() => handleOptionClick(option)}
-                className={styles.btn}
-              />
-            ))}
+          <Image src={Eng} alt="Opções" className={styles.eng} onClick={toggle} />
+          <div className={`${styles.modal} ${show ? styles.show : ''}`} onClick={toggle}>
+            <div className={styles.modal_body}>
+              {options.map((option, index) => (
+                <ButtonComponent
+                  key={index}
+                  value={option}
+                  onClick={() => handleOptionClick(option)}
+                  className={styles.btn}
+                />
+              ))}
+            </div>
           </div>
         </div>
 

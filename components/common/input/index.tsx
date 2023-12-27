@@ -9,12 +9,22 @@ interface Props {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   className?: string;
+  type?: 'text' | 'number' | 'password' | 'email';
 }
 
-const InputComponent: React.FC<Props> = ({ value, onChange, placeholder, id, name, className }) => {
+const InputComponent: React.FC<Props> = ({
+  value,
+  onChange,
+  placeholder,
+  id,
+  name,
+  type,
+  className,
+}) => {
   const combinedClassName = className ? `${styles.input} ${className}` : styles.input;
   return (
     <Input
+      type={type}
       value={value}
       id={id}
       name={name}

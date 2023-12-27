@@ -1,13 +1,13 @@
 import styles from '../../styles.module.scss';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
-import seasons_service, { Seasons } from '../../../../../services/seasons/seasons.service';
+import seasons_service, { SeasonsCreate } from '../../../../../services/seasons/seasons.service';
 import ButtonComponent from '../../../../common/button';
 import InputComponent from '../../../../common/input';
 import LabelComponent from '../../../../common/label';
 
 const SeasonsUpdate = () => {
-  const [seasons, setSeasons] = useState<Seasons>({
+  const [seasons, setSeasons] = useState<SeasonsCreate>({
     id: '',
     name: '',
     animeId: 0,
