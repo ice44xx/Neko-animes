@@ -1,10 +1,10 @@
-import Navbar from "../components/common/navbar";
+import SlidesAnimes from '../components/slides/slidesAnimes';
 
-const Home = () => {
+const HomePagePublic = () => {
   return (
-    <div>
-      <Navbar />
-    </div>
+    <main>
+      <SlidesAnimes />
+    </main>
   );
 };
-export default Home;
+export default HomePagePublic;

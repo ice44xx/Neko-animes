@@ -1,0 +1,12 @@
+@import '@/styles/colors.scss';
+
+.button {
+  height: 50px;
+  font-size: 20px;
+  transition: all 0.3s;
+  cursor: pointer;
+  &:hover {
+    background-color: $primary;
+    transition: all 0.3s;
+  }
+}
