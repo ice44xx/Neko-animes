@@ -9,7 +9,7 @@ interface Props {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   className?: string;
-  type?: 'text' | 'number' | 'password' | 'email';
+  type?: 'text' | 'number' | 'password' | 'email' | 'date';
 }
 
 const InputComponent: React.FC<Props> = ({

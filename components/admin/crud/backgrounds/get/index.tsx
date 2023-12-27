@@ -1,21 +1,21 @@
 import styles from '../../styles.module.scss';
 import React, { useEffect, useState } from 'react';
-import classifications_service, {
-  Classifications,
-} from '../../../../../services/classifications/classifications.service';
+import backgrounds_service, {
+  Backgrounds,
+} from '../../../../../services/backgrounds/backgrounds.service';
 import { Table } from 'reactstrap';
 import Image from 'next/image';
 
-const ClassificationsGet = () => {
-  const [data, setData] = useState<Classifications[]>([]);
+const BackgroundsGet = () => {
+  const [data, setData] = useState<Backgrounds[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await classifications_service.get();
+        const res = await backgrounds_service.get();
         setData(res);
       } catch (error) {
-        console.error('Error ao buscar as classificações, ', error);
+        console.error('Error ao buscar os backgrounds, ', error);
       }
     };
 
@@ -24,25 +24,29 @@ const ClassificationsGet = () => {
 
   return (
     <div className={styles.container_table}>
-      <h2>Classificações</h2>
+      <h2>Backgrounds</h2>
       <Table responsive hover>
         <thead>
           <tr>
             <th>ID</th>
-            <th>Classificação</th>
-            <th>Descrição</th>
-            <th>Thumbnail</th>
+            <th>Background URL</th>
+            <th>Orderm</th>
           </tr>
         </thead>
         <tbody>
           {data.map((item) => (
             <tr key={item.id}>
               <td>{item.id}</td>
-              <td>{item.name}</td>
-              <td>{item.desc}</td>
               <td>
-                <Image src={item.thumbnail} alt={item.name} width={100} height={120} />
+                <Image
+                  src={item.url}
+                  alt={'Background'}
+                  width={200}
+                  height={50}
+                  className={styles.img}
+                />
               </td>
+              <td>{item.order}</td>
             </tr>
           ))}
         </tbody>
@@ -51,4 +55,4 @@ const ClassificationsGet = () => {
   );
 };
 
-export default ClassificationsGet;
+export default BackgroundsGet;

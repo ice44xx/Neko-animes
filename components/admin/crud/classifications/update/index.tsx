@@ -1,4 +1,5 @@
 import styles from '../../styles.module.scss';
+import Swal from 'sweetalert2';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import classifications_service, {
@@ -29,9 +30,9 @@ const ClassificationsUpdate = () => {
 
       setClassification({ id: '', name: '', thumbnail: '', desc: '' });
 
-      alert('Classificação atualizada');
-    } catch (error) {
-      console.error('Erro ao atualizar classificação:', error);
+      Swal.fire('Sucesso!', 'Classificação atualizada com sucesso!', 'success');
+    } catch (error: any) {
+      Swal.fire('Erro!', `${error.message}`, 'error');
     }
   };
 
@@ -40,24 +41,31 @@ const ClassificationsUpdate = () => {
       <FormGroup className={styles.form_group}>
         <div className={styles.form_group_flex}>
           <div className={styles.form_group_flex_id}>
-            <LabelComponent value={'Nome da classificação'} />
+            <LabelComponent htmlFor="name" value={'Nome da classificação'} />
             <InputComponent
-              value={classification.name}
+              placeholder="Exemplo: Seinen"
+              id="name"
+              name="name"
               onChange={(e) => setClassification({ ...classification, name: e.target.value })}
             />
           </div>
           <div className={styles.form_group_flex_id}>
-            <LabelComponent value={'ID da classificação'} />
+            <LabelComponent htmlFor="id" value={'ID da classificação'} />
             <InputComponent
-              value={classification.id}
+              placeholder="Exemplo: 2"
+              id="id"
+              name="id"
               onChange={(e) => setClassification({ ...classification, id: e.target.value })}
             />
           </div>
         </div>
       </FormGroup>
       <FormGroup className={styles.form_group}>
-        <LabelComponent value={'Thumbnail'} />
+        <LabelComponent htmlFor="thumbnail" value={'Thumbnail'} />
         <InputComponent
+          placeholder="Exemplo: https://res.cloudinary.com/doupbxhfd/image/upload/v1703559298/Classifica%C3%A7%C3%B5es/Shounen_xfflya.webp"
+          id="thumbnail"
+          name="thumbnail"
           value={classification.thumbnail}
           onChange={(e) => setClassification({ ...classification, thumbnail: e.target.value })}
         />

@@ -20,12 +20,20 @@ export interface SeasonsGet {
 }
 
 const seasons_service = {
-  get: async (name: string) => {
+  get: async () => {
+    try {
+      const res = await api.get('/seasons');
+      return res.data;
+    } catch (error: any) {
+      throw new Error(error.response.data.message || 'Erro ao buscar as temporadas.');
+    }
+  },
+  getByName: async (name: string) => {
     try {
       const res = await api.get(`/seasons/${name}`);
       return res.data;
     } catch (error: any) {
-      throw new Error(error.response.data.message || 'Erro ao buscar as temporadas.');
+      throw new Error(error.response.data.message || `Erro ao buscar a temporada ${name}.`);
     }
   },
   create: async (attributes: SeasonsCreate) => {

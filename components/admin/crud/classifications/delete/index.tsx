@@ -1,4 +1,5 @@
 import styles from '../../styles.module.scss';
+import Swal from 'sweetalert2';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import LabelComponent from '../../../../common/label';
@@ -14,18 +15,23 @@ const ClassificationsDelete = () => {
     try {
       if (classificationId !== undefined) {
         await classifications_service.delete(classificationId);
-        alert(`Classificação ${classificationId} deletada`);
+        Swal.fire('Sucesso!', 'Classificação deletada com sucesso!', 'success');
       }
-    } catch (error) {
-      console.error('Erro ao excluir classificação:', error);
+    } catch (error: any) {
+      Swal.fire('Erro!', `${error.message}`, 'error');
     }
   };
 
   return (
     <Form className={styles.form} onSubmit={handleDelete}>
       <FormGroup className={styles.form_group}>
-        <LabelComponent value={'Classificação ID'} />
-        <InputComponent onChange={(e) => setClassificationId(parseInt(e.target.value))} />
+        <LabelComponent htmlFor="id" value={'Classificação ID'} />
+        <InputComponent
+          placeholder="Exemplo: 2"
+          id="id"
+          name="id"
+          onChange={(e) => setClassificationId(parseInt(e.target.value))}
+        />
       </FormGroup>
       <ButtonComponent value="Deletar classificação" className={styles.btn} />
     </Form>

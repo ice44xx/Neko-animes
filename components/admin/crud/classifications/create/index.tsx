@@ -1,4 +1,5 @@
 import styles from '../../styles.module.scss';
+import Swal from 'sweetalert2';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import classifications_service, {
@@ -19,26 +20,32 @@ const ClassificationsCreate = () => {
   const handleSubmit = async (e: FormEvent) => {
     try {
       e.preventDefault();
-      const res = await classifications_service.create(classification);
+      await classifications_service.create(classification);
       setClassification({ name: '', thumbnail: '', desc: '' });
 
-      alert('Classificação criada com sucesso!' + JSON.stringify(res));
+      Swal.fire('Sucesso!', 'Classificação criada com sucesso!', 'success');
     } catch (error: any) {
-      alert('Erro ao criar classificação: ' + error.message);
+      Swal.fire('Erro!', `${error.message}`, 'error');
     }
   };
 
   return (
     <Form className={styles.form} onSubmit={handleSubmit}>
       <FormGroup className={styles.form_group}>
-        <LabelComponent value={'Nome da classificação'} />
+        <LabelComponent htmlFor="name" value={'Nome da classificação'} />
         <InputComponent
+          placeholder="Exemplo: Seinen"
+          id="name"
+          name="name"
           onChange={(e) => setClassification({ ...classification, name: e.target.value })}
         />
       </FormGroup>
       <FormGroup className={styles.form_group}>
-        <LabelComponent value={'Thumbnail'} />
+        <LabelComponent htmlFor="thumbnail" value={'Thumbnail'} />
         <InputComponent
+          placeholder="Exemplo: https://res.cloudinary.com/doupbxhfd/image/upload/v1703559298/Classifica%C3%A7%C3%B5es/Shounen_xfflya.webp"
+          id="thumbnail"
+          name="thumbnail"
           onChange={(e) => setClassification({ ...classification, thumbnail: e.target.value })}
         />
       </FormGroup>

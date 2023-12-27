@@ -40,7 +40,7 @@ const EpisodesGet = () => {
         placeholder="Buscar pelo nome do anime..."
         onChange={(e) => setSearch(e.target.value)}
       />
-      <Table hover>
+      <Table responsive hover>
         <thead>
           <tr>
             <th>Episódio ID</th>

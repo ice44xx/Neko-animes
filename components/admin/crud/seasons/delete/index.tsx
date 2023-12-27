@@ -1,4 +1,5 @@
 import styles from '../../styles.module.scss';
+import Swal from 'sweetalert2';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import LabelComponent from '../../../../common/label';
@@ -14,18 +15,23 @@ const SeasonsDelete = () => {
     try {
       if (seasonsId !== undefined) {
         await seasons_service.delete(seasonsId);
-        alert(`Temporada ${seasonsId} deletada`);
+        Swal.fire('Sucesso!', 'Temporada deletada com sucesso!', 'success');
       }
-    } catch (error) {
-      console.error('Erro ao excluir temporada:', error);
+    } catch (error: any) {
+      Swal.fire('Erro!', `${error.message}`, 'error');
     }
   };
 
   return (
     <Form className={styles.form} onSubmit={handleDelete}>
       <FormGroup className={styles.form_group}>
-        <LabelComponent value={'Temporada ID'} />
-        <InputComponent onChange={(e) => setSeasonsId(parseInt(e.target.value))} />
+        <LabelComponent htmlFor="id" value={'Temporada ID'} />
+        <InputComponent
+          placeholder="Exemplo: 2"
+          id="id"
+          name="id"
+          onChange={(e) => setSeasonsId(parseInt(e.target.value))}
+        />
       </FormGroup>
       <ButtonComponent value="Deletar temporada" className={styles.btn} />
     </Form>

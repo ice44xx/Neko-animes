@@ -24,7 +24,7 @@ const CategoriesGet = () => {
   return (
     <div className={styles.container_table}>
       <h2>Categorias</h2>
-      <Table hover>
+      <Table responsive hover>
         <thead>
           <tr>
             <th>ID</th>

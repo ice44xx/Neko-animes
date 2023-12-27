@@ -1,5 +1,6 @@
 import styles from '../../styles.module.scss';
-import { useState } from 'react';
+import Swal from 'sweetalert2';
+import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import animes_services, { Animes } from '../../../../../services/animes/animes.service';
 import InputComponent from '../../../../common/input';
@@ -18,12 +19,14 @@ const AnimesCreate = () => {
     classificationName: '',
   });
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: FormEvent) => {
     try {
-      const res = await animes_services.create(animes);
-      alert('Anime criado' + JSON.stringify(res));
+      e.preventDefault();
+      await animes_services.create(animes);
+
+      Swal.fire('Sucesso!', 'Anime criado com sucesso!', 'success');
     } catch (error: any) {
-      alert('Erro ao criar classificação: ' + error.message);
+      Swal.fire('Erro!', `${error.message}`, 'error');
     }
   };
 
@@ -49,6 +52,7 @@ const AnimesCreate = () => {
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="name" value={'Nome do anime'} />
         <InputComponent
+          placeholder="Exemplo Jujutsu No kaisen..."
           id="name"
           name="name"
           onChange={(e) => setAnimes({ ...animes, name: e.target.value })}
@@ -65,6 +69,7 @@ const AnimesCreate = () => {
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="thumbnailUrl" value={'Thumbnail'} />
         <InputComponent
+          placeholder="Exemplo: https://res.cloudinary.com/doupbxhfd/image/upload/v1690133090/Thumbnails/jujutsu_aboouc_ehronz.webp"
           id="thumbnailUrl"
           name="thumbnailUrl"
           onChange={(e) => setAnimes({ ...animes, thumbnailUrl: e.target.value })}
@@ -72,11 +77,12 @@ const AnimesCreate = () => {
       </FormGroup>
       <FormGroup className={styles.form_group_select}>
         <LabelComponent value={'Em destaque ?'} />
-        <SelectInput value={animes.feature} onChange={handleSelectChange} />
+        <SelectInput value={animes.feature} optionsType="feature" onChange={handleSelectChange} />
       </FormGroup>
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="classificationName" value={'Classificação'} />
         <InputComponent
+          placeholder="Exemplo: Seinen"
           id="classificationName"
           name="classificationName"
           onChange={(e) => setAnimes({ ...animes, classificationName: e.target.value })}
@@ -84,7 +90,12 @@ const AnimesCreate = () => {
       </FormGroup>
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="categoryNames" value={'Categorias'} />
-        <InputComponent id="categoryNames" name="categoryNames" onChange={handleCategoryChange} />
+        <InputComponent
+          placeholder="Exmeplo: aventura, terror"
+          id="categoryNames"
+          name="categoryNames"
+          onChange={handleCategoryChange}
+        />
       </FormGroup>
       <ButtonComponent value="Lançar anime" className={styles.btn} />
     </Form>
