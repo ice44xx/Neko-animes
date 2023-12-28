@@ -8,7 +8,7 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ image, alt }) => {
   return (
     <div className={styles.container}>
-      <img src={image} alt={alt} className={styles.image} />
+      <img src={image} alt={alt} className={styles.img} />
     </div>
   );
 };

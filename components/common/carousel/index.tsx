@@ -10,7 +10,7 @@ interface SlidesProps {
 const SplideCarousel: React.FC<SlidesProps> = ({ images }) => {
   return (
     <Splide
-      className={styles.Splide}
+      className={styles.splide}
       options={{
         type: 'slide',
         perPage: 7,
@@ -21,7 +21,7 @@ const SplideCarousel: React.FC<SlidesProps> = ({ images }) => {
       }}
     >
       {images.map((imageUrl: any, index: number) => (
-        <SplideSlide key={index} className={styles.SplideSlide}>
+        <SplideSlide key={index} className={styles.splideSlide}>
           <Card image={imageUrl} alt={`Image ${index + 1}`} />
         </SplideSlide>
       ))}

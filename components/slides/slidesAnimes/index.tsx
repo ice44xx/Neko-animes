@@ -1,6 +1,9 @@
 import SplideCarousel from '../../common/carousel';
-import styles from './styles.module.scss';
+import styles from '../styles.module.scss';
 
+interface Props {
+  color: string;
+}
 const images = [
   'https://res.cloudinary.com/doupbxhfd/image/upload/v1690580161/Thumbnails/Tenchi_Muyou_GXP_Paradise_Shidou-hen_rh3blh.webp',
   'https://res.cloudinary.com/doupbxhfd/image/upload/v1690580161/Thumbnails/Naruto_clasico_hubjkd.webp',
@@ -13,10 +16,13 @@ const images = [
   'https://res.cloudinary.com/doupbxhfd/image/upload/v1690133089/Thumbnails/EdensZero_ffu34i_bqwbk9.webp',
 ];
 
-const SlidesAnimes = () => {
+const SlidesAnimes: React.FC<Props> = ({ color }) => {
   return (
     <div className={styles.container}>
-      <p className={styles.title}>Animes Lançamentos</p>
+      <div className={styles.container_bar}>
+        <div className={`${styles.bar}`} style={{ backgroundColor: color }}></div>
+        <p className={styles.title}>Animes</p>
+      </div>
       <SplideCarousel images={images} />
     </div>
   );
