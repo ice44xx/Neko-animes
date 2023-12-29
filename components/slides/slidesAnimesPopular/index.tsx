@@ -8,7 +8,7 @@ interface Props {
   color: string;
 }
 
-const SlidesAnimesFeatures: React.FC<Props> = ({ color }) => {
+const SlidesAnimesPopular: React.FC<Props> = ({ color }) => {
   const [data, setData] = useState<Animes[]>([]);
 
   useEffect(() => {
@@ -34,13 +34,7 @@ const SlidesAnimesFeatures: React.FC<Props> = ({ color }) => {
       {data.length > 0 && (
         <SplideCarousel
           items={data.map((anime: Animes, index) => (
-            <Card
-              key={index}
-              alt={anime.name}
-              image={anime.thumbnailUrl}
-              feature={true}
-              counter={index + 1}
-            />
+            <Card key={index} alt={anime.name} image={anime.thumbnailUrl} feature={false} />
           ))}
         />
       )}
@@ -48,4 +42,4 @@ const SlidesAnimesFeatures: React.FC<Props> = ({ color }) => {
   );
 };
 
-export default SlidesAnimesFeatures;
+export default SlidesAnimesPopular;

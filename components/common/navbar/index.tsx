@@ -47,10 +47,10 @@ export const Navbar = () => {
             className={styles.imgSearch}
           />
           <div className={styles.wrapper_container}>
-            <Link href={'/register'}>
+            <Link href={'/neko/register'}>
               <Button className={styles.register}>Registrar-se</Button>
             </Link>
-            <Link href={'/login'}>
+            <Link href={'/neko/login'}>
               <Button className={styles.login}>Entrar</Button>
             </Link>
           </div>

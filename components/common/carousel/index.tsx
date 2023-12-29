@@ -1,13 +1,13 @@
 import styles from './styles.module.scss';
-import Card from '../card';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
+import React from 'react';
 
-interface SlidesProps {
-  images: string[];
+interface SplideCarouselProps {
+  items: React.ReactNode[];
 }
 
-const SplideCarousel: React.FC<SlidesProps> = ({ images }) => {
+const SplideCarousel: React.FC<SplideCarouselProps> = ({ items = [] }) => {
   return (
     <Splide
       className={styles.splide}
@@ -18,11 +18,12 @@ const SplideCarousel: React.FC<SlidesProps> = ({ images }) => {
         gap: 10,
         omitEnd: true,
         pagination: false,
+        autoWidth: true,
       }}
     >
-      {images.map((imageUrl: any, index: number) => (
-        <SplideSlide key={index} className={styles.splideSlide}>
-          <Card image={imageUrl} alt={`Image ${index + 1}`} />
+      {items.map((item, index) => (
+        <SplideSlide key={index}>
+          <div className={styles.container_slides}>{item}</div>
         </SplideSlide>
       ))}
     </Splide>

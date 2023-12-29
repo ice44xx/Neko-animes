@@ -1,5 +1,5 @@
-import SplideCarousel from '../../common/carousel';
 import styles from '../styles.module.scss';
+import Card from '../../common/card';
 
 interface Props {
   color: string;
@@ -23,7 +23,11 @@ const SlidesAnimes: React.FC<Props> = ({ color }) => {
         <div className={`${styles.bar}`} style={{ backgroundColor: color }}></div>
         <p className={styles.title}>Animes</p>
       </div>
-      <SplideCarousel images={images} />
+      <div className={styles.container_animes}>
+        {images.map((image) => (
+          <Card image={image} alt="teste" />
+        ))}
+      </div>
     </div>
   );
 };

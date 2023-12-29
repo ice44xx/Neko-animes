@@ -1,13 +1,17 @@
+@import '@/styles/colors.scss';
+
 .container {
-  width: 250px;
+  position: relative;
+  max-width: 250px;
+  width: 100%;
   height: 330px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  box-shadow: 0px 4px 16px -3px rgba(0, 0, 0, 0.75);
+  box-shadow: $box_shadow;
   transition: all 0.4s;
-  overflow: hidden;
+  border: 2px solid $white;
   &:hover {
     transform: translateY(-10px);
     transition: all 0.4s;
@@ -15,7 +19,42 @@
   .img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     cursor: pointer;
+    border-radius: 10px;
+  }
+}
+.container_feature {
+  align-items: flex-start;
+  @extend .container;
+  .container_content {
+    position: absolute;
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    cursor: pointer;
+    .container_swapper {
+      width: 100%;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      .img_cat {
+        position: absolute;
+        width: 45px;
+        height: 90px;
+        top: -46px;
+        right: 10px;
+      }
+      .counter {
+        position: absolute;
+        top: -2px;
+        right: 15px;
+        width: 35px;
+        font-size: 22px;
+        text-align: center;
+      }
+    }
   }
 }
