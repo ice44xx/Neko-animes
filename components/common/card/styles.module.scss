@@ -12,9 +12,26 @@
   box-shadow: $box_shadow;
   transition: all 0.4s;
   border: 2px solid $white;
-  &:hover {
-    transform: translateY(-10px);
+  .overlay {
+    opacity: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
     transition: all 0.4s;
+    &:hover {
+      opacity: 1;
+      background-color: rgba(0, 0, 0, 0.58);
+      transition: all 0.4s;
+      .title {
+        opacity: 1;
+        z-index: 999999;
+        font-size: 40px;
+      }
+    }
   }
   .img {
     width: 100%;
@@ -22,6 +39,10 @@
     object-fit: cover;
     cursor: pointer;
     border-radius: 10px;
+  }
+  &:hover {
+    transform: translateY(-10px);
+    transition: all 0.4s;
   }
 }
 .container_feature {
@@ -34,12 +55,13 @@
     width: 100%;
     cursor: pointer;
     .container_swapper {
+      z-index: 2;
+      position: relative;
       width: 100%;
       height: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
       .img_cat {
         position: absolute;
         width: 45px;

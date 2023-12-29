@@ -3,13 +3,14 @@ import Image from 'next/image';
 import Cat from '@/public/favorite-cat.png';
 
 interface CardProps {
+  name: string;
   image: string;
   alt: string;
   feature?: boolean;
   counter?: number;
 }
 
-const Card: React.FC<CardProps> = ({ image, alt, feature, counter }) => {
+const Card: React.FC<CardProps> = ({ image, alt, feature, counter, name }) => {
   if (feature) {
     return (
       <div className={styles.container_feature}>
@@ -19,6 +20,9 @@ const Card: React.FC<CardProps> = ({ image, alt, feature, counter }) => {
             <p className={styles.counter}>{counter}</p>
           </div>
         </div>
+        <div className={styles.overlay}>
+          <p className={styles.title}>{name}</p>
+        </div>
         <Image src={image} alt={alt} className={styles.img} width={250} height={330} />
       </div>
     );
@@ -26,6 +30,7 @@ const Card: React.FC<CardProps> = ({ image, alt, feature, counter }) => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.overlay}></div>
       <Image src={image} alt={alt} className={styles.img} width={250} height={330} />
     </div>
   );

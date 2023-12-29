@@ -1,8 +1,9 @@
+import styles from '../styles.module.scss';
+import Card from '../../common/card';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import SplideCarousel from '../../common/carousel';
-import styles from '../styles.module.scss';
 import animes_services, { Animes } from '../../../services/animes/animes.service';
-import Card from '../../common/card';
 
 interface Props {
   color: string;
@@ -31,13 +32,13 @@ const SlidesAnimesPopular: React.FC<Props> = ({ color }) => {
         <p className={styles.title}>Destaques do momento</p>
       </div>
 
-      {data.length > 0 && (
-        <SplideCarousel
-          items={data.map((anime: Animes, index) => (
-            <Card key={index} alt={anime.name} image={anime.thumbnailUrl} feature={false} />
-          ))}
-        />
-      )}
+      <SplideCarousel
+        items={data.map((anime: Animes, index) => (
+          <Link href={`/anime/${anime.name}/${anime.id}`} key={index}>
+            <Card name={anime.name} alt={anime.name} image={anime.thumbnailUrl} feature={false} />
+          </Link>
+        ))}
+      />
     </div>
   );
 };

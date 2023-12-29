@@ -17,8 +17,8 @@ const SplideCarousel: React.FC<SplideCarouselProps> = ({ items = [] }) => {
         perMove: 1,
         gap: 10,
         omitEnd: true,
+        focus: 'center',
         pagination: false,
-        autoWidth: true,
       }}
     >
       {items.map((item, index) => (

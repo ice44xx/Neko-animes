@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
 import styles from '../styles.module.scss';
-import animes_services, { Animes } from '../../../services/animes/animes.service';
-
-import SplideCarousel from '../../common/carousel';
 import Card from '../../common/card';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import animes_services, { Animes } from '../../../services/animes/animes.service';
+import SplideCarousel from '../../common/carousel';
 
 interface Props {
   color: string;
@@ -32,15 +32,15 @@ const SlidesAnimesNewest: React.FC<Props> = ({ color }) => {
         <p className={styles.title}>Animes Lançamentos</p>
       </div>
 
-      {data.length > 0 && (
-        <SplideCarousel
-          items={data.map((anime: Animes, index) => (
-            <div className={styles.contaienr_slide}>
-              <Card key={index} alt={anime.name} image={anime.thumbnailUrl} feature={false} />
-            </div>
-          ))}
-        />
-      )}
+      <SplideCarousel
+        items={data.map((anime: Animes, index) => (
+          <div className={styles.contaienr_slide}>
+            <Link href={`/anime/${anime.name}/${anime.id}`} key={index}>
+              <Card name={anime.name} alt={anime.name} image={anime.thumbnailUrl} feature={false} />
+            </Link>
+          </div>
+        ))}
+      />
     </div>
   );
 };

@@ -42,8 +42,8 @@ const Classifications: React.FC<Props> = ({ color }) => {
       </div>
       <div className={styles.container_content}>
         {data.map((classification: Classifications, index) => (
-          <Link href={`/classificação/${classification.name}`} className={styles.link}>
-            <div key={classification.id} className={`${styles.card} ${cardBackgrounds[index]}`}>
+          <Link href={`/classificação/${classification.name}`} className={styles.link} key={index}>
+            <div className={`${styles.card} ${cardBackgrounds[index]}`}>
               <Image
                 src={classification?.thumbnail}
                 alt={classification?.name}
