@@ -1,11 +1,11 @@
-import styles from './styles.module.scss';
+import styles from '../../styles.module.scss';
 import Link from 'next/link';
+import Card from '../../../../components/common/card';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import categories_service, {
   CategoriesAnimes,
 } from '../../../../services/categories/categories.service';
-import Card from '../../../../components/common/card';
 
 const CategoriesPage = () => {
   const router = useRouter();

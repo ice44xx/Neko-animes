@@ -28,14 +28,6 @@ const Classifications: React.FC<Props> = ({ color }) => {
     fetchData();
   }, []);
 
-  const cardBackgrounds = [
-    styles.cardBackgroundShounen,
-    styles.cardBackgroundSeinen,
-    styles.cardBackgroundShoujo,
-    styles.cardBackgroundJosei,
-    styles.cardBackgroundKodomo,
-  ];
-
   return (
     <div className={styles.container}>
       <div className={styles.container_bar}>
@@ -45,21 +37,31 @@ const Classifications: React.FC<Props> = ({ color }) => {
 
       <SplideCarousel
         perPage={5}
+        customBreakpoints={{
+          1250: { perPage: 5 },
+          920: { perPage: 4 },
+          650: { perPage: 3 },
+          450: { perPage: 2 },
+          350: { perPage: 2 },
+        }}
         items={data.map((classification: Classifications, index) => (
-          <Link
-            href={`/classificação/${classification.name}/${classification.id}`}
-            key={index}
-            style={{ textDecoration: 'none', color: 'white' }}
-          >
-            <div className={styles.container_classification}>
+          <div className={styles.container_classification}>
+            <Link
+              href={`/animes/classificacao/${classification.name}`}
+              key={index}
+              style={{ textDecoration: 'none', color: 'white' }}
+            >
               <Card
+                index={index}
                 name={classification.name}
+                desc={classification.desc}
                 alt={classification.name}
                 image={classification.thumbnail}
+                classification={true}
                 feature={false}
               />
-            </div>
-          </Link>
+            </Link>
+          </div>
         ))}
       />
     </div>

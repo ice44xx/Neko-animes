@@ -2,7 +2,7 @@ import { Button } from 'reactstrap';
 import styles from './styles.module.scss';
 
 interface ButtonProps {
-  value: string;
+  value: string | number;
   className?: string;
   onClick?: () => void;
 }

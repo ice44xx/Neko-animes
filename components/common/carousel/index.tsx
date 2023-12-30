@@ -6,40 +6,38 @@ interface SplideCarouselProps {
   items: React.ReactNode[];
   perPage?: number;
   arrows?: boolean;
+  customBreakpoints?: {};
+  type?: string;
+  gap?: number;
 }
 
 const SplideCarousel: React.FC<SplideCarouselProps> = ({
   items = [],
   perPage = 7,
   arrows = true,
+  customBreakpoints = {},
+  type = 'slide',
+  gap = 10,
 }) => {
+  const breakpoints = {
+    1250: { perPage: 6 },
+    920: { perPage: 5 },
+    650: { perPage: 4 },
+    450: { perPage: 3 },
+    350: { perPage: 2 },
+    ...customBreakpoints,
+  };
   return (
     <Splide
       options={{
-        type: 'slide',
+        type: type,
         perPage: perPage,
         perMove: 1,
-        gap: 10,
+        gap: gap,
         focus: 'center',
         pagination: false,
         arrows: arrows,
-        breakpoints: {
-          1250: {
-            perPage: 6,
-          },
-          920: {
-            perPage: 5,
-          },
-          650: {
-            perPage: 4,
-          },
-          450: {
-            perPage: 3,
-          },
-          350: {
-            perPage: 2,
-          },
-        },
+        breakpoints: breakpoints,
       }}
     >
       {items.map((item, index) => (

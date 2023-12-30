@@ -5,12 +5,34 @@ import Cat from '@/public/favorite-cat.png';
 interface CardProps {
   name: string;
   image: string;
+  desc?: string;
   alt: string;
   feature?: boolean;
+  classification?: boolean;
   counter?: number;
+  index?: number;
 }
 
-const Card: React.FC<CardProps> = ({ image, alt, feature, counter, name }) => {
+const Card: React.FC<CardProps> = ({
+  image,
+  alt,
+  feature,
+  counter,
+  name,
+  classification,
+  desc,
+  index = 0,
+}) => {
+  const cardBackgrounds = [
+    'cardBackgroundShounen',
+    'cardBackgroundSeinen',
+    'cardBackgroundShoujo',
+    'cardBackgroundJosei',
+    'cardBackgroundKodomo',
+  ];
+
+  const selectedBackground = cardBackgrounds[index % cardBackgrounds.length];
+
   if (feature) {
     return (
       <div className={styles.container_feature}>
@@ -22,6 +44,18 @@ const Card: React.FC<CardProps> = ({ image, alt, feature, counter, name }) => {
         </div>
         <div className={styles.overlay}>
           <p className={styles.title}>{name}</p>
+        </div>
+        <Image src={image} alt={alt} className={styles.img} width={250} height={330} />
+      </div>
+    );
+  }
+
+  if (classification) {
+    return (
+      <div className={`${styles.container_classifications} ${styles[selectedBackground]}`}>
+        <div className={styles.overlay}>
+          <p className={`${styles.title} ${styles[selectedBackground]}`}>{name}</p>
+          <p className={styles.desc}>{desc}</p>
         </div>
         <Image src={image} alt={alt} className={styles.img} width={250} height={330} />
       </div>

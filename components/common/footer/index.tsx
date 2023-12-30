@@ -14,17 +14,19 @@ const Footer = () => {
           Neko animes não hospeda nenhum vídeo em seus servidores. Todo o conteúdo é disponibilizado
           por terceiros não afiliados. <br />
           <span>
-            <Image src={CopyRight} alt="copyright" /> 2023 - Neko Animes - Todos os Direitos
+            <Image src={CopyRight} alt="Copyright" /> 2023 - Neko Animes - Todos os Direitos
             Reservados
           </span>
         </p>
         <Image src={Cats} alt="Gatinhos" className={styles.cats_img} />
-        <Link href={'/privacy'} className={styles.link}>
-          <p className={styles.priv}>privacidade | termos</p>
-        </Link>
-        <Link href={'/dmca'} className={styles.link}>
-          <p className={styles.dmca}>DMCA</p>
-        </Link>
+        <div className={styles.container_link}>
+          <Link href={'/privacy'} className={styles.link}>
+            <p className={styles.priv}>privacidade | termos</p>
+          </Link>
+          <Link href={'/dmca'} className={styles.link}>
+            <p className={styles.dmca}>DMCA</p>
+          </Link>
+        </div>
       </div>
     </div>
   );
