@@ -7,6 +7,13 @@ export interface Classifications {
   desc: string;
 }
 
+export interface ClassificationsAnimes {
+  id: number;
+  name: string;
+  synopsis: string;
+  thumbnailUrl: string;
+}
+
 const classifications_service = {
   get: async () => {
     try {
@@ -14,6 +21,14 @@ const classifications_service = {
       return res.data;
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao buscar as classificações.');
+    }
+  },
+  getByName: async (name: string) => {
+    try {
+      const res = await api.get(`/classifications/${name}`);
+      return res.data;
+    } catch (error: any) {
+      throw new Error(error.response.data.message || `Erro ao buscar a classificação ${name}`);
     }
   },
   create: async (attributes: Classifications) => {

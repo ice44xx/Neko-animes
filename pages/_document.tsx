@@ -11,7 +11,6 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&family=Roboto+Slab:wght@300;700&family=Roboto:wght@300;700&display=swap"
           rel="stylesheet"
         ></link>
-        <title>Neko Animes</title>
       </Head>
       <body>
         <Main />

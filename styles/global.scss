@@ -27,9 +27,11 @@ div {
 }
 
 main {
+  overflow: hidden;
   width: 100%;
   min-height: 100vh;
   height: 100%;
+  padding: 0px 30px;
   background-color: $primary;
   color: $white;
   background-position: center;
@@ -37,4 +39,10 @@ main {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-image: url('../public/back_profiles/buble-home.png');
+}
+
+@media (max-width: 500px) {
+  main {
+    padding: 0px 10px;
+  }
 }

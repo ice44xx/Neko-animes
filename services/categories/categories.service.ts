@@ -5,6 +5,13 @@ export interface Categories {
   name: string;
 }
 
+export interface CategoriesAnimes {
+  id: number;
+  name: string;
+  synopsis: string;
+  thumbnailUrl: string;
+}
+
 const categories_service = {
   get: async () => {
     try {
@@ -12,6 +19,14 @@ const categories_service = {
       return res.data;
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao buscar as categorias.');
+    }
+  },
+  getByName: async (name: string) => {
+    try {
+      const res = await api.get(`/categories/${name}`);
+      return res.data;
+    } catch (error: any) {
+      throw new Error(error.response.data.message || `Erro ao buscar a categoria ${name}`);
     }
   },
   create: async (attributes: Categories) => {

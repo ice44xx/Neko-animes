@@ -79,7 +79,6 @@ const Dashboard = () => {
         <title>Neko Admin</title>
       </Head>
       <div className={styles.container}>
-        <p className={styles.welcome}>{'Dashboard Neko Animes'}</p>
         <div className={styles.container_content}>
           <Image src={Cat} alt="Gatinho" className={styles.img} />
           <div className={styles.container_dashboard}>

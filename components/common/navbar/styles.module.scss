@@ -1,14 +1,14 @@
 @import '@/styles/colors.scss';
 
 .container {
+  position: relative;
   display: flex;
   justify-content: center;
   flex-direction: column;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   .container_cta {
-    z-index: 6;
+    z-index: 7;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,7 +30,7 @@
     }
   }
   .container_nav {
-    z-index: 6;
+    z-index: 7;
     width: 100%;
     min-height: 150px;
     max-height: 150px;
@@ -41,8 +41,8 @@
     padding: 0 40px;
     background-color: $blackColor15;
     .logo {
-      max-width: 350px;
-      max-height: 170px;
+      width: 350px;
+      height: 170px;
       margin-top: -25px;
       transition: all 0.3s;
       cursor: pointer;
@@ -58,8 +58,10 @@
       justify-content: center;
       align-items: center;
       .imgSearch {
-        width: 40px;
-        height: 40px;
+        max-width: 40px;
+        max-height: 40px;
+        width: 100%;
+        height: 100%;
         cursor: pointer;
         transition: all 0.4s;
         &:hover {
@@ -77,6 +79,7 @@
         .register {
           padding: 12px;
           font-size: 30px;
+          text-wrap: nowrap;
           color: #fff;
           border-color: transparent;
           border-bottom: 2px solid transparent;
@@ -105,10 +108,10 @@
   }
 }
 .container_search {
-  z-index: 4;
+  z-index: 6;
   position: absolute;
-  top: 160px;
-  height: 150px;
+  top: 150px;
+  height: 180px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -139,4 +142,65 @@
 .active {
   top: 0px;
   transition: all 0.3s;
+}
+
+@media (max-width: 980px) {
+  .container {
+    .container_nav {
+      position: relative;
+      flex-direction: column;
+      .logo {
+        margin-top: -15px;
+        width: 240px;
+        height: 120px;
+      }
+      .container_content {
+        position: absolute;
+        max-width: 250px;
+        bottom: 5px;
+        flex-direction: row-reverse;
+        .imgSearch {
+          max-width: 28px;
+          max-height: 28px;
+        }
+        .wrapper_container {
+          gap: 0;
+          .register {
+            font-size: 25px;
+          }
+        }
+      }
+    }
+  }
+  .container_search {
+    top: 160px;
+    height: 140px;
+    .form {
+      .input {
+        width: 80%;
+        height: 50%;
+        font-size: 40px;
+      }
+    }
+  }
+  .active {
+    top: 0px;
+    transition: all 0.3s;
+  }
+}
+@media (max-width: 550px) {
+  .container_search {
+    top: 170px;
+    height: 120px;
+    .form {
+      .input {
+        font-size: 30px;
+        height: 40%;
+      }
+    }
+  }
+  .active {
+    top: 0px;
+    transition: all 0.3s;
+  }
 }

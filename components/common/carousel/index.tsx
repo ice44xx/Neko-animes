@@ -1,28 +1,48 @@
-import styles from './styles.module.scss';
-import Card from '../card';
+import React from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 
-interface SlidesProps {
-  images: string[];
+interface SplideCarouselProps {
+  items: React.ReactNode[];
+  perPage?: number;
+  arrows?: boolean;
+  customBreakpoints?: {};
+  type?: string;
+  gap?: number;
 }
 
-const SplideCarousel: React.FC<SlidesProps> = ({ images }) => {
+const SplideCarousel: React.FC<SplideCarouselProps> = ({
+  items = [],
+  perPage = 7,
+  arrows = true,
+  customBreakpoints = {},
+  type = 'slide',
+  gap = 10,
+}) => {
+  const breakpoints = {
+    1250: { perPage: 6 },
+    920: { perPage: 5 },
+    650: { perPage: 4 },
+    450: { perPage: 3 },
+    350: { perPage: 2 },
+    ...customBreakpoints,
+  };
   return (
     <Splide
-      className={styles.Splide}
       options={{
-        type: 'slide',
-        perPage: 7,
+        type: type,
+        perPage: perPage,
         perMove: 1,
-        gap: 10,
-        omitEnd: true,
+        gap: gap,
+        focus: 'center',
         pagination: false,
+        arrows: arrows,
+        breakpoints: breakpoints,
       }}
     >
-      {images.map((imageUrl: any, index: number) => (
-        <SplideSlide key={index} className={styles.SplideSlide}>
-          <Card image={imageUrl} alt={`Image ${index + 1}`} />
+      {items.map((item, index) => (
+        <SplideSlide className={'mt-5 mb-5'} key={index}>
+          {item}
         </SplideSlide>
       ))}
     </Splide>

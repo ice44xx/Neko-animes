@@ -21,16 +21,16 @@
     right: 20px;
     background-color: transparent;
     border: none;
-    transition: all 0.3s;
+    transition: $transition;
     .line {
       width: 20px;
       height: 3px;
       background-color: $white;
       margin-top: 5px;
-      transition: all 0.3s;
+      transition: $transition;
     }
     &:hover {
-      transition: all 0.3s;
+      transition: $transition;
       .line {
         background-color: $primary;
       }
@@ -45,7 +45,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  transition: all 0.3s;
+  transition: $transition;
   .loggout {
     position: absolute;
     bottom: 20px;
@@ -53,7 +53,7 @@
     font-size: 25px;
     border: none;
     color: $blackColor15;
-    transition: all 0.3s;
+    transition: $transition;
   }
   .container_navbar {
     position: relative;
@@ -72,17 +72,17 @@
       right: 30px;
       background-color: transparent;
       border: none;
-      transition: all 0.3s;
+      transition: $transition;
     }
     .link {
       text-decoration: none;
       color: $black;
       font-size: 25px;
-      transition: all 0.3s;
+      transition: $transition;
       &:hover {
         color: $primary;
         transform: translateY(-5px);
-        transition: all 0.3s;
+        transition: $transition;
       }
     }
   }
@@ -91,7 +91,7 @@
   visibility: hidden;
   z-index: 0;
   left: -800px;
-  transition: all 0.4s;
+  transition: $transition;
 }
 
 @media (max-width: 450px) {
