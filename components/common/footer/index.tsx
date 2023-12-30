@@ -22,10 +22,10 @@ const Footer = () => {
         </div>
         <Image src={Cats} alt="Gatinhos" className={styles.cats_img} />
         <div className={styles.container_link}>
-          <Link href={'/privacy'} className={styles.link}>
+          <Link href={'/regras/privacidade'} className={styles.link}>
             <p className={styles.priv}>privacidade | termos</p>
           </Link>
-          <Link href={'/dmca'} className={styles.link}>
+          <Link href={'/regras/dmca'} className={styles.link}>
             <p className={styles.dmca}>DMCA</p>
           </Link>
         </div>

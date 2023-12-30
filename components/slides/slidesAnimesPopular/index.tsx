@@ -29,7 +29,7 @@ const SlidesAnimesPopular: React.FC<Props> = ({ color }) => {
     <div className={styles.container}>
       <div className={styles.container_bar}>
         <div className={`${styles.bar}`} style={{ backgroundColor: color }}></div>
-        <p className={styles.title}>Destaques do momento</p>
+        <p className={styles.title}>Animes Populares</p>
       </div>
 
       <SplideCarousel
