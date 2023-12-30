@@ -1,10 +1,12 @@
-import styles from './styles.module.scss';
+import styles from '../styles.module.scss';
 import classifications_service, {
   Classifications,
-} from '../../services/classifications/classifications.service';
+} from '../../../services/classifications/classifications.service';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Card from '../../common/card';
+import SplideCarousel from '../../common/carousel';
 
 interface Props {
   color: string;
@@ -40,23 +42,26 @@ const Classifications: React.FC<Props> = ({ color }) => {
         <div className={`${styles.bar}`} style={{ backgroundColor: color }}></div>
         <p className={styles.title}>Classificações</p>
       </div>
-      <div className={styles.container_content}>
-        {data.map((classification: Classifications, index) => (
-          <Link href={`/classificação/${classification.name}`} className={styles.link} key={index}>
-            <div className={`${styles.card} ${cardBackgrounds[index]}`}>
-              <Image
-                src={classification?.thumbnail}
-                alt={classification?.name}
-                className={styles.img}
-                width={280}
-                height={350}
+
+      <SplideCarousel
+        perPage={5}
+        items={data.map((classification: Classifications, index) => (
+          <Link
+            href={`/classificação/${classification.name}/${classification.id}`}
+            key={index}
+            style={{ textDecoration: 'none', color: 'white' }}
+          >
+            <div className={styles.container_classification}>
+              <Card
+                name={classification.name}
+                alt={classification.name}
+                image={classification.thumbnail}
+                feature={false}
               />
-              <p className={styles.title}>{classification?.name}</p>
-              <p className={styles.desc}>{classification.desc}</p>
             </div>
           </Link>
         ))}
-      </div>
+      />
     </div>
   );
 };

@@ -40,3 +40,9 @@ main {
   background-attachment: fixed;
   background-image: url('../public/back_profiles/buble-home.png');
 }
+
+@media (max-width: 500px) {
+  main {
+    padding: 60px 10px;
+  }
+}

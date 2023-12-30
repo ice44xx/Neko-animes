@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .title {
+    height: 120px;
+    font-size: 40px;
+  }
+  .container_animes {
+    position: relative;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 0px 10px;
+  }
+}
+
+@media (max-width: 1250px) {
+  .container {
+    .container_animes {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+}
+@media (max-width: 920px) {
+  .container {
+    .container_animes {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+}
+@media (max-width: 650px) {
+  .container {
+    .container_animes {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+@media (max-width: 450px) {
+  .container {
+    .container_animes {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+@media (max-width: 350px) {
+  .container {
+    .container_animes {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}

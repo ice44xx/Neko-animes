@@ -1,29 +1,50 @@
-import styles from './styles.module.scss';
+import React from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
-import React from 'react';
 
 interface SplideCarouselProps {
   items: React.ReactNode[];
+  perPage?: number;
+  arrows?: boolean;
 }
 
-const SplideCarousel: React.FC<SplideCarouselProps> = ({ items = [] }) => {
+const SplideCarousel: React.FC<SplideCarouselProps> = ({
+  items = [],
+  perPage = 7,
+  arrows = true,
+}) => {
   return (
     <Splide
-      className={styles.splide}
       options={{
         type: 'slide',
-        perPage: 7,
+        perPage: perPage,
         perMove: 1,
         gap: 10,
-        omitEnd: true,
         focus: 'center',
         pagination: false,
+        arrows: arrows,
+        breakpoints: {
+          1250: {
+            perPage: 6,
+          },
+          920: {
+            perPage: 5,
+          },
+          650: {
+            perPage: 4,
+          },
+          450: {
+            perPage: 3,
+          },
+          350: {
+            perPage: 2,
+          },
+        },
       }}
     >
       {items.map((item, index) => (
-        <SplideSlide key={index}>
-          <div className={styles.container_slides}>{item}</div>
+        <SplideSlide className={'mt-5 mb-5'} key={index}>
+          {item}
         </SplideSlide>
       ))}
     </Splide>

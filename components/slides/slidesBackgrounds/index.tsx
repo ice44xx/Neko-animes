@@ -5,6 +5,7 @@ import backgrounds_service, {
 } from '../../../services/backgrounds/backgrounds.service';
 import Image from 'next/image';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import CategoriesBar from '../../common/categories';
 
 const SlidesBackgrounds = () => {
   const [data, setData] = useState<Backgrounds[]>([]);
@@ -23,33 +24,39 @@ const SlidesBackgrounds = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <Splide
-        options={{
-          type: 'loop',
-          perPage: 1,
-          perMove: 1,
-          pagination: false,
-          arrows: false,
-          autoWidth: true,
-          autoplay: true,
-          interval: 5000,
-        }}
-      >
-        {data.map((background: Backgrounds) => (
-          <SplideSlide key={background.id}>
-            <Image
-              src={background.url}
-              alt="Animes Backgrounds"
-              width={1980}
-              height={500}
-              className={styles.backgrounds}
-            />
-            <div className={styles.smoke}></div>
-          </SplideSlide>
-        ))}
-      </Splide>
-    </div>
+    <>
+      <div className={styles.container}>
+        <Splide
+          options={{
+            type: 'loop',
+            perPage: 1,
+            perMove: 1,
+            pagination: false,
+            arrows: false,
+            autoplay: true,
+            interval: 5000,
+          }}
+        >
+          {data.map((background: Backgrounds) => (
+            <SplideSlide key={background.id}>
+              <div className={styles.container_backgrounds}>
+                <Image
+                  src={background.url}
+                  alt="Animes Backgrounds"
+                  width={1980}
+                  height={500}
+                  className={styles.backgrounds}
+                />
+                <div className={styles.smoke}></div>
+              </div>
+            </SplideSlide>
+          ))}
+        </Splide>
+        <div className={styles.container_categories}>
+          <CategoriesBar />
+        </div>
+      </div>
+    </>
   );
 };
 

@@ -34,8 +34,12 @@ const SlidesAnimesPopular: React.FC<Props> = ({ color }) => {
 
       <SplideCarousel
         items={data.map((anime: Animes, index) => (
-          <Link href={`/anime/${anime.name}/${anime.id}`} key={index}>
-            <Card name={anime.name} alt={anime.name} image={anime.thumbnailUrl} feature={false} />
+          <Link
+            href={`/anime/${anime.name}/${anime.id}`}
+            key={index}
+            style={{ textDecoration: 'none', color: 'white' }}
+          >
+            <Card name={anime.name} alt={anime.name} image={anime.thumbnailUrl} />
           </Link>
         ))}
       />

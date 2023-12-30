@@ -30,7 +30,9 @@ const Card: React.FC<CardProps> = ({ image, alt, feature, counter, name }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.overlay}></div>
+      <div className={styles.overlay}>
+        <p className={styles.title}>{name}</p>
+      </div>
       <Image src={image} alt={alt} className={styles.img} width={250} height={330} />
     </div>
   );

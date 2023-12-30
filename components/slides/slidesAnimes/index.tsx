@@ -30,7 +30,7 @@ const SlidesAnimes: React.FC<Props> = ({ color }) => {
         <div className={`${styles.bar}`} style={{ backgroundColor: color }}></div>
         <p className={styles.title}>Animes</p>
       </div>
-      <div className={styles.container_animes}>
+      <div className={`${styles.container_animes} mt-5 mb-5`}>
         {data.map((anime: Animes, index) => (
           <Link
             key={index}
@@ -41,7 +41,7 @@ const SlidesAnimes: React.FC<Props> = ({ color }) => {
               name={anime.name}
               alt={anime.name}
               image={anime.thumbnailUrl}
-              feature={true}
+              feature={false}
               counter={index + 1}
             />
           </Link>

@@ -1,9 +1,8 @@
 import Head from 'next/head';
-import Classifications from '../components/classifications';
+import Classifications from '../components/slides/slidesClassifications';
 import SlidesAnimes from '../components/slides/slidesAnimes';
 import SlidesAnimesFeatures from '../components/slides/slidesAnimesFeatures';
 import SlidesAnimesPopular from '../components/slides/slidesAnimesPopular';
-
 import SlidesBackgrounds from '../components/slides/slidesBackgrounds';
 import SlidesAnimesNewest from '../components/slides/slidesAnimesNewest';
 

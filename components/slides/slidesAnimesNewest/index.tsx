@@ -31,14 +31,15 @@ const SlidesAnimesNewest: React.FC<Props> = ({ color }) => {
         <div className={`${styles.bar}`} style={{ backgroundColor: color }}></div>
         <p className={styles.title}>Animes Lançamentos</p>
       </div>
-
       <SplideCarousel
         items={data.map((anime: Animes, index) => (
-          <div className={styles.contaienr_slide}>
-            <Link href={`/anime/${anime.name}/${anime.id}`} key={index}>
-              <Card name={anime.name} alt={anime.name} image={anime.thumbnailUrl} feature={false} />
-            </Link>
-          </div>
+          <Link
+            key={index}
+            href={`/anime/${anime.name}/${anime.id}`}
+            style={{ textDecoration: 'none', color: 'white' }}
+          >
+            <Card name={anime.name} alt={anime.name} image={anime.thumbnailUrl} feature={false} />
+          </Link>
         ))}
       />
     </div>
