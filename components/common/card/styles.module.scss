@@ -23,6 +23,9 @@
     height: 100%;
     border-radius: 10px;
     transition: $transition;
+    .title {
+      transition: $transition;
+    }
     &:hover {
       opacity: 1;
       background-color: $blackColorHover;
@@ -32,6 +35,7 @@
         z-index: 10;
         font-size: 40px;
         text-align: center;
+        transition: $transition;
       }
     }
   }
@@ -95,6 +99,7 @@
   border: 2px solid $white;
   box-shadow: $box_shadow;
   transition: $transition;
+  background-color: rgba(0, 0, 0, 0.288);
   .overlay {
     opacity: 0;
     position: absolute;
@@ -111,10 +116,14 @@
     .title {
       transition: $transition;
       margin: 100px 0;
+      font-size: 40px;
+      text-align: center;
     }
     .desc {
       transition: $transition;
       margin: 100px 0;
+      padding: 0 10px;
+      font-size: 18px;
     }
     &:hover {
       opacity: 1;
@@ -123,8 +132,6 @@
       .title {
         opacity: 1;
         z-index: 10;
-        font-size: 40px;
-        text-align: center;
         transition: $transition;
         margin: 0;
         &.cardBackgroundShounen {
@@ -150,8 +157,6 @@
       .desc {
         opacity: 1;
         z-index: 10;
-        font-size: 18px;
-        padding: 0 10px;
         transition: $transition;
         margin: 0;
       }

@@ -21,8 +21,9 @@ export const Navbar = () => {
   const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    router.push(`/animes/${searchName}`);
+    router.push(`/animes/buscar/${searchName}`);
     setSearchName('');
+    setSearch(true);
   };
 
   return (
@@ -57,11 +58,8 @@ export const Navbar = () => {
             </div>
           </div>
         </div>
-        <div
-          className={`${styles.container_search} ${search ? styles.active : ''}`}
-          id="containerSearch"
-        >
-          <Form className={styles.form}>
+        <div className={`${styles.container_search} ${search ? styles.active : ''}`}>
+          <Form className={styles.form} onSubmit={handleSearch}>
             <Input
               value={searchName}
               onChange={(e) => {

@@ -27,6 +27,14 @@ const animes_services = {
       throw new Error(error.response.data.message || `Erro ao buscar o anime ${id}`);
     }
   },
+  getByName: async (name: string) => {
+    try {
+      const res = await api.get(`/animes/${name}`);
+      return res.data;
+    } catch (error: any) {
+      throw new Error(error.response.data.message || `Erro ao buscar o anime ${name}`);
+    }
+  },
   create: async (attributes: Animes) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');

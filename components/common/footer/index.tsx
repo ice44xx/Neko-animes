@@ -10,14 +10,16 @@ const Footer = () => {
     <div className={styles.container}>
       <Image src={Cat} alt="Gatinho gif" className={styles.cat_img} />
       <div className={styles.footer}>
-        <p className={styles.desc}>
-          Neko animes não hospeda nenhum vídeo em seus servidores. Todo o conteúdo é disponibilizado
-          por terceiros não afiliados. <br />
-          <span>
-            <Image src={CopyRight} alt="Copyright" /> 2023 - Neko Animes - Todos os Direitos
-            Reservados
-          </span>
-        </p>
+        <div className={styles.container_info}>
+          <p className={styles.desc}>
+            Neko animes não hospeda nenhum vídeo em seus servidores. Todo o conteúdo é
+            disponibilizado por terceiros não afiliados. <br />
+          </p>
+          <div className={styles.copy}>
+            <Image src={CopyRight} alt="Copyright" />
+            <p>2023 - Neko Animes - Todos os Direitos Reservados</p>
+          </div>
+        </div>
         <Image src={Cats} alt="Gatinhos" className={styles.cats_img} />
         <div className={styles.container_link}>
           <Link href={'/privacy'} className={styles.link}>
