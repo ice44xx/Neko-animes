@@ -44,12 +44,14 @@ const users_service = {
   getAdmin: async () => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.get('/users', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.get('/users', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao buscar os usuários.');
     }
@@ -57,12 +59,14 @@ const users_service = {
   getByNameAdmin: async (name: string) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.get(`/users/username/${name}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.get(`/users/username/${name}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || `Erro ao buscar o usuário ${name}`);
     }
@@ -70,12 +74,14 @@ const users_service = {
   getByIdAdmin: async (id: number) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.get(`/users/id/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.get(`/users/id/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || `Erro ao buscar o usuário ${id}`);
     }
@@ -83,12 +89,14 @@ const users_service = {
   createAdmin: async (attributes: AdminsCreate) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.post('/users/create/admin', attributes, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.post('/users/create/admin', attributes, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao criar o usuário.');
     }
@@ -96,12 +104,14 @@ const users_service = {
   updateAdmin: async (id: number, attributes: Partial<AdminsUpdate>) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.put(`/users/${id}`, attributes, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.put(`/users/${id}`, attributes, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao atualizar o usuário.');
     }
@@ -109,12 +119,14 @@ const users_service = {
   deleteAdmin: async (id: number) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.delete(`/users/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.delete(`/users/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao deletar o usuário.');
     }

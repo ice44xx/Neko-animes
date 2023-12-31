@@ -9,6 +9,7 @@ interface SplideCarouselProps {
   customBreakpoints?: {};
   type?: string;
   gap?: number;
+  width?: number;
 }
 
 const SplideCarousel: React.FC<SplideCarouselProps> = ({
@@ -18,6 +19,7 @@ const SplideCarousel: React.FC<SplideCarouselProps> = ({
   customBreakpoints = {},
   type = 'slide',
   gap = 10,
+  width,
 }) => {
   const breakpoints = {
     1250: { perPage: 6 },
@@ -34,9 +36,9 @@ const SplideCarousel: React.FC<SplideCarouselProps> = ({
         perPage: perPage,
         perMove: 1,
         gap: gap,
-        focus: 'center',
         pagination: false,
         arrows: arrows,
+        width: width,
         breakpoints: breakpoints,
       }}
     >

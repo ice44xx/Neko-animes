@@ -5,6 +5,7 @@ import SlidesAnimesFeatures from '../components/slides/slidesAnimesFeatures';
 import SlidesAnimesPopular from '../components/slides/slidesAnimesPopular';
 import SlidesBackgrounds from '../components/slides/slidesBackgrounds';
 import SlidesAnimesNewest from '../components/slides/slidesAnimesNewest';
+import SlidesAnimesFavorites from '../components/slides/slidesFavorites';
 
 const HomePagePublic = () => {
   return (
@@ -14,6 +15,7 @@ const HomePagePublic = () => {
       </Head>
       <SlidesBackgrounds />
       <main>
+        <SlidesAnimesFavorites color="#02ff9e" />
         <SlidesAnimesFeatures color="#ff0278" />
         <SlidesAnimesNewest color="#02a2ff" />
         <SlidesAnimes color="#ffd000" />

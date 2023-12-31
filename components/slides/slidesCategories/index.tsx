@@ -29,7 +29,7 @@ const SlidesCategories = () => {
         1250: { perPage: 22 },
         920: { perPage: 22 },
         650: { perPage: 22 },
-        450: { perPage: 22 },
+        450: { perPage: 22, gap: 100 },
         350: { perPage: 22 },
       }}
       items={data.map((category: Categories, index) => (

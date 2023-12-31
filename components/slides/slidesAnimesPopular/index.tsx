@@ -31,7 +31,6 @@ const SlidesAnimesPopular: React.FC<Props> = ({ color }) => {
         <div className={`${styles.bar}`} style={{ backgroundColor: color }}></div>
         <p className={styles.title}>Animes Populares</p>
       </div>
-
       <SplideCarousel
         items={data.map((anime: Animes, index) => (
           <Link

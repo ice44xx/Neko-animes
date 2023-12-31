@@ -34,36 +34,38 @@ const Classifications: React.FC<Props> = ({ color }) => {
         <div className={`${styles.bar}`} style={{ backgroundColor: color }}></div>
         <p className={styles.title}>Classificações</p>
       </div>
-
-      <SplideCarousel
-        perPage={5}
-        customBreakpoints={{
-          1250: { perPage: 5 },
-          920: { perPage: 4 },
-          650: { perPage: 3 },
-          450: { perPage: 2 },
-          350: { perPage: 2 },
-        }}
-        items={data.map((classification: Classifications, index) => (
-          <div className={styles.container_classification}>
-            <Link
-              href={`/animes/classificacao/${classification.name}`}
-              key={index}
-              style={{ textDecoration: 'none', color: 'white' }}
-            >
-              <Card
-                index={index}
-                name={classification.name}
-                desc={classification.desc}
-                alt={classification.name}
-                image={classification.thumbnail}
-                classification={true}
-                feature={false}
-              />
-            </Link>
-          </div>
-        ))}
-      />
+      <div className={styles.container_classification}>
+        <SplideCarousel
+          perPage={5}
+          width={1400}
+          customBreakpoints={{
+            1250: { perPage: 5 },
+            920: { perPage: 4 },
+            650: { perPage: 3 },
+            450: { perPage: 2 },
+            350: { perPage: 2 },
+          }}
+          items={data.map((classification: Classifications, index) => (
+            <div className={styles.container_content_classification}>
+              <Link
+                href={`/animes/classificacao/${classification.name}`}
+                key={index}
+                style={{ textDecoration: 'none', color: 'white' }}
+              >
+                <Card
+                  index={index}
+                  name={classification.name}
+                  desc={classification.desc}
+                  alt={classification.name}
+                  image={classification.thumbnail}
+                  classification={true}
+                  feature={false}
+                />
+              </Link>
+            </div>
+          ))}
+        />
+      </div>
     </div>
   );
 };

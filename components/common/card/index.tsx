@@ -38,7 +38,7 @@ const Card: React.FC<CardProps> = ({
       <div className={styles.container_feature}>
         <div className={styles.container_content}>
           <div className={styles.container_swapper}>
-            <Image src={Cat} alt="" className={styles.img_cat} />
+            <Image src={Cat} alt="Gato top 10" className={styles.img_cat} />
             <p className={styles.counter}>{counter}</p>
           </div>
         </div>
