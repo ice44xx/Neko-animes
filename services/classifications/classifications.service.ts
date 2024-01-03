@@ -34,12 +34,14 @@ const classifications_service = {
   create: async (attributes: Classifications) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.post('/classifications/create', attributes, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.post('/classifications/create', attributes, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao criar a classificação.');
     }
@@ -47,12 +49,14 @@ const classifications_service = {
   update: async (id: number, attributes: Partial<Classifications>) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.put(`/classifications/${id}`, attributes, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.put(`/classifications/${id}`, attributes, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao atualizar a classificação.');
     }
@@ -60,12 +64,14 @@ const classifications_service = {
   delete: async (id: number) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.delete(`/classifications/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.delete(`/classifications/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao deletar a classificação.');
     }

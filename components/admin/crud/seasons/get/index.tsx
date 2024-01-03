@@ -1,9 +1,9 @@
 import styles from '../../styles.module.scss';
+import Image from 'next/image';
+import SearchAdmin from '../../../search';
 import { Table } from 'reactstrap';
 import React, { useEffect, useState } from 'react';
 import seasons_service, { SeasonsGet } from '../../../../../services/seasons/seasons.service';
-import Image from 'next/image';
-import SearchAdmin from '../../../search';
 
 const SeasonsGet = () => {
   const [data, setData] = useState<SeasonsGet[]>([]);

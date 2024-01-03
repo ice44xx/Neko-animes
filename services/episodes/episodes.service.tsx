@@ -52,12 +52,14 @@ const episodes_service = {
   create: async (attributes: EpisodesCreate) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.post('/episodes/create', attributes, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.post('/episodes/create', attributes, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao criar o episódio.');
     }
@@ -65,12 +67,14 @@ const episodes_service = {
   update: async (id: number, attributes: Partial<EpisodesCreate>) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.put(`/episodes/${id}`, attributes, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.put(`/episodes/${id}`, attributes, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao atualizar o episódio.');
     }
@@ -78,12 +82,14 @@ const episodes_service = {
   delete: async (id: number) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.delete(`/episodes/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.delete(`/episodes/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao deletar o episódio.');
     }

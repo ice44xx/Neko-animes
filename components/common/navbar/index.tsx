@@ -5,12 +5,16 @@ import Heart from '/public/assets/heart.png';
 import Coffe from '/public/assets/coffe.png';
 import Logo from '/public/assets/logo.png';
 import Search from '/public/assets/lupa.png';
+import Login from '../auth/login';
+import Register from '../auth/register';
 import { Button, Form, Input } from 'reactstrap';
 import { useRouter } from 'next/router';
 import { FormEvent, useState } from 'react';
 
 export const Navbar = () => {
   const router = useRouter();
+  const [login, setLogin] = useState(true);
+  const [register, setRegister] = useState(true);
   const [search, setSearch] = useState(true);
   const [searchName, setSearchName] = useState('');
 
@@ -18,11 +22,20 @@ export const Navbar = () => {
     setSearch(!search);
   };
 
+  const handleLogin = () => {
+    setLogin(!login);
+  };
+
+  const handleRegister = () => {
+    setRegister(!register);
+  };
+
   const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    router.push(`/animes/${searchName}`);
+    router.push(`/animes/buscar/${searchName}`);
     setSearchName('');
+    setSearch(true);
   };
 
   return (
@@ -48,20 +61,17 @@ export const Navbar = () => {
               className={styles.imgSearch}
             />
             <div className={styles.wrapper_container}>
-              <Link href={'/neko/register'}>
-                <Button className={styles.register}>Registrar-se</Button>
-              </Link>
-              <Link href={'/neko/login'}>
-                <Button className={styles.login}>Entrar</Button>
-              </Link>
+              <Button className={styles.register} onClick={handleRegister}>
+                Registrar-se
+              </Button>
+              <Button className={styles.login} onClick={handleLogin}>
+                Entrar
+              </Button>
             </div>
           </div>
         </div>
-        <div
-          className={`${styles.container_search} ${search ? styles.active : ''}`}
-          id="containerSearch"
-        >
-          <Form className={styles.form}>
+        <div className={`${styles.container_search} ${search ? styles.active : ''}`}>
+          <Form className={styles.form} onSubmit={handleSearch}>
             <Input
               value={searchName}
               onChange={(e) => {
@@ -75,6 +85,8 @@ export const Navbar = () => {
           </Form>
         </div>
       </div>
+      <Login onClick={handleLogin} loginOpen={login} />
+      <Register onClick={handleRegister} registerOpen={register} />
     </>
   );
 };

@@ -15,7 +15,7 @@ const SlidesAnimesNewest: React.FC<Props> = ({ color }) => {
   useEffect(() => {
     const featchData = async () => {
       try {
-        const res = await animes_services.get();
+        const res = await animes_services.getTop10Newest();
         setData(res);
         console.log(res);
       } catch (error: any) {

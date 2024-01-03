@@ -1,9 +1,9 @@
+import styles from '../../styles.module.scss';
+import React, { useEffect, useState } from 'react';
 import { Table } from 'reactstrap';
 import categories_service, {
   Categories,
 } from '../../../../../services/categories/categories.service';
-import styles from '../../styles.module.scss';
-import React, { useEffect, useState } from 'react';
 
 const CategoriesGet = () => {
   const [data, setData] = useState<Categories[]>([]);

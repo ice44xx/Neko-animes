@@ -1,10 +1,10 @@
 import styles from '../../styles.module.scss';
 import Swal from 'sweetalert2';
-import { FormEvent, useState } from 'react';
-import { Form, FormGroup } from 'reactstrap';
 import LabelComponent from '../../../../common/label';
 import InputComponent from '../../../../common/input';
 import ButtonComponent from '../../../../common/button';
+import { FormEvent, useState } from 'react';
+import { Form, FormGroup } from 'reactstrap';
 import classifications_service from '../../../../../services/classifications/classifications.service';
 
 const ClassificationsDelete = () => {

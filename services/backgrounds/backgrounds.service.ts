@@ -18,12 +18,14 @@ const backgrounds_service = {
   create: async (attributes: Backgrounds) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.post('/backgrounds/create', attributes, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.post('/backgrounds/create', attributes, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao criar o background.');
     }
@@ -31,12 +33,14 @@ const backgrounds_service = {
   update: async (id: number, attributes: Partial<Backgrounds>) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.put(`/backgrounds/${id}`, attributes, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.put(`/backgrounds/${id}`, attributes, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao atualizar o background.');
     }
@@ -44,12 +48,14 @@ const backgrounds_service = {
   delete: async (id: number) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.delete(`/backgrounds/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.delete(`/backgrounds/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao deletar o background.');
     }

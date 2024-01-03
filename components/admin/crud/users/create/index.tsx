@@ -1,16 +1,15 @@
 import styles from '../../styles.module.scss';
 import Swal from 'sweetalert2';
-import { ChangeEvent, FormEvent, useState } from 'react';
-import { Form, FormGroup } from 'reactstrap';
-import users_service, { AdminsCreate } from '../../../../../services/users/users.service';
 import LabelComponent from '../../../../common/label';
 import InputComponent from '../../../../common/input';
 import ButtonComponent from '../../../../common/button';
 import SelectInput from '../../../../common/select';
+import users_service, { AdminsCreate } from '../../../../../services/users/users.service';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { Form, FormGroup } from 'reactstrap';
 
 const UsersCreate = () => {
   const [users, setUsers] = useState<AdminsCreate>({
-    firstName: '',
     userName: '',
     email: '',
     birthday: '',
@@ -23,7 +22,7 @@ const UsersCreate = () => {
       e.preventDefault();
 
       const res = await users_service.createAdmin(users);
-      setUsers({ firstName: '', userName: '', email: '', birthday: '', password: '', roleId: 0 });
+      setUsers({ userName: '', email: '', birthday: '', password: '', roleId: 0 });
 
       Swal.fire('Sucesso!', 'Usuário criado com sucesso!', 'success');
     } catch (error: any) {
@@ -38,26 +37,13 @@ const UsersCreate = () => {
   return (
     <Form className={styles.form} onSubmit={handleSubmit}>
       <FormGroup className={styles.form_group}>
-        <div className={styles.form_group_flex}>
-          <div className={styles.form_group_flex_d}>
-            <LabelComponent htmlFor="firstName" value={'Nome'} />
-            <InputComponent
-              placeholder="Exemplo: Neko Animes"
-              id="firstName"
-              name="firstName"
-              onChange={(e) => setUsers({ ...users, firstName: e.target.value })}
-            />
-          </div>
-          <div className={styles.form_group_flex_d}>
-            <LabelComponent htmlFor="userName" value={'Nickname'} />
-            <InputComponent
-              placeholder="Exemplo: Neko "
-              id="userName"
-              name="userName"
-              onChange={(e) => setUsers({ ...users, userName: e.target.value })}
-            />
-          </div>
-        </div>
+        <LabelComponent htmlFor="userName" value={'Nickname'} />
+        <InputComponent
+          placeholder="Exemplo: Neko "
+          id="userName"
+          name="userName"
+          onChange={(e) => setUsers({ ...users, userName: e.target.value })}
+        />
       </FormGroup>
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="email" value={'Email'} />

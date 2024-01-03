@@ -24,39 +24,39 @@ const SlidesBackgrounds = () => {
   }, []);
 
   return (
-    <>
-      <div className={styles.container}>
-        <Splide
-          options={{
-            type: 'slide',
-            perPage: 1,
-            perMove: 1,
-            pagination: false,
-            arrows: false,
-            autoplay: true,
-            interval: 5000,
-          }}
-        >
-          {data.map((background: Backgrounds) => (
-            <SplideSlide key={background.id}>
-              <div className={styles.container_backgrounds}>
-                <Image
-                  src={background.url}
-                  alt="Animes Backgrounds"
-                  width={1980}
-                  height={500}
-                  className={styles.backgrounds}
-                />
-                <div className={styles.smoke}></div>
-              </div>
-            </SplideSlide>
-          ))}
-        </Splide>
-        <div className={styles.container_categories}>
-          <SlidesCategories />
-        </div>
+    <div className={styles.container}>
+      <Splide
+        options={{
+          type: 'slide',
+          perPage: 1,
+          perMove: 1,
+          pagination: false,
+          arrows: false,
+          autoplay: true,
+          interval: 4000,
+          rewind: true,
+        }}
+      >
+        {data.map((background: Backgrounds) => (
+          <SplideSlide key={background.id}>
+            <div className={styles.container_backgrounds}>
+              <div className={styles.smoke}></div>
+              <Image
+                src={background.url}
+                alt="Animes Backgrounds"
+                width={1980}
+                height={500}
+                className={styles.backgrounds}
+              />
+              <div className={styles.smoke}></div>
+            </div>
+          </SplideSlide>
+        ))}
+      </Splide>
+      <div className={styles.container_categories}>
+        <SlidesCategories />
       </div>
-    </>
+    </div>
   );
 };
 

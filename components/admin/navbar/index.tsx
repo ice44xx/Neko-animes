@@ -35,6 +35,9 @@ const NavbarAdmin = () => {
           <Button onClick={toggleNavbar} className={styles.btn}>
             <img src="/assets/fechar.png" alt="fechar" className={styles.close} />
           </Button>
+          <Link href={'/neko-admin/dashboard/types'} className={styles.link}>
+            <p>Tipos</p>
+          </Link>
           <Link href={'/neko-admin/dashboard/animes'} className={styles.link}>
             <p>Animes</p>
           </Link>

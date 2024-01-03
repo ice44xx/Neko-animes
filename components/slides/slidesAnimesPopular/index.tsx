@@ -15,7 +15,7 @@ const SlidesAnimesPopular: React.FC<Props> = ({ color }) => {
   useEffect(() => {
     const featchData = async () => {
       try {
-        const res = await animes_services.get();
+        const res = await animes_services.getTop10Likes();
         setData(res);
         console.log(res);
       } catch (error: any) {
@@ -29,9 +29,8 @@ const SlidesAnimesPopular: React.FC<Props> = ({ color }) => {
     <div className={styles.container}>
       <div className={styles.container_bar}>
         <div className={`${styles.bar}`} style={{ backgroundColor: color }}></div>
-        <p className={styles.title}>Destaques do momento</p>
+        <p className={styles.title}>Animes Populares</p>
       </div>
-
       <SplideCarousel
         items={data.map((anime: Animes, index) => (
           <Link

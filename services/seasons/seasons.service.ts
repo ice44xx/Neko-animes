@@ -39,12 +39,14 @@ const seasons_service = {
   create: async (attributes: SeasonsCreate) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.post('/seasons/create', attributes, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.post('/seasons/create', attributes, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao criar a temporada.');
     }
@@ -52,12 +54,14 @@ const seasons_service = {
   update: async (id: number, attributes: Partial<SeasonsCreate>) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.put(`/seasons/${id}`, attributes, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.put(`/seasons/${id}`, attributes, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao atualizar a temporada.');
     }
@@ -65,12 +69,14 @@ const seasons_service = {
   delete: async (id: number) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.delete(`/seasons/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.delete(`/seasons/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao deletar a temporada.');
     }

@@ -1,13 +1,13 @@
 import styles from '../../styles.module.scss';
 import Swal from 'sweetalert2';
+import LabelComponent from '../../../../common/label';
+import InputComponent from '../../../../common/input';
+import ButtonComponent from '../../../../common/button';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import categories_service, {
   Categories,
 } from '../../../../../services/categories/categories.service';
-import LabelComponent from '../../../../common/label';
-import InputComponent from '../../../../common/input';
-import ButtonComponent from '../../../../common/button';
 
 const CategoriesCreate = () => {
   const [categories, setCategories] = useState<Categories>({

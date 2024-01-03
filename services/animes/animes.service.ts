@@ -6,6 +6,7 @@ export interface Animes {
   synopsis: string;
   thumbnailUrl: string;
   feature: boolean;
+  types: string;
   categoryNames: string[];
   classificationName: string;
 }
@@ -27,15 +28,49 @@ const animes_services = {
       throw new Error(error.response.data.message || `Erro ao buscar o anime ${id}`);
     }
   },
+  getByName: async (name: string) => {
+    try {
+      const res = await api.get(`/animes/${name}`);
+      return res.data;
+    } catch (error: any) {
+      throw new Error(error.response.data.message || `Erro ao buscar o anime ${name}`);
+    }
+  },
+  getTop10Newest: async () => {
+    try {
+      const res = await api.get('/animes/newest');
+      return res.data;
+    } catch (error: any) {
+      throw new Error(error.response.data.message || 'Erro ao buscar todos animes lançamentos.');
+    }
+  },
+  getTop10Features: async () => {
+    try {
+      const res = await api.get('/animes/features');
+      return res.data;
+    } catch (error: any) {
+      throw new Error(error.response.data.message || 'Erro ao buscar todos animes.');
+    }
+  },
+  getTop10Likes: async () => {
+    try {
+      const res = await api.get('/animes/likes');
+      return res.data;
+    } catch (error: any) {
+      throw new Error(error.response.data.message || 'Erro ao buscar todos animes.');
+    }
+  },
   create: async (attributes: Animes) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.post('/animes/create', attributes, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.post('/animes/create', attributes, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao criar o anime.');
     }
@@ -43,12 +78,14 @@ const animes_services = {
   update: async (id: number, attributes: Partial<Animes>) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.put(`/animes/${id}`, attributes, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.put(`/animes/${id}`, attributes, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao atualizar o anime.');
     }
@@ -56,12 +93,14 @@ const animes_services = {
   delete: async (id: number) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
-      const res = await api.delete(`/animes/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return res.data;
+      if (token) {
+        const res = await api.delete(`/animes/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao deletar o anime.');
     }
