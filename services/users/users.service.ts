@@ -14,7 +14,6 @@ export interface UsersCreate {
 
 export interface UsersGet {
   id: number;
-  firstName: string;
   userName: string;
   email: string;
   birthday: Date;

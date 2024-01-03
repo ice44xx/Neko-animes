@@ -4,7 +4,8 @@ import InputComponent from '../../input';
 import LabelComponent from '../../label';
 import ButtonComponent from '../../button';
 import Logo from '@/public/assets/head.png';
-import { Button, Form, FormGroup } from 'reactstrap';
+import Close from '@/public/close.png';
+import { Form, FormGroup } from 'reactstrap';
 
 const Images = [
   'https://res.cloudinary.com/doupbxhfd/image/upload/v1704237204/Register%20e%20Login/register_five_kp6qkj.jpg',
@@ -33,24 +34,27 @@ const Register: React.FC<Props> = ({ onClick, registerOpen }) => {
         </div>
         <div className={styles.container_right}>
           <div className={styles.container_close}>
-            <Button className={styles.close} onClick={onClick}>
-              X
-            </Button>
+            <Image src={Close} alt="Fechar" onClick={onClick} className={styles.close} />
           </div>
           <Form className={styles.form_register}>
             <FormGroup className={styles.form_group}>
               <Image src={Logo} alt="Neko Animes Login" className={styles.logo} />
               <InputComponent
                 placeholder=""
-                id="firstName"
-                name="firstName"
+                id="userName"
+                name="userName"
                 className={styles.input}
               />
-              <LabelComponent htmlFor="firstName" value={'Nickname'} className={styles.label} />
+              <LabelComponent htmlFor="userName" value={'Nickname'} className={styles.label} />
             </FormGroup>
             <FormGroup className={styles.form_group}>
-              <InputComponent placeholder="" id="email" name="email" className={styles.input} />
-              <LabelComponent htmlFor="email" value={'E-mail'} className={styles.label} />
+              <InputComponent
+                placeholder=""
+                id="emailRegister"
+                name="emailRegister"
+                className={styles.input}
+              />
+              <LabelComponent htmlFor="emailRegister" value={'E-mail'} className={styles.label} />
             </FormGroup>
             <FormGroup className={styles.form_group}>
               <InputComponent
@@ -65,11 +69,11 @@ const Register: React.FC<Props> = ({ onClick, registerOpen }) => {
             <FormGroup className={styles.form_group}>
               <InputComponent
                 placeholder=""
-                id="password"
-                name="password"
+                id="passwordRegister"
+                name="passwordRegister"
                 className={styles.input}
               />
-              <LabelComponent htmlFor="password" value={'Senha'} className={styles.label} />
+              <LabelComponent htmlFor="passwordRegister" value={'Senha'} className={styles.label} />
             </FormGroup>
             <ButtonComponent value={'Entrar'} className={styles.btn} />
           </Form>

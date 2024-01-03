@@ -2,22 +2,21 @@ import styles from '../styles.module.scss';
 import Card from '../../common/card';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import animes_services, { Animes } from '../../../services/animes/animes.service';
 import SplideCarousel from '../../common/carousel';
+import types_service, { TypesAnimes } from '../../../services/type/types.service';
 
 interface Props {
   color: string;
 }
 
 const SlidesAnimesMovies: React.FC<Props> = ({ color }) => {
-  const [data, setData] = useState<Animes[]>([]);
+  const [data, setData] = useState<TypesAnimes[]>([]);
 
   useEffect(() => {
     const featchData = async () => {
       try {
-        const res = await animes_services.get();
-        setData(res);
-        console.log(res);
+        const res = await types_service.getTop10Movies('movies');
+        setData(res.animes);
       } catch (error: any) {
         console.log(error);
       }
@@ -32,7 +31,7 @@ const SlidesAnimesMovies: React.FC<Props> = ({ color }) => {
         <p className={styles.title}>Filmes</p>
       </div>
       <SplideCarousel
-        items={data.map((anime: Animes, index) => (
+        items={data.map((anime: TypesAnimes, index) => (
           <Link
             key={index}
             href={`/anime/${anime.name}/${anime.id}`}

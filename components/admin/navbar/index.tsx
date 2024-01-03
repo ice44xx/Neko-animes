@@ -1,9 +1,12 @@
 import styles from './styles.module.scss';
+import Link from 'next/link';
+import Image from 'next/image';
+import ButtonComponent from '../../common/button';
+import Logo from '@/public/assets/logo.png';
+import Close from '@/public/close.png';
 import React, { useState } from 'react';
 import { Button } from 'reactstrap';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import ButtonComponent from '../../common/button';
 
 const NavbarAdmin = () => {
   const router = useRouter();
@@ -19,7 +22,7 @@ const NavbarAdmin = () => {
     <>
       <div className={styles.navbar}>
         <Link href={'/neko-admin/dashboard'}>
-          <img src="/assets/logo.png" alt="" />
+          <Image src={Logo} alt="Neko Animes" className={styles.logo} />
         </Link>
         <Button onClick={toggleNavbar} className={styles.btn}>
           <div className={styles.line}></div>
@@ -33,7 +36,7 @@ const NavbarAdmin = () => {
       >
         <div className={styles.container_navbar}>
           <Button onClick={toggleNavbar} className={styles.btn}>
-            <img src="/assets/fechar.png" alt="fechar" className={styles.close} />
+            <Image src={Close} alt="Fechar" className={styles.close} />
           </Button>
           <Link href={'/neko-admin/dashboard/types'} className={styles.link}>
             <p>Tipos</p>
@@ -59,7 +62,9 @@ const NavbarAdmin = () => {
           <Link href={'/neko-admin/dashboard/users'} className={styles.link}>
             <p>Usuários</p>
           </Link>
-          <ButtonComponent value="Sair" onClick={Logout} className={styles.loggout} />
+          <p onClick={Logout} className={styles.loggout}>
+            Sair
+          </p>
         </div>
       </div>
     </>

@@ -4,7 +4,8 @@ import InputComponent from '../../input';
 import LabelComponent from '../../label';
 import ButtonComponent from '../../button';
 import Logo from '@/public/assets/head.png';
-import { Button, Form, FormGroup } from 'reactstrap';
+import Close from '@/public/close.png';
+import { Form, FormGroup } from 'reactstrap';
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import auth_service from '../../../../services/auth/auth.service';
@@ -60,32 +61,30 @@ const Login: React.FC<Props> = ({ onClick, loginOpen }) => {
         </div>
         <div className={styles.container_right}>
           <div className={styles.container_close}>
-            <Button className={styles.close} onClick={onClick}>
-              X
-            </Button>
+            <Image src={Close} alt="Fechar" onClick={onClick} className={styles.close} />
           </div>
           <Form className={styles.form} onSubmit={handleSubmit}>
             <FormGroup className={styles.form_group}>
               <Image src={Logo} alt="Neko Animes Login" className={styles.logo} />
               <InputComponent
                 placeholder=""
-                id="email"
-                name="email"
+                id="emailLogin"
+                name="emailLogin"
                 className={styles.input}
                 onChange={(e) => setUsers({ ...users, email: e.target.value })}
               />
-              <LabelComponent htmlFor="email" value={'E-mail'} className={styles.label} />
+              <LabelComponent htmlFor="emailLogin" value={'E-mail'} className={styles.label} />
             </FormGroup>
             <FormGroup className={styles.form_group}>
               <InputComponent
                 type="password"
                 placeholder=""
-                id="password"
-                name="password"
+                id="passwordLogin"
+                name="passwordLogin"
                 className={styles.input}
                 onChange={(e) => setUsers({ ...users, password: e.target.value })}
               />
-              <LabelComponent htmlFor="password" value={'Senha'} className={styles.label} />
+              <LabelComponent htmlFor="passwordLogin" value={'Senha'} className={styles.label} />
             </FormGroup>
             <ButtonComponent value={'Entrar'} className={styles.btn} />
           </Form>
