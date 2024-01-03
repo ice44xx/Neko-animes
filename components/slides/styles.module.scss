@@ -76,6 +76,16 @@
       align-items: center;
     }
   }
+  .container_favorites {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 150px;
+    .error {
+      font-size: 40px;
+    }
+  }
   .container_bar {
     display: flex;
     align-items: center;
@@ -166,6 +176,11 @@
             font-size: 14px;
           }
         }
+      }
+    }
+    .container_favorites {
+      .error {
+        font-size: 9vw;
       }
     }
   }

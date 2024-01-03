@@ -6,6 +6,7 @@ export interface Animes {
   synopsis: string;
   thumbnailUrl: string;
   feature: boolean;
+  types: string;
   categoryNames: string[];
   classificationName: string;
 }
@@ -33,6 +34,30 @@ const animes_services = {
       return res.data;
     } catch (error: any) {
       throw new Error(error.response.data.message || `Erro ao buscar o anime ${name}`);
+    }
+  },
+  getTop10Newest: async () => {
+    try {
+      const res = await api.get('/animes/newest');
+      return res.data;
+    } catch (error: any) {
+      throw new Error(error.response.data.message || 'Erro ao buscar todos animes lançamentos.');
+    }
+  },
+  getTop10Features: async () => {
+    try {
+      const res = await api.get('/animes/features');
+      return res.data;
+    } catch (error: any) {
+      throw new Error(error.response.data.message || 'Erro ao buscar todos animes.');
+    }
+  },
+  getTop10Likes: async () => {
+    try {
+      const res = await api.get('/animes/likes');
+      return res.data;
+    } catch (error: any) {
+      throw new Error(error.response.data.message || 'Erro ao buscar todos animes.');
     }
   },
   create: async (attributes: Animes) => {

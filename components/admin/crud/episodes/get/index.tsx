@@ -1,8 +1,8 @@
 import styles from '../../styles.module.scss';
+import SearchAdmin from '../../../search';
 import React, { useEffect, useState } from 'react';
 import episodes_service, { EpisodesGet } from '../../../../../services/episodes/episodes.service';
 import { Table } from 'reactstrap';
-import SearchAdmin from '../../../search';
 
 const EpisodesGet = () => {
   const [data, setData] = useState<EpisodesGet[]>([]);

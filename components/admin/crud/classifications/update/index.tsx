@@ -1,14 +1,14 @@
 import styles from '../../styles.module.scss';
 import Swal from 'sweetalert2';
+import ButtonComponent from '../../../../common/button';
+import InputComponent from '../../../../common/input';
+import LabelComponent from '../../../../common/label';
+import TextAreaComponent from '../../../../common/textarea';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import classifications_service, {
   Classifications,
 } from '../../../../../services/classifications/classifications.service';
-import ButtonComponent from '../../../../common/button';
-import InputComponent from '../../../../common/input';
-import LabelComponent from '../../../../common/label';
-import TextAreaComponent from '../../../../common/textarea';
 
 const ClassificationsUpdate = () => {
   const [classification, setClassification] = useState<Classifications>({

@@ -1,13 +1,13 @@
 import styles from '../../styles.module.scss';
 import Swal from 'sweetalert2';
-import { FormEvent, useState } from 'react';
-import { Form, FormGroup } from 'reactstrap';
-import animes_services, { Animes } from '../../../../../services/animes/animes.service';
 import InputComponent from '../../../../common/input';
 import LabelComponent from '../../../../common/label';
 import ButtonComponent from '../../../../common/button';
 import SelectInput from '../../../../common/select';
 import TextAreaComponent from '../../../../common/textarea';
+import { FormEvent, useState } from 'react';
+import { Form, FormGroup } from 'reactstrap';
+import animes_services, { Animes } from '../../../../../services/animes/animes.service';
 
 const AnimesCreate = () => {
   const [animes, setAnimes] = useState<Animes>({
@@ -15,6 +15,7 @@ const AnimesCreate = () => {
     synopsis: '',
     thumbnailUrl: '',
     feature: true,
+    types: '',
     categoryNames: [],
     classificationName: '',
   });
@@ -50,13 +51,26 @@ const AnimesCreate = () => {
   return (
     <Form className={styles.form} onSubmit={handleSubmit}>
       <FormGroup className={styles.form_group}>
-        <LabelComponent htmlFor="name" value={'Nome do anime'} />
-        <InputComponent
-          placeholder="Exemplo Jujutsu No kaisen..."
-          id="name"
-          name="name"
-          onChange={(e) => setAnimes({ ...animes, name: e.target.value })}
-        />
+        <div className={styles.form_group_flex}>
+          <div className={styles.form_group_flex_d}>
+            <LabelComponent htmlFor="name" value={'Nome do anime'} />
+            <InputComponent
+              placeholder="Exemplo Jujutsu No kaisen..."
+              id="name"
+              name="name"
+              onChange={(e) => setAnimes({ ...animes, name: e.target.value })}
+            />
+          </div>
+          <div className={styles.form_group_flex_id}>
+            <LabelComponent htmlFor="type" value={'Tipo do anime'} />
+            <InputComponent
+              placeholder="Exemplo: Series ou Movies"
+              id="type"
+              name="type"
+              onChange={(e) => setAnimes({ ...animes, types: e.target.value })}
+            />
+          </div>
+        </div>
       </FormGroup>
       <FormGroup className={styles.form_group}>
         <LabelComponent htmlFor="synopsis" value={'Synopsis'} />

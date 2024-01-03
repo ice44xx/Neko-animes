@@ -1,8 +1,8 @@
 import styles from '../../styles.module.scss';
+import Image from 'next/image';
 import animes_services, { Animes } from '../../../../../services/animes/animes.service';
 import React, { useEffect, useState } from 'react';
 import { Categories } from '../../../../../services/categories/categories.service';
-import Image from 'next/image';
 import { Table } from 'reactstrap';
 
 const AnimesGet = () => {
@@ -15,9 +15,11 @@ const AnimesGet = () => {
         const modifiedData = res.map((item: any) => ({
           ...item,
           categoryNames: item.categories.map((category: Categories) => category.name).join(', '),
+          types: item.types.name,
           classificationName: item.classifications.name,
         }));
         setData(modifiedData);
+        console.log(data);
       } catch (error) {
         console.error(error);
       }
@@ -37,6 +39,7 @@ const AnimesGet = () => {
             <th>Synopsis</th>
             <th>Thumbnail</th>
             <th>Destaque</th>
+            <th>Tipo</th>
             <th>Categorias</th>
             <th>Classificação</th>
           </tr>
@@ -53,6 +56,7 @@ const AnimesGet = () => {
                 <Image src={item.thumbnailUrl} alt={item.name} width={40} height={50} />
               </td>
               <td>{item.feature ? 'Sim' : 'Não'}</td>
+              <td>{item.types}</td>
               <td>{item.categoryNames}</td>
               <td>{item.classificationName}</td>
             </tr>

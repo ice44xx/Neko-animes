@@ -1,11 +1,11 @@
 import styles from '../../styles.module.scss';
 import Swal from 'sweetalert2';
-import { FormEvent, useState } from 'react';
-import { Form, FormGroup } from 'reactstrap';
-import seasons_service, { SeasonsCreate } from '../../../../../services/seasons/seasons.service';
 import ButtonComponent from '../../../../common/button';
 import InputComponent from '../../../../common/input';
 import LabelComponent from '../../../../common/label';
+import { FormEvent, useState } from 'react';
+import { Form, FormGroup } from 'reactstrap';
+import seasons_service, { SeasonsCreate } from '../../../../../services/seasons/seasons.service';
 
 const SeasonsUpdate = () => {
   const [seasons, setSeasons] = useState<SeasonsCreate>({

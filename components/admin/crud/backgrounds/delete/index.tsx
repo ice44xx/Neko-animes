@@ -1,11 +1,11 @@
 import styles from '../../styles.module.scss';
 import Swal from 'sweetalert2';
-import { FormEvent, useState } from 'react';
-import { Form, FormGroup } from 'reactstrap';
 import LabelComponent from '../../../../common/label';
 import InputComponent from '../../../../common/input';
 import ButtonComponent from '../../../../common/button';
 import seasons_service from '../../../../../services/seasons/seasons.service';
+import { FormEvent, useState } from 'react';
+import { Form, FormGroup } from 'reactstrap';
 
 const BackgroundsDelete = () => {
   const [backgroundId, setBackgroundId] = useState<number>();

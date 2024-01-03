@@ -31,26 +31,28 @@ const SlidesAnimesFavorites: React.FC<Props> = ({ color }) => {
         <div className={`${styles.bar}`} style={{ backgroundColor: color }}></div>
         <p className={styles.title}>Favoritos</p>
       </div>
-      {data.length === 0 ? (
-        <p>Não há favoritos ainda.</p>
-      ) : (
-        <SplideCarousel
-          items={data.map((favorites: Favorites, index) => (
-            <Link
-              key={index}
-              href={`/anime/${favorites.anime}/${favorites.id}`}
-              style={{ textDecoration: 'none', color: 'white' }}
-            >
-              <Card
-                name={favorites.anime}
-                alt={favorites.anime}
-                image={favorites.thumbnailUrl}
-                feature={false}
-              />
-            </Link>
-          ))}
-        />
-      )}
+      <div className={styles.container_favorites}>
+        {data.length === 0 ? (
+          <p className={styles.error}>Não há favoritos ainda.</p>
+        ) : (
+          <SplideCarousel
+            items={data.map((favorites: Favorites, index) => (
+              <Link
+                key={index}
+                href={`/anime/${favorites.anime}/${favorites.id}`}
+                style={{ textDecoration: 'none', color: 'white' }}
+              >
+                <Card
+                  name={favorites.anime}
+                  alt={favorites.anime}
+                  image={favorites.thumbnailUrl}
+                  feature={false}
+                />
+              </Link>
+            ))}
+          />
+        )}
+      </div>
     </div>
   );
 };

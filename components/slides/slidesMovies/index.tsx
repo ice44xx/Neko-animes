@@ -9,13 +9,13 @@ interface Props {
   color: string;
 }
 
-const SlidesAnimesNewest: React.FC<Props> = ({ color }) => {
+const SlidesAnimesMovies: React.FC<Props> = ({ color }) => {
   const [data, setData] = useState<Animes[]>([]);
 
   useEffect(() => {
     const featchData = async () => {
       try {
-        const res = await animes_services.getTop10Newest();
+        const res = await animes_services.get();
         setData(res);
         console.log(res);
       } catch (error: any) {
@@ -29,7 +29,7 @@ const SlidesAnimesNewest: React.FC<Props> = ({ color }) => {
     <div className={styles.container}>
       <div className={styles.container_bar}>
         <div className={`${styles.bar}`} style={{ backgroundColor: color }}></div>
-        <p className={styles.title}>Animes Lançamentos</p>
+        <p className={styles.title}>Filmes</p>
       </div>
       <SplideCarousel
         items={data.map((anime: Animes, index) => (
@@ -46,4 +46,4 @@ const SlidesAnimesNewest: React.FC<Props> = ({ color }) => {
   );
 };
 
-export default SlidesAnimesNewest;
+export default SlidesAnimesMovies;

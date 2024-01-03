@@ -1,7 +1,11 @@
 import api from '../database/boot';
 
+export interface UsersLogin {
+  email: string;
+  password: string;
+}
+
 export interface UsersCreate {
-  firstName: string;
   userName: string;
   email: string;
   birthday: string;
@@ -22,7 +26,6 @@ export interface UsersGet {
 
 export interface AdminsCreate {
   id?: number | string;
-  firstName: string;
   userName: string;
   email: string;
   birthday: string;
@@ -32,7 +35,6 @@ export interface AdminsCreate {
 
 export interface AdminsUpdate {
   id?: number | string;
-  firstName?: string;
   userName?: string;
   email?: string;
   profile?: string;

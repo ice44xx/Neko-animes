@@ -1,10 +1,10 @@
 import styles from '../../styles.module.scss';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import backgrounds_service, {
   Backgrounds,
 } from '../../../../../services/backgrounds/backgrounds.service';
 import { Table } from 'reactstrap';
-import Image from 'next/image';
 
 const BackgroundsGet = () => {
   const [data, setData] = useState<Backgrounds[]>([]);

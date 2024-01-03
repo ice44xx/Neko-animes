@@ -15,7 +15,7 @@ const SlidesAnimesFeatures: React.FC<Props> = ({ color }) => {
   useEffect(() => {
     const featchData = async () => {
       try {
-        const res = await animes_services.get();
+        const res = await animes_services.getTop10Features();
         setData(res);
         console.log(res);
       } catch (error: any) {
@@ -29,7 +29,7 @@ const SlidesAnimesFeatures: React.FC<Props> = ({ color }) => {
     <div className={styles.container}>
       <div className={styles.container_bar}>
         <div className={`${styles.bar}`} style={{ backgroundColor: color }}></div>
-        <p className={styles.title}>Destaques Mensais</p>
+        <p className={styles.title}>Destaques</p>
       </div>
       <SplideCarousel
         items={data.map((anime: Animes, index) => (

@@ -1,9 +1,9 @@
 import styles from '../../styles.module.scss';
+import SearchAdmin from '../../../search';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import users_service, { UsersGet } from '../../../../../services/users/users.service';
 import { Table } from 'reactstrap';
-import SearchAdmin from '../../../search';
-import Image from 'next/image';
 
 const UsersGet = () => {
   const [data, setData] = useState<UsersGet[]>([]);
@@ -46,7 +46,6 @@ const UsersGet = () => {
         <thead>
           <tr>
             <th>Usuário ID</th>
-            <th>Nome Real</th>
             <th>Nickname</th>
             <th>Email</th>
             <th>Aniversário</th>
@@ -64,7 +63,6 @@ const UsersGet = () => {
             data.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>{item.firstName}</td>
                 <td>{item.userName}</td>
                 <td>{item.email}</td>
                 <td>{formatDate(item.birthday)}</td>

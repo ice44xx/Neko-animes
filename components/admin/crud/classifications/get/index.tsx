@@ -1,10 +1,10 @@
 import styles from '../../styles.module.scss';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import classifications_service, {
   Classifications,
 } from '../../../../../services/classifications/classifications.service';
 import { Table } from 'reactstrap';
-import Image from 'next/image';
 
 const ClassificationsGet = () => {
   const [data, setData] = useState<Classifications[]>([]);

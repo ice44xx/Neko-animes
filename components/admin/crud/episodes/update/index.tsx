@@ -1,13 +1,13 @@
 import styles from '../../styles.module.scss';
 import Swal from 'sweetalert2';
+import ButtonComponent from '../../../../common/button';
+import InputComponent from '../../../../common/input';
+import LabelComponent from '../../../../common/label';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
 import episodes_service, {
   EpisodesCreate,
 } from '../../../../../services/episodes/episodes.service';
-import ButtonComponent from '../../../../common/button';
-import InputComponent from '../../../../common/input';
-import LabelComponent from '../../../../common/label';
 
 const EpisodesUpdate = () => {
   const [episodes, setEpisodes] = useState<EpisodesCreate>({
