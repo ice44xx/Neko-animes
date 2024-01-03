@@ -34,21 +34,27 @@ const BackgroundsGet = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>
-                <Image
-                  src={item.url}
-                  alt={'Background'}
-                  width={200}
-                  height={50}
-                  className={styles.img}
-                />
-              </td>
-              <td>{item.order}</td>
+          {data.length === 0 ? (
+            <tr>
+              <td colSpan={7}>Nenhum background encontrado</td>
             </tr>
-          ))}
+          ) : (
+            data.map((item) => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>
+                  <Image
+                    src={item.url}
+                    alt={'Background'}
+                    width={200}
+                    height={50}
+                    className={styles.img}
+                  />
+                </td>
+                <td>{item.order}</td>
+              </tr>
+            ))
+          )}
         </tbody>
       </Table>
     </div>

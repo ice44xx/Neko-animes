@@ -6,15 +6,14 @@ import ButtonComponent from '../../button';
 import Logo from '@/public/assets/head.png';
 import Close from '@/public/close.png';
 import { Form, FormGroup } from 'reactstrap';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import auth_service from '../../../../services/auth/auth.service';
 import { useDispatch } from 'react-redux';
 import { UsersLogin } from '../../../../services/users/users.service';
-
-const Images = [
-  'https://res.cloudinary.com/doupbxhfd/image/upload/v1704237204/Register%20e%20Login/register_five_kp6qkj.jpg',
-];
+import backgrounds_auth_service, {
+  BackgroundsAuth,
+} from '../../../../services/backgrounds-auth/backgrounds-auth.service';
 
 interface Props {
   onClick: () => void;
@@ -24,10 +23,25 @@ interface Props {
 const Login: React.FC<Props> = ({ onClick, loginOpen }) => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const [data, setData] = useState<BackgroundsAuth[]>([]);
   const [users, setUsers] = useState<UsersLogin>({
     email: '',
     password: '',
   });
+
+  useEffect(() => {
+    const fetchDate = async () => {
+      try {
+        const res = await backgrounds_auth_service.get();
+        const randomizedData = res.sort(() => Math.random() - 0.5);
+        setData(randomizedData);
+        console.log(randomizedData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchDate();
+  }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -36,6 +50,9 @@ const Login: React.FC<Props> = ({ onClick, loginOpen }) => {
       if (login.success) {
         console.log('Usuário autenticado:', login);
         router.push('/');
+        if (router.pathname === '/') {
+          window.location.reload();
+        }
       } else {
         console.log(login.error);
       }
@@ -48,11 +65,11 @@ const Login: React.FC<Props> = ({ onClick, loginOpen }) => {
     <div className={`${styles.container} ${loginOpen ? styles.container_active : ''}`}>
       <div className={`${styles.container_content} ${loginOpen ? styles.active_auth : ''}`}>
         <div className={styles.container_left}>
-          {Images.map((image, index) => (
+          {data.map((background, index) => (
             <Image
               key={index}
-              src={image}
-              alt="teste"
+              src={background.url}
+              alt="Background de login"
               width={1950}
               height={1080}
               className={styles.background}

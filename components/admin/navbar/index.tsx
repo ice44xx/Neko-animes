@@ -1,7 +1,6 @@
 import styles from './styles.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
-import ButtonComponent from '../../common/button';
 import Logo from '@/public/assets/logo.png';
 import Close from '@/public/close.png';
 import React, { useState } from 'react';
@@ -34,11 +33,11 @@ const NavbarAdmin = () => {
         className={`${styles.navbarOpen} ${navbarOpen ? styles.active : ''}`}
         onClick={toggleNavbar}
       >
-        <div className={styles.container_navbar}>
+        <div className={`${styles.container_navbar} ${navbarOpen ? styles.container_active : ''}`}>
           <Button onClick={toggleNavbar} className={styles.btn}>
             <Image src={Close} alt="Fechar" className={styles.close} />
           </Button>
-          <Link href={'/neko-admin/dashboard/types'} className={styles.link}>
+          <Link href={'/neko-admin/dashboard/types-animes'} className={styles.link}>
             <p>Tipos</p>
           </Link>
           <Link href={'/neko-admin/dashboard/animes'} className={styles.link}>
@@ -58,6 +57,12 @@ const NavbarAdmin = () => {
           </Link>
           <Link href={'/neko-admin/dashboard/backgrounds'} className={styles.link}>
             <p>Planos de fundos</p>
+          </Link>
+          <Link href={'/neko-admin/dashboard/backgrounds-auth'} className={styles.link}>
+            <p>Fundos de autenticação</p>
+          </Link>
+          <Link href={'/neko-admin/dashboard/roles'} className={styles.link}>
+            <p>Roles</p>
           </Link>
           <Link href={'/neko-admin/dashboard/users'} className={styles.link}>
             <p>Usuários</p>

@@ -3,7 +3,7 @@ import Card from '../../common/card';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import SplideCarousel from '../../common/carousel';
-import types_service, { TypesAnimes } from '../../../services/type/types.service';
+import types_service, { TypesAnimes } from '../../../services/types-animes/types.service';
 
 interface Props {
   color: string;

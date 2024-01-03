@@ -6,10 +6,10 @@ import ButtonComponent from '../../button';
 import Logo from '@/public/assets/head.png';
 import Close from '@/public/close.png';
 import { Form, FormGroup } from 'reactstrap';
-
-const Images = [
-  'https://res.cloudinary.com/doupbxhfd/image/upload/v1704237204/Register%20e%20Login/register_five_kp6qkj.jpg',
-];
+import { useEffect, useState } from 'react';
+import backgrounds_auth_service, {
+  BackgroundsAuth,
+} from '../../../../services/backgrounds-auth/backgrounds-auth.service';
 
 interface Props {
   onClick: () => void;
@@ -17,15 +17,31 @@ interface Props {
 }
 
 const Register: React.FC<Props> = ({ onClick, registerOpen }) => {
+  const [data, setData] = useState<BackgroundsAuth[]>([]);
+
+  useEffect(() => {
+    const fetchDate = async () => {
+      try {
+        const res = await backgrounds_auth_service.get();
+        const randomizedData = res.sort(() => Math.random() - 0.5);
+        setData(randomizedData);
+        console.log(randomizedData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchDate();
+  }, []);
+
   return (
     <div className={`${styles.container} ${registerOpen ? styles.container_active : ''}`}>
       <div className={`${styles.container_content} ${registerOpen ? styles.active_auth : ''}`}>
         <div className={styles.container_left}>
-          {Images.map((image, index) => (
+          {data.map((background, index) => (
             <Image
               key={index}
-              src={image}
-              alt="teste"
+              src={background.url}
+              alt="Background de registro"
               width={1950}
               height={1080}
               className={styles.background}
