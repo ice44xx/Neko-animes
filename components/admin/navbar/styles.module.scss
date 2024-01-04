@@ -8,13 +8,14 @@
   align-items: center;
   justify-content: space-between;
   background-color: $blackColor15;
-  img {
+  .logo {
     z-index: 1;
     position: absolute;
-    bottom: -25px;
+    top: -40px;
     width: 200px;
     left: 50px;
     cursor: pointer;
+    object-fit: contain;
   }
   .btn {
     position: absolute;
@@ -38,34 +39,28 @@
   }
 }
 .navbarOpen {
-  z-index: 9999;
+  z-index: 20;
   position: fixed;
   width: 100%;
-  left: 0px;
+  left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  transition: $transition;
-  .loggout {
-    position: absolute;
-    bottom: 20px;
-    background-color: transparent;
-    font-size: 25px;
-    border: none;
-    color: $blackColor15;
-    transition: $transition;
-  }
+  background-color: $blackColorHover;
+  backdrop-filter: blur(5px);
+  transition: $transition2s;
   .container_navbar {
     position: relative;
     width: 420px;
     height: 100%;
-    gap: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 20px;
     background-color: $white;
-    border-right: 4px solid $blackColor15;
+    border-right: 4px solid $primary;
+    transition: $transition;
     .btn {
       position: absolute;
       top: 30px;
@@ -73,6 +68,17 @@
       background-color: transparent;
       border: none;
       transition: $transition;
+      .close {
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+        object-fit: contain;
+        transition: $transition;
+        &:hover {
+          transform: scale(95%);
+          transition: $transition;
+        }
+      }
     }
     .link {
       text-decoration: none;
@@ -86,16 +92,36 @@
       }
     }
   }
+  .loggout {
+    position: absolute;
+    bottom: 20px;
+    background-color: transparent;
+    font-size: 25px;
+    border: none;
+    color: $blackColor15;
+    transition: $transition;
+    cursor: pointer;
+    &:hover {
+      color: $primary;
+      transform: translateY(-5px);
+      transition: $transition;
+    }
+  }
 }
 .active {
   visibility: hidden;
-  z-index: 0;
-  left: -800px;
-  transition: $transition;
+  transition: $transition2s;
+  .container_active {
+    z-index: 0;
+    margin-left: -450px;
+    visibility: hidden;
+    transition: $transition;
+  }
 }
 
 @media (max-width: 450px) {
   .navbarOpen {
+    backdrop-filter: blur(0px);
     .container_navbar {
       width: 100%;
       border-right: none;

@@ -42,16 +42,44 @@
     width: 100%;
     height: 100%;
     text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
     cursor: pointer;
     .img {
       object-fit: contain;
     }
   }
+  .pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    .btn {
+      max-width: 200px;
+      margin-top: 20px;
+      &:hover {
+        background-color: $blackColor40;
+      }
+    }
+  }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1200px) {
   .container_table {
-    font-size: 5vw;
+    font-size: 2vw;
+    white-space: nowrap;
+  }
+}
+@media (max-width: 650px) {
+  .container_table {
+    font-size: 3vw;
+    white-space: nowrap;
+  }
+}
+@media (max-width: 350px) {
+  .container_table {
+    font-size: 4vw;
     white-space: nowrap;
   }
 }

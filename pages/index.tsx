@@ -7,8 +7,18 @@ import SlidesBackgrounds from '../components/slides/slidesBackgrounds';
 import SlidesAnimesNewest from '../components/slides/slidesAnimesNewest';
 import SlidesAnimesFavorites from '../components/slides/slidesFavorites';
 import SlidesAnimesMovies from '../components/slides/slidesMovies';
+import { useEffect, useState } from 'react';
 
 const HomePagePublic = () => {
+  const [userLogged, setUserLogged] = useState(false);
+
+  useEffect(() => {
+    const token = sessionStorage.getItem('nekoanimes-token');
+    if (token) {
+      setUserLogged(true);
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -16,7 +26,7 @@ const HomePagePublic = () => {
       </Head>
       <SlidesBackgrounds />
       <main>
-        <SlidesAnimesFavorites color="#02ff9e" />
+        {userLogged && <SlidesAnimesFavorites color="#02ff9e" />}
         <SlidesAnimesNewest color="#02a2ff" />
         <SlidesAnimesFeatures color="#ff3995" />
         <SlidesAnimes color="#ffd000" />

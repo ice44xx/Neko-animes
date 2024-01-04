@@ -35,16 +35,22 @@ const ClassificationsGet = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.name}</td>
-              <td>{item.desc}</td>
-              <td>
-                <Image src={item.thumbnail} alt={item.name} width={100} height={120} />
-              </td>
+          {data.length === 0 ? (
+            <tr>
+              <td colSpan={7}>Nenhuma classificação encontrada</td>
             </tr>
-          ))}
+          ) : (
+            data.map((item) => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>{item.desc}</td>
+                <td>
+                  <Image src={item.thumbnail} alt={item.name} width={100} height={120} />
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </Table>
     </div>

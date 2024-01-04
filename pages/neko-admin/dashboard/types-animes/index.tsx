@@ -1,9 +1,9 @@
 import styles from '../styles.module.scss';
 import Configure from '../../../../components/admin/configure';
-import TypesGet from '../../../../components/admin/crud/type/get';
-import TypesCreate from '../../../../components/admin/crud/type/create';
-import TypesUpdate from '../../../../components/admin/crud/type/update';
-import TypesDelete from '../../../../components/admin/crud/type/delete';
+import TypesGet from '../../../../components/admin/crud/types-animes/get';
+import TypesCreate from '../../../../components/admin/crud/types-animes/create';
+import TypesUpdate from '../../../../components/admin/crud/types-animes/update';
+import TypesDelete from '../../../../components/admin/crud/types-animes/delete';
 
 const DashboardTypes = () => {
   const options = ['Buscar', 'Criar', 'Atualizar', 'Deletar'];

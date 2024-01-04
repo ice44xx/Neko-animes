@@ -3,9 +3,9 @@ import Swal from 'sweetalert2';
 import LabelComponent from '../../../../common/label';
 import InputComponent from '../../../../common/input';
 import ButtonComponent from '../../../../common/button';
-import seasons_service from '../../../../../services/seasons/seasons.service';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
+import backgrounds_service from '../../../../../services/backgrounds/backgrounds.service';
 
 const BackgroundsDelete = () => {
   const [backgroundId, setBackgroundId] = useState<number>();
@@ -14,7 +14,7 @@ const BackgroundsDelete = () => {
     e.preventDefault();
     try {
       if (backgroundId !== undefined) {
-        await seasons_service.delete(backgroundId);
+        await backgrounds_service.delete(backgroundId);
         Swal.fire('Sucesso!', 'Background deletado com sucesso!', 'success');
       }
     } catch (error: any) {

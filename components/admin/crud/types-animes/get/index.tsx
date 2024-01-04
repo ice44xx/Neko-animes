@@ -1,7 +1,7 @@
 import styles from '../../styles.module.scss';
 import React, { useEffect, useState } from 'react';
 import { Table } from 'reactstrap';
-import types_service, { Types } from '../../../../../services/type/types.service';
+import types_service, { Types } from '../../../../../services/types-animes/types.service';
 
 const TypesGet = () => {
   const [data, setData] = useState<Types[]>([]);
@@ -30,12 +30,18 @@ const TypesGet = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.name}</td>
+          {data.length === 0 ? (
+            <tr>
+              <td colSpan={7}>Nenhum tipo encontrado</td>
             </tr>
-          ))}
+          ) : (
+            data.map((item) => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+              </tr>
+            ))
+          )}
         </tbody>
       </Table>
     </div>

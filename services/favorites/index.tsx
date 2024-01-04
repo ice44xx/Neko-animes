@@ -1,11 +1,11 @@
 import api from '../database/boot';
 
 export interface Favorites {
-  id: number;
-  userId: number;
+  id?: number;
   animeId: number;
   anime: string;
   thumbnailUrl: string;
+  favorite: boolean;
 }
 
 const favorites_services = {

@@ -3,7 +3,6 @@ import classifications_service, {
   Classifications,
 } from '../../../services/classifications/classifications.service';
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import Card from '../../common/card';
 import SplideCarousel from '../../common/carousel';

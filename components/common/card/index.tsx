@@ -33,6 +33,13 @@ const Card: React.FC<CardProps> = ({
 
   const selectedBackground = cardBackgrounds[index % cardBackgrounds.length];
 
+  const maxString = (text: string, maxLength: number) => {
+    if (text.length > maxLength) {
+      return `${text.substring(0, maxLength)}...`;
+    }
+    return text;
+  };
+
   if (feature) {
     return (
       <div className={styles.container_feature}>
@@ -43,7 +50,7 @@ const Card: React.FC<CardProps> = ({
           </div>
         </div>
         <div className={styles.overlay}>
-          <p className={styles.title}>{name}</p>
+          <p className={styles.title}>{maxString(name, 24)}</p>
         </div>
         <Image src={image} alt={alt} className={styles.img} width={250} height={330} />
       </div>
@@ -54,7 +61,7 @@ const Card: React.FC<CardProps> = ({
     return (
       <div className={`${styles.container_classifications} ${styles[selectedBackground]}`}>
         <div className={styles.overlay}>
-          <p className={`${styles.title} ${styles[selectedBackground]}`}>{name}</p>
+          <p className={`${styles.title} ${styles[selectedBackground]}`}>{maxString(name, 24)}</p>
           <p className={styles.desc}>{desc}</p>
         </div>
         <Image src={image} alt={alt} className={styles.img} width={250} height={330} />
@@ -65,7 +72,7 @@ const Card: React.FC<CardProps> = ({
   return (
     <div className={styles.container}>
       <div className={styles.overlay}>
-        <p className={styles.title}>{name}</p>
+        <p className={styles.title}>{maxString(name, 24)}</p>
       </div>
       <Image src={image} alt={alt} className={styles.img} width={250} height={330} />
     </div>

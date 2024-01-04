@@ -5,6 +5,13 @@ export interface Types {
   name: string;
 }
 
+export interface TypesAnimes {
+  id: number;
+  name: string;
+  synopsis: string;
+  thumbnailUrl: string;
+}
+
 const types_service = {
   get: async () => {
     try {
@@ -15,6 +22,14 @@ const types_service = {
     }
   },
   getByName: async (name: string) => {
+    try {
+      const res = await api.get(`types-animes/${name}`);
+      return res.data;
+    } catch (error: any) {
+      throw new Error(error.response.data.message || `Erro ao buscar o tipo ${name}`);
+    }
+  },
+  getTop10Movies: async (name: string) => {
     try {
       const res = await api.get(`types-animes/${name}`);
       return res.data;

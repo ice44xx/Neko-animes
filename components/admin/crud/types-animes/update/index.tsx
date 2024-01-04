@@ -5,7 +5,7 @@ import InputComponent from '../../../../common/input';
 import LabelComponent from '../../../../common/label';
 import { FormEvent, useState } from 'react';
 import { Form, FormGroup } from 'reactstrap';
-import types_service, { Types } from '../../../../../services/type/types.service';
+import types_service, { Types } from '../../../../../services/types-animes/types.service';
 
 const TypesUpdate = () => {
   const [types, setTypes] = useState<Types>({

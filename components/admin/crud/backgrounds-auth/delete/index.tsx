@@ -1,0 +1,41 @@
+import styles from '../../styles.module.scss';
+import Swal from 'sweetalert2';
+import LabelComponent from '../../../../common/label';
+import InputComponent from '../../../../common/input';
+import ButtonComponent from '../../../../common/button';
+import { FormEvent, useState } from 'react';
+import { Form, FormGroup } from 'reactstrap';
+import backgrounds_auth_service from '../../../../../services/backgrounds-auth/backgrounds-auth.service';
+
+const BackgroundsAuthDelete = () => {
+  const [backgroundId, setBackgroundId] = useState<number>();
+
+  const handleDelete = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      if (backgroundId !== undefined) {
+        await backgrounds_auth_service.delete(backgroundId);
+        Swal.fire('Sucesso!', 'Background deletado com sucesso!', 'success');
+      }
+    } catch (error: any) {
+      Swal.fire('Error!', `${error.message}`, 'error');
+    }
+  };
+
+  return (
+    <Form className={styles.form} onSubmit={handleDelete}>
+      <FormGroup className={styles.form_group}>
+        <LabelComponent htmlFor="id" value={'Background ID'} />
+        <InputComponent
+          placeholder="Exemplo: 2"
+          id="id"
+          name="id"
+          onChange={(e) => setBackgroundId(parseInt(e.target.value))}
+        />
+      </FormGroup>
+      <ButtonComponent value="Deletar background" className={styles.btn} />
+    </Form>
+  );
+};
+
+export default BackgroundsAuthDelete;

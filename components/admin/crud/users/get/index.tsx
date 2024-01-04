@@ -4,10 +4,13 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import users_service, { UsersGet } from '../../../../../services/users/users.service';
 import { Table } from 'reactstrap';
+import ButtonComponent from '../../../../common/button';
 
 const UsersGet = () => {
   const [data, setData] = useState<UsersGet[]>([]);
   const [search, setSearch] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +41,20 @@ const UsersGet = () => {
     return new Date(date).toLocaleDateString();
   };
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  const pageNumbers = Math.ceil(data.length / itemsPerPage);
+
+  const handlePrevClick = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  const handleNextClick = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, pageNumbers));
+  };
+
   return (
     <div className={styles.container_table}>
       <h2>Usuários</h2>
@@ -55,12 +72,12 @@ const UsersGet = () => {
           </tr>
         </thead>
         <tbody>
-          {data.length === 0 ? (
+          {currentItems.length === 0 ? (
             <tr>
               <td colSpan={7}>Nenhum usuário encontrado</td>
             </tr>
           ) : (
-            data.map((item) => (
+            currentItems.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.userName}</td>
@@ -80,6 +97,20 @@ const UsersGet = () => {
           )}
         </tbody>
       </Table>
+      <div className={styles.pagination}>
+        <ButtonComponent
+          onClick={handlePrevClick}
+          value={'Página Anterior'}
+          disabled={currentPage === 1}
+          className={styles.btn}
+        />
+        <ButtonComponent
+          onClick={handleNextClick}
+          value={'Próxima Página'}
+          disabled={currentPage === pageNumbers}
+          className={styles.btn}
+        />
+      </div>
     </div>
   );
 };
