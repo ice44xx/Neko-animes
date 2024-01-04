@@ -34,7 +34,8 @@ const Login: React.FC<Props> = ({ onClick, loginOpen }) => {
       try {
         const res = await backgrounds_auth_service.get();
         const randomizedData = res.sort(() => Math.random() - 0.5);
-        setData(randomizedData);
+        const firstRandomItem = randomizedData.slice(0, 1);
+        setData(firstRandomItem);
         console.log(randomizedData);
       } catch (error) {
         console.log(error);
@@ -75,6 +76,9 @@ const Login: React.FC<Props> = ({ onClick, loginOpen }) => {
               className={styles.background}
             />
           ))}
+          <div className={styles.container_close}>
+            <Image src={Close} alt="Fechar" onClick={onClick} className={styles.close} />
+          </div>
         </div>
         <div className={styles.container_right}>
           <div className={styles.container_close}>

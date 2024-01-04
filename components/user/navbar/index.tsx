@@ -10,15 +10,21 @@ import { Form, Input } from 'reactstrap';
 import { useRouter } from 'next/router';
 import { FormEvent, useEffect, useState } from 'react';
 import { UsersGet } from '../../../services/users/users.service';
+import Modal from '../modal';
 
 export const NavbarUser = () => {
   const router = useRouter();
   const [search, setSearch] = useState(true);
   const [searchName, setSearchName] = useState('');
+  const [userSettings, setUserSettings] = useState(true);
   const [userInfo, setUserInfo] = useState<UsersGet>();
 
   const handleSearchBarVisible = () => {
     setSearch(!search);
+  };
+
+  const handleUserSettings = () => {
+    setUserSettings(!userSettings);
   };
 
   const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
@@ -64,13 +70,12 @@ export const NavbarUser = () => {
                   <div className={styles.container_user}>
                     <p className={styles.userName}>{userInfo.userName}</p>
                   </div>
-                  <div className={styles.container_profile}>
+                  <div className={styles.container_profile} onClick={handleUserSettings}>
                     {userInfo.profile ? (
                       <Image
                         src={userInfo.profile}
                         alt={userInfo.userName}
-                        width={80}
-                        height={80}
+                        fill
                         className={styles.profile}
                       />
                     ) : (
@@ -82,6 +87,7 @@ export const NavbarUser = () => {
                         className={styles.profile}
                       />
                     )}
+                    <Modal active={userSettings} />
                   </div>
                 </>
               )}
