@@ -5,10 +5,41 @@ export interface Animes {
   name: string;
   synopsis: string;
   thumbnailUrl: string;
+  background: string;
   feature: boolean;
   types: string;
   categoryNames: string[];
   classificationName: string;
+}
+
+export interface AnimesGet {
+  id?: number | string;
+  name: string;
+  synopsis: string;
+  thumbnailUrl: string;
+  background: string;
+  feature: boolean;
+  types: {
+    name: string;
+  };
+  categories: Array<{
+    name: string;
+  }>;
+  classifications: {
+    name: string;
+  };
+  seasons: Array<{
+    id: number;
+    name: string;
+    episodes: Array<{
+      id: number;
+      name: string;
+      episodeOrder: number;
+      url: string;
+      likes: number;
+    }>;
+  }>;
+  likes: number;
 }
 
 const animes_services = {

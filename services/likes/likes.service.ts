@@ -1,19 +1,19 @@
 import api from '../database/boot';
 
-export interface Favorites {
+export interface Likes {
   id?: number;
   animeId: number;
   anime: string;
   thumbnailUrl: string;
-  favorite: boolean;
+  like: boolean;
 }
 
-const favorites_services = {
+const likes_services = {
   get: async () => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
       if (token) {
-        const res = await api.get('/favorites', {
+        const res = await api.get('/likes-animes', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -21,7 +21,7 @@ const favorites_services = {
         return res.data;
       }
     } catch (error: any) {
-      throw new Error(error.response.data.message || 'Erro ao buscar os favoritos.');
+      throw new Error(error.response.data.message || 'Erro ao buscar os likes.');
     }
   },
   create: async (id: number) => {
@@ -29,7 +29,7 @@ const favorites_services = {
       const token = sessionStorage.getItem('nekoanimes-token');
       if (token) {
         const res = await api.post(
-          `/favorites/${id}`,
+          `/likes-animes/${id}`,
           {},
           {
             headers: {
@@ -40,14 +40,14 @@ const favorites_services = {
         return res.data;
       }
     } catch (error: any) {
-      throw new Error(error.response.data.message || 'Erro ao criar favorito.');
+      throw new Error(error.response.data.message || 'Erro ao criar o like.');
     }
   },
   delete: async (id: number) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
       if (token) {
-        const res = await api.delete(`/favorites/${id}`, {
+        const res = await api.delete(`/likes-animes/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -55,8 +55,8 @@ const favorites_services = {
         return res.data;
       }
     } catch (error: any) {
-      throw new Error(error.response.data.message || 'Erro ao deletar favorito.');
+      throw new Error(error.response.data.message || 'Erro ao remover o like.');
     }
   },
 };
-export default favorites_services;
+export default likes_services;

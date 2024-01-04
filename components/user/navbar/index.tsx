@@ -84,7 +84,7 @@ export const NavbarUser = () => {
                         alt="Imagem de perfil padrão"
                         width={80}
                         height={80}
-                        className={styles.profile}
+                        className={styles.profile_cat}
                       />
                     )}
                     <Modal active={userSettings} />

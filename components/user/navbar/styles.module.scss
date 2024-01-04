@@ -100,6 +100,11 @@
             height: 100%;
             object-fit: cover;
             border-radius: 100%;
+            background-color: $blackColor40;
+          }
+          .profile_cat {
+            @extend .profile;
+            object-fit: contain;
           }
         }
       }
