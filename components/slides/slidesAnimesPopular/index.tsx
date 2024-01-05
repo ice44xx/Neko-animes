@@ -17,7 +17,6 @@ const SlidesAnimesPopular: React.FC<Props> = ({ color }) => {
       try {
         const res = await animes_services.getTop10Likes();
         setData(res);
-        console.log(res);
       } catch (error: any) {
         console.log(error);
       }

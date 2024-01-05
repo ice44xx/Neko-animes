@@ -4,6 +4,7 @@ import EpisodesCreate from '../../../../components/admin/crud/episodes/create';
 import EpisodesGet from '../../../../components/admin/crud/episodes/get';
 import EpisodesUpdate from '../../../../components/admin/crud/episodes/update';
 import EpisodesDelete from '../../../../components/admin/crud/episodes/delete';
+import Head from 'next/head';
 
 const DashboardEpisodes = () => {
   const options = ['Buscar', 'Criar', 'Atualizar', 'Deletar'];
@@ -16,11 +17,16 @@ const DashboardEpisodes = () => {
   };
 
   return (
-    <main>
-      <div className={styles.container}>
-        <Configure options={options} components={components} />
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>Neko Admin - Episódios</title>
+      </Head>
+      <main>
+        <div className={styles.container}>
+          <Configure options={options} components={components} />
+        </div>
+      </main>
+    </>
   );
 };
 

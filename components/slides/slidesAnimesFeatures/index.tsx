@@ -17,7 +17,6 @@ const SlidesAnimesFeatures: React.FC<Props> = ({ color }) => {
       try {
         const res = await animes_services.getTop10Features();
         setData(res);
-        console.log(res);
       } catch (error: any) {
         console.log(error);
       }

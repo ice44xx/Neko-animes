@@ -15,7 +15,6 @@ const SlidesBackgrounds = () => {
       try {
         const res = await backgrounds_service.get();
         setData(res);
-        console.log(res);
       } catch (error: any) {
         console.error(error.message);
       }

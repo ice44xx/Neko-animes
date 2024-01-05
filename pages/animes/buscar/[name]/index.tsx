@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Card from '../../../../components/common/card';
 import Cat from '@/public/assets/cat_error.webp';
 import Image from 'next/image';
+import Head from 'next/head';
 
 const SearchAnime = () => {
   const router = useRouter();
@@ -25,35 +26,40 @@ const SearchAnime = () => {
   }, [name]);
 
   return (
-    <main>
-      <div className={styles.container}>
-        <p className={styles.title}>Resultado de busca por {name}</p>
-        <div></div>
-        <div className={styles.container_animes}>
-          {data.length === 0 ? (
-            <div className={styles.container_error}>
-              <Image src={Cat} alt="Erro ao encontrar" className={styles.img} />
-              <p className={styles.error}>Opss, Anime não encontrado.</p>
-            </div>
-          ) : (
-            data.map((anime: Animes) => (
-              <Link
-                key={anime.id}
-                href={`/anime/${anime.name}/${anime.id}`}
-                style={{ textDecoration: 'none', color: 'white' }}
-              >
-                <Card
-                  name={anime.name}
-                  image={anime.thumbnailUrl}
-                  alt={anime.name}
-                  feature={false}
-                />
-              </Link>
-            ))
-          )}
+    <>
+      <Head>
+        <title>Neko Animes - {name}</title>
+      </Head>
+      <main>
+        <div className={styles.container}>
+          <p className={styles.title}>Resultado de busca por {name}</p>
+          <div></div>
+          <div className={styles.container_animes}>
+            {data.length === 0 ? (
+              <div className={styles.container_error}>
+                <Image src={Cat} alt="Erro ao encontrar" className={styles.img} />
+                <p className={styles.error}>Opss, Anime não encontrado.</p>
+              </div>
+            ) : (
+              data.map((anime: Animes) => (
+                <Link
+                  key={anime.id}
+                  href={`/anime/${anime.name}/${anime.id}`}
+                  style={{ textDecoration: 'none', color: 'white' }}
+                >
+                  <Card
+                    name={anime.name}
+                    image={anime.thumbnailUrl}
+                    alt={anime.name}
+                    feature={false}
+                  />
+                </Link>
+              ))
+            )}
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
 export default SearchAnime;

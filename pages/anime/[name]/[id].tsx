@@ -1,16 +1,17 @@
 import styles from './styles.module.scss';
+import Link from 'next/link';
+import Head from 'next/head';
 import BackgroundsAnimes from '../../../components/common/backgrounds';
 import Image from 'next/image';
 import Fav from '@/public/assets/favorite.png';
 import FavConfirmed from '@/public/assets/favorite_confirmed.png';
 import Like from '@/public/assets/like.png';
 import LikeConfirmed from '@/public/assets/heart.png';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import animes_services, { AnimesGet } from '../../../services/animes/animes.service';
-import Link from 'next/link';
 import favorites_services, { Favorites } from '../../../services/favorites';
 import likes_services, { Likes } from '../../../services/likes/likes.service';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 const Anime = () => {
   const router = useRouter();
@@ -18,7 +19,7 @@ const Anime = () => {
   const [favorites, setFavorites] = useState(false);
   const [loggin, setLoggin] = useState(false);
   const [data, setData] = useState<AnimesGet>();
-  const { id } = router.query;
+  const { id, name } = router.query;
 
   useEffect(() => {
     const token = sessionStorage.getItem('nekoanimes-token');
@@ -43,10 +44,12 @@ const Anime = () => {
   useEffect(() => {
     const loadFavorites = async () => {
       const favoritesList = await favorites_services.get();
-      const isFavoriteTrue = favoritesList.some(
-        (anime: Favorites) => anime.animeId === Number(id) && anime.favorite === true,
-      );
-      setFavorites(isFavoriteTrue);
+      if (Array.isArray(favoritesList)) {
+        const isFavoriteTrue = favoritesList.some(
+          (anime: Favorites) => anime.animeId === Number(id) && anime.favorite === true,
+        );
+        setFavorites(isFavoriteTrue);
+      }
     };
     loadFavorites();
   }, []);
@@ -54,10 +57,12 @@ const Anime = () => {
   useEffect(() => {
     const loadLikes = async () => {
       const likesList = await likes_services.get();
-      const isLikeTrue = likesList.some(
-        (anime: Likes) => anime.animeId === Number(id) && anime.like === true,
-      );
-      setLikes(isLikeTrue);
+      if (Array.isArray(likesList)) {
+        const isLikeTrue = likesList.some(
+          (anime: Likes) => anime.animeId === Number(id) && anime.like === true,
+        );
+        setLikes(isLikeTrue);
+      }
     };
     loadLikes();
   }, []);
@@ -86,6 +91,9 @@ const Anime = () => {
 
   return (
     <>
+      <Head>
+        <title>Neko Animes - {name}</title>
+      </Head>
       <BackgroundsAnimes background={data?.background} />
       <main>
         <div className={styles.container}>

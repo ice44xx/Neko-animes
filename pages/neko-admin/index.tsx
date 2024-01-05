@@ -9,6 +9,7 @@ import auth_service from '../../services/auth/auth.service';
 import InputComponent from '../../components/common/input';
 import LabelComponent from '../../components/common/label';
 import ButtonComponent from '../../components/common/button';
+import Head from 'next/head';
 
 const DashboardLogin = () => {
   const dispatch = useDispatch();
@@ -31,41 +32,46 @@ const DashboardLogin = () => {
     }
   };
   return (
-    <main>
-      <div className={styles.container}>
-        <div className={styles.container_content}>
-          <div className={styles.container_logo}>
-            <Image src={Logo} alt="Neko Animes" />
-          </div>
-          <div className={styles.container_form}>
-            <Form className={styles.form} onSubmit={handleSubmit}>
-              <FormGroup className={styles.form_group}>
-                <InputComponent
-                  id="email"
-                  name="email"
-                  className={styles.input}
-                  placeholder=""
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <LabelComponent htmlFor="email" value={'E-mail'} className={styles.label} />
-              </FormGroup>
-              <FormGroup className={styles.form_group}>
-                <InputComponent
-                  id="password"
-                  name="password"
-                  type="password"
-                  className={styles.input}
-                  placeholder=""
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <LabelComponent htmlFor="password" value={'Senha'} className={styles.label} />
-              </FormGroup>
-              <ButtonComponent value="Entrar" className="mt-3" />
-            </Form>
+    <>
+      <Head>
+        <title>Neko Animes</title>
+      </Head>
+      <main>
+        <div className={styles.container}>
+          <div className={styles.container_content}>
+            <div className={styles.container_logo}>
+              <Image src={Logo} alt="Neko Animes" />
+            </div>
+            <div className={styles.container_form}>
+              <Form className={styles.form} onSubmit={handleSubmit}>
+                <FormGroup className={styles.form_group}>
+                  <InputComponent
+                    id="email"
+                    name="email"
+                    className={styles.input}
+                    placeholder=""
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <LabelComponent htmlFor="email" value={'E-mail'} className={styles.label} />
+                </FormGroup>
+                <FormGroup className={styles.form_group}>
+                  <InputComponent
+                    id="password"
+                    name="password"
+                    type="password"
+                    className={styles.input}
+                    placeholder=""
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <LabelComponent htmlFor="password" value={'Senha'} className={styles.label} />
+                </FormGroup>
+                <ButtonComponent value="Entrar" className="mt-3" />
+              </Form>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
 

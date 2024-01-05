@@ -4,6 +4,7 @@ import UsersCreate from '../../../../components/admin/crud/users/create';
 import UsersGet from '../../../../components/admin/crud/users/get';
 import UsersDelete from '../../../../components/admin/crud/users/delete';
 import UsersUpdate from '../../../../components/admin/crud/users/update';
+import Head from 'next/head';
 
 const DashboardUsers = () => {
   const options = ['Buscar', 'Criar', 'Atualizar', 'Deletar'];
@@ -16,11 +17,16 @@ const DashboardUsers = () => {
   };
 
   return (
-    <main>
-      <div className={styles.container}>
-        <Configure options={options} components={components} />
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>Neko Admin - Usuários</title>
+      </Head>
+      <main>
+        <div className={styles.container}>
+          <Configure options={options} components={components} />
+        </div>
+      </main>
+    </>
   );
 };
 
