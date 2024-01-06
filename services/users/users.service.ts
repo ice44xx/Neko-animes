@@ -27,13 +27,24 @@ export interface User {
   id?: number;
   userName?: string;
   email?: string;
-  birthday?: Date;
+  birthday?: string;
   password?: string;
   profile?: string;
 }
 
 export interface UserProfile {
   profile?: string;
+}
+
+export interface UserPassword {
+  password: string;
+  newPassword: string;
+}
+
+export interface UserUpdate {
+  userName?: string;
+  email?: string;
+  birthday?: string;
 }
 
 export interface AdminsCreate {
@@ -160,7 +171,7 @@ const users_service = {
       throw new Error(error.response.data.message || 'Erro ao buscar o usuário.');
     }
   },
-  update: async (attributes: User) => {
+  update: async (attributes: UserUpdate) => {
     try {
       const token = sessionStorage.getItem('nekoanimes-token');
       if (token) {
@@ -173,6 +184,21 @@ const users_service = {
       }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao atualizar o usuário.');
+    }
+  },
+  updatePassword: async (attributes: UserPassword) => {
+    try {
+      const token = sessionStorage.getItem('nekoanimes-token');
+      if (token) {
+        const res = await api.put(`/users/password`, attributes, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
+    } catch (error: any) {
+      throw new Error(error.response.data.message || 'Erro ao atualizar a senha.');
     }
   },
   updateProfile: async (attributes: UserProfile) => {
