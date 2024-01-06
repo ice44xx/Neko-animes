@@ -17,7 +17,6 @@ const SlidesAnimesFavorites: React.FC<Props> = ({ color }) => {
       try {
         const res = await favorites_services.get();
         setData(Array.isArray(res) ? res : []);
-        console.log(res);
       } catch (error: any) {
         console.log(error);
       }

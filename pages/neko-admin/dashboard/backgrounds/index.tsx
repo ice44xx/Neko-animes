@@ -4,6 +4,7 @@ import BackgroundsCreate from '../../../../components/admin/crud/backgrounds/cre
 import BackgroundsGet from '../../../../components/admin/crud/backgrounds/get';
 import BackgroundsUpdate from '../../../../components/admin/crud/backgrounds/update';
 import BackgroundsDelete from '../../../../components/admin/crud/backgrounds/delete';
+import Head from 'next/head';
 
 const DashboardBackgrounds = () => {
   const options = ['Buscar', 'Criar', 'Atualizar', 'Deletar'];
@@ -16,11 +17,16 @@ const DashboardBackgrounds = () => {
   };
 
   return (
-    <main>
-      <div className={styles.container}>
-        <Configure options={options} components={components} />
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>Neko Admin - Backgrounds</title>
+      </Head>
+      <main>
+        <div className={styles.container}>
+          <Configure options={options} components={components} />
+        </div>
+      </main>
+    </>
   );
 };
 

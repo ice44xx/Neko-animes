@@ -6,18 +6,18 @@ import Coffe from '/public/assets/coffe.png';
 import Logo from '/public/assets/logo.png';
 import Search from '/public/assets/lupa.png';
 import Cat from '@/public/assets/cat_profile.png';
+import Modal from '../modal';
 import { Form, Input } from 'reactstrap';
 import { useRouter } from 'next/router';
 import { FormEvent, useEffect, useState } from 'react';
-import { UsersGet } from '../../../services/users/users.service';
-import Modal from '../modal';
+import users_service, { UsersGet } from '../../../services/users/users.service';
 
 export const NavbarUser = () => {
   const router = useRouter();
   const [search, setSearch] = useState(true);
   const [searchName, setSearchName] = useState('');
   const [userSettings, setUserSettings] = useState(true);
-  const [userInfo, setUserInfo] = useState<UsersGet>();
+  const [data, setData] = useState<UsersGet>();
 
   const handleSearchBarVisible = () => {
     setSearch(!search);
@@ -36,10 +36,15 @@ export const NavbarUser = () => {
   };
 
   useEffect(() => {
-    const userInfoFromSession = sessionStorage.getItem('userInfo');
-    if (userInfoFromSession) {
-      setUserInfo(JSON.parse(userInfoFromSession));
-    }
+    const fetchData = async () => {
+      try {
+        const res = await users_service.getUser();
+        setData(res);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
   }, []);
 
   return (
@@ -65,16 +70,16 @@ export const NavbarUser = () => {
               className={styles.imgSearch}
             />
             <div className={styles.wrapper_container}>
-              {userInfo && (
+              {data && (
                 <>
                   <div className={styles.container_user}>
-                    <p className={styles.userName}>{userInfo.userName}</p>
+                    <p className={styles.userName}>{data.userName}</p>
                   </div>
                   <div className={styles.container_profile} onClick={handleUserSettings}>
-                    {userInfo.profile ? (
+                    {data.profile ? (
                       <Image
-                        src={userInfo.profile}
-                        alt={userInfo.userName}
+                        src={data.profile}
+                        alt={data.userName}
                         fill
                         className={styles.profile}
                       />

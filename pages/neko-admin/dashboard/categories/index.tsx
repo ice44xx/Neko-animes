@@ -4,6 +4,7 @@ import Configure from '../../../../components/admin/configure';
 import CategoriesGet from '../../../../components/admin/crud/categories/get';
 import CategoriessUpdate from '../../../../components/admin/crud/categories/update';
 import CategoriesDelete from '../../../../components/admin/crud/categories/delete';
+import Head from 'next/head';
 
 const DashboardCategories = () => {
   const options = ['Buscar', 'Criar', 'Atualizar', 'Deletar'];
@@ -16,11 +17,16 @@ const DashboardCategories = () => {
   };
 
   return (
-    <main>
-      <div className={styles.container}>
-        <Configure options={options} components={components} />
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>Neko Admin - Categories</title>
+      </Head>
+      <main>
+        <div className={styles.container}>
+          <Configure options={options} components={components} />
+        </div>
+      </main>
+    </>
   );
 };
 

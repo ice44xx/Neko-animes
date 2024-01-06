@@ -19,7 +19,6 @@ const Classifications: React.FC<Props> = ({ color }) => {
       try {
         const classifications = await classifications_service.get();
         setData(classifications);
-        console.log(classifications);
       } catch (error: any) {
         console.error(error.message);
       }

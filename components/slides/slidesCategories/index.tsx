@@ -12,7 +12,6 @@ const SlidesCategories = () => {
       try {
         const res = await categories_service.get();
         setData(res);
-        console.log(res);
       } catch (error) {
         console.log(error);
       }

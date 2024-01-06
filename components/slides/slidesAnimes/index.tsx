@@ -20,7 +20,6 @@ const SlidesAnimes: React.FC<Props> = ({ color }) => {
       try {
         const res = await animes_services.get();
         setData(res);
-        console.log(res);
       } catch (error: any) {
         console.log(error);
       }

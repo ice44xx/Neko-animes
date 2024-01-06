@@ -4,6 +4,7 @@ import BackgroundsAuthGet from '../../../../components/admin/crud/backgrounds-au
 import BackgroundsAuthCreate from '../../../../components/admin/crud/backgrounds-auth/create';
 import BackgroundsAuthUpdate from '../../../../components/admin/crud/backgrounds-auth/update';
 import BackgroundsAuthDelete from '../../../../components/admin/crud/backgrounds-auth/delete';
+import Head from 'next/head';
 
 const DashboardBackgroundsAuth = () => {
   const options = ['Buscar', 'Criar', 'Atualizar', 'Deletar'];
@@ -16,11 +17,16 @@ const DashboardBackgroundsAuth = () => {
   };
 
   return (
-    <main>
-      <div className={styles.container}>
-        <Configure options={options} components={components} />
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>Neko Admin - Backgrounds Auth</title>
+      </Head>
+      <main>
+        <div className={styles.container}>
+          <Configure options={options} components={components} />
+        </div>
+      </main>
+    </>
   );
 };
 

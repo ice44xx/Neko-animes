@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Configure from '../../../../components/admin/configure';
 import RolesCreate from '../../../../components/admin/crud/roles/create';
 import RolesDelete from '../../../../components/admin/crud/roles/delete';
@@ -14,11 +15,16 @@ const DashboardRoles = () => {
   };
 
   return (
-    <main>
-      <div className={styles.container}>
-        <Configure options={options} components={components} />
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>Neko Admin - Roles</title>
+      </Head>
+      <main>
+        <div className={styles.container}>
+          <Configure options={options} components={components} />
+        </div>
+      </main>
+    </>
   );
 };
 

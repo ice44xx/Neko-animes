@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import categories_service, {
   CategoriesAnimes,
 } from '../../../../services/categories/categories.service';
+import Head from 'next/head';
 
 const CategoriesPage = () => {
   const router = useRouter();
@@ -28,27 +29,32 @@ const CategoriesPage = () => {
   }, [name]);
 
   return (
-    <main>
-      <div className={styles.container}>
-        <p className={styles.title}>Categoria {name}</p>
-        <div className={styles.container_animes}>
-          {data.map((anime: CategoriesAnimes) => (
-            <Link
-              key={anime.id}
-              href={`/anime/${anime.name}/${anime.id}`}
-              style={{ textDecoration: 'none', color: 'white' }}
-            >
-              <Card
-                name={anime.name}
-                image={anime.thumbnailUrl}
-                alt={anime.name}
-                feature={false}
-              ></Card>
-            </Link>
-          ))}
+    <>
+      <Head>
+        <title>Neko Animes - {name}</title>
+      </Head>
+      <main>
+        <div className={styles.container}>
+          <p className={styles.title}>Categoria {name}</p>
+          <div className={styles.container_animes}>
+            {data.map((anime: CategoriesAnimes) => (
+              <Link
+                key={anime.id}
+                href={`/anime/${anime.name}/${anime.id}`}
+                style={{ textDecoration: 'none', color: 'white' }}
+              >
+                <Card
+                  name={anime.name}
+                  image={anime.thumbnailUrl}
+                  alt={anime.name}
+                  feature={false}
+                ></Card>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
 export default CategoriesPage;

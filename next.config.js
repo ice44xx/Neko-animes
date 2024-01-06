@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   images: {
-    domains: ['res.cloudinary.com'],
+    domains: ['res.cloudinary.com', 'firebasestorage.googleapis.com'],
   },
   webpack: (config, { isServer }) => {
     config.resolve.alias['@'] = path.resolve(__dirname);
