@@ -23,6 +23,19 @@ export interface UsersGet {
   createdAt: Date;
 }
 
+export interface User {
+  id?: number;
+  userName?: string;
+  email?: string;
+  birthday?: Date;
+  password?: string;
+  profile?: string;
+}
+
+export interface UserProfile {
+  profile?: string;
+}
+
 export interface AdminsCreate {
   id?: number | string;
   userName: string;
@@ -130,6 +143,51 @@ const users_service = {
       }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao deletar o usuário.');
+    }
+  },
+  getUser: async () => {
+    try {
+      const token = sessionStorage.getItem('nekoanimes-token');
+      if (token) {
+        const res = await api.get('/users/data', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
+    } catch (error: any) {
+      throw new Error(error.response.data.message || 'Erro ao buscar o usuário.');
+    }
+  },
+  update: async (attributes: User) => {
+    try {
+      const token = sessionStorage.getItem('nekoanimes-token');
+      if (token) {
+        const res = await api.put(`/users`, attributes, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
+    } catch (error: any) {
+      throw new Error(error.response.data.message || 'Erro ao atualizar o usuário.');
+    }
+  },
+  updateProfile: async (attributes: UserProfile) => {
+    try {
+      const token = sessionStorage.getItem('nekoanimes-token');
+      if (token) {
+        const res = await api.put(`/users/profile`, attributes, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data;
+      }
+    } catch (error: any) {
+      throw new Error(error.response.data.message || 'Erro ao atualizar o usuário.');
     }
   },
 };
