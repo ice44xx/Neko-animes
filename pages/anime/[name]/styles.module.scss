@@ -111,14 +111,29 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      .title {
-        width: 100%;
-        margin-bottom: 30px;
+      .container_title {
         display: flex;
         justify-content: center;
         align-items: center;
-        text-align: center;
-        font-size: 35px;
+        margin-bottom: 30px;
+        gap: 10px;
+        .arrow_down {
+          cursor: pointer;
+          transition: $transition;
+        }
+        .arrow_up {
+          transform: rotate(180deg);
+          cursor: pointer;
+          transition: $transition;
+        }
+        .title {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          font-size: 35px;
+        }
       }
       .container_episodes {
         width: 100%;
