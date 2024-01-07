@@ -1,0 +1,149 @@
+@import '@/styles/colors.scss';
+
+.container_content_seasons {
+  width: 100%;
+  height: 100%;
+  padding: 40px 0;
+  max-height: 1000px;
+  background-color: $blackColor40;
+  border-radius: 10px;
+  overflow-y: scroll;
+  .container_swapper_seasons {
+    width: 100%;
+    height: 100%;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .container_title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+      gap: 10px;
+      .arrow_down {
+        cursor: pointer;
+        transition: $transition;
+      }
+      .arrow_up {
+        transform: rotate(180deg);
+        cursor: pointer;
+        transition: $transition;
+      }
+      .title {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 35px;
+      }
+    }
+    .container_episodes {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 0 10px;
+      gap: 20px;
+      .episodes {
+        position: relative;
+        width: 200px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border-radius: 4px;
+        font-size: 20px;
+        background-color: $primary;
+        cursor: pointer;
+        transition: $transition;
+        .episode_name {
+          z-index: 1;
+          position: relative;
+          font-size: 20px;
+          color: $white;
+          text-decoration: none;
+          transition: $transition;
+        }
+        .thumbnail {
+          position: absolute;
+          object-fit: cover;
+          opacity: 0.2;
+        }
+        &:hover {
+          background-color: $white;
+          transition: $transition;
+          .episode_name {
+            color: $primary;
+          }
+          .thumbnail {
+            opacity: 0.4;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 470px) {
+  .container {
+    .container_content_seasons {
+      .container_swapper_seasons {
+        .title {
+          font-size: 30px;
+        }
+        .container_episodes {
+          padding: 0 5px;
+          gap: 20px;
+          .episodes {
+            width: 150px;
+            .episode_name {
+              font-size: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 355px) {
+  .container {
+    .container_content_seasons {
+      .container_swapper_seasons {
+        .title {
+          font-size: 25px;
+        }
+        .container_episodes {
+          .episodes {
+            width: 120px;
+            .episode_name {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 300px) {
+  .container {
+    .container_content_seasons {
+      .container_swapper_seasons {
+        .container_episodes {
+          gap: 15px;
+          .episodes {
+            width: 110px;
+            .episode_name {
+              font-size: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

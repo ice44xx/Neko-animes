@@ -14,7 +14,7 @@ export interface EpisodesGet {
   url: string;
   episodeOrder: number;
   likes: number;
-  seasons: {
+  seasons?: {
     id: number;
     name: string;
     anime: {
@@ -39,6 +39,14 @@ const episodes_service = {
       return res.data;
     } catch (error: any) {
       throw new Error(error.response.data.message || `Erro ao buscar episódio ${name}`);
+    }
+  },
+  getByAnimeId: async (id: number) => {
+    try {
+      const res = await api.get(`/episodes/animeId/${id}`);
+      return res.data;
+    } catch (error: any) {
+      throw new Error(error.response.data.message || `Erro ao buscar episódio ${id}`);
     }
   },
   getById: async (id: number) => {
