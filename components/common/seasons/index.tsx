@@ -42,45 +42,56 @@ const SeasonsList: React.FC<SeasonsListProps> = ({ handleEpisodeClick, id }) => 
 
   return (
     <div className={styles.container_content_seasons}>
-      {data?.seasons.map((season, index) => (
-        <div key={index} className={styles.container_swapper_seasons}>
-          <div className={styles.container_title}>
-            <p className={styles.title}>{season.name.slice(0, 11)}</p>
-            {seasonVisibility[index] ? (
-              <Image
-                onClick={() => toggleSeasonVisibility(index)}
-                src={Arrow}
-                alt="mostrar temporada"
-                className={styles.arrow_down}
-              />
-            ) : (
-              <Image
-                onClick={() => toggleSeasonVisibility(index)}
-                src={Arrow}
-                alt="Ocultar temporada"
-                className={styles.arrow_up}
-              />
-            )}
-          </div>
-          {seasonVisibility[index] && (
-            <div className={styles.container_episodes}>
-              {season.episodes.map((episode, idx) => (
-                <div key={idx}>
-                  <div className={styles.episodes} onClick={() => handleEpisodeClick(episode, idx)}>
-                    {episode.name}
-                    <Image
-                      src={data.thumbnailUrl}
-                      alt={episode.name}
-                      fill
-                      className={styles.thumbnail}
-                    />
-                  </div>
+      {data?.seasons && data.seasons.length > 0 ? (
+        <>
+          {data?.seasons.map((season, index) => (
+            <div key={index} className={styles.container_swapper_seasons}>
+              <div className={styles.container_title}>
+                <p className={styles.title}>{season.name.slice(0, 11)}</p>
+                {seasonVisibility[index] ? (
+                  <Image
+                    onClick={() => toggleSeasonVisibility(index)}
+                    src={Arrow}
+                    alt="mostrar temporada"
+                    className={styles.arrow_down}
+                  />
+                ) : (
+                  <Image
+                    onClick={() => toggleSeasonVisibility(index)}
+                    src={Arrow}
+                    alt="Ocultar temporada"
+                    className={styles.arrow_up}
+                  />
+                )}
+              </div>
+              {seasonVisibility[index] && (
+                <div className={styles.container_episodes}>
+                  {season.episodes.map((episode, idx) => (
+                    <div key={idx}>
+                      <div
+                        className={styles.episodes}
+                        onClick={() => handleEpisodeClick(episode, idx)}
+                      >
+                        {episode.name}
+                        <Image
+                          src={data.thumbnailUrl}
+                          alt={episode.name}
+                          fill
+                          className={styles.thumbnail}
+                        />
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
-          )}
+          ))}
+        </>
+      ) : (
+        <div className={styles.container_not_found}>
+          <p>Ops!, Ainda estamos trabalhando neste anime!</p>
         </div>
-      ))}
+      )}
     </div>
   );
 };

@@ -7,12 +7,12 @@ import Fav from '@/public/assets/favorite.png';
 import FavConfirmed from '@/public/assets/favorite_confirmed.png';
 import Like from '@/public/assets/like.png';
 import LikeConfirmed from '@/public/assets/heart.png';
+import SeasonsList from '../../../components/common/seasons';
 import animes_services, { AnimesGet } from '../../../services/animes/animes.service';
 import favorites_services, { Favorites } from '../../../services/favorites';
 import likes_services, { Likes } from '../../../services/likes/likes.service';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import SeasonsList from '../../../components/common/seasons';
 import { EpisodesGet } from '../../../services/episodes/episodes.service';
 
 const Anime = () => {
@@ -105,7 +105,7 @@ const Anime = () => {
       <main>
         <div className={styles.container}>
           <div className={styles.container_content_info}>
-            {data ? (
+            {data && (
               <>
                 <div className={styles.container_card}>
                   <Image src={data.thumbnailUrl} alt={data.name} fill className={styles.card} />
@@ -174,8 +174,6 @@ const Anime = () => {
                   </div>
                 </div>
               </>
-            ) : (
-              ''
             )}
           </div>
           <SeasonsList id={Number(id)} handleEpisodeClick={handleEpisodeClick} />
