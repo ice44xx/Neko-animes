@@ -23,10 +23,12 @@
       margin-bottom: 30px;
       gap: 10px;
       .arrow_down {
+        z-index: 1;
         cursor: pointer;
         transition: $transition;
       }
       .arrow_up {
+        z-index: 1;
         transform: rotate(180deg);
         cursor: pointer;
         transition: $transition;

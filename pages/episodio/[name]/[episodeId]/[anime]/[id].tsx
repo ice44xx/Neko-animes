@@ -7,6 +7,7 @@ import episodes_service, { EpisodesGet } from '../../../../../services/episodes/
 import ButtonComponent from '../../../../../components/common/button';
 import Image from 'next/image';
 import SeasonsList from '../../../../../components/common/seasons';
+import Comments from '../../../../../components/common/comments';
 
 const EpisodePage = () => {
   const router = useRouter();
@@ -135,6 +136,7 @@ const EpisodePage = () => {
             </div>
           </div>
           <SeasonsList id={Number(id)} handleEpisodeClick={handleEpisodeClick} />
+          <Comments />
         </div>
       </main>
     </>
