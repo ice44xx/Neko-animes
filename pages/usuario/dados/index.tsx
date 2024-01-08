@@ -12,11 +12,11 @@ const index = () => {
 
   const handleForm = (componentName: string) => {
     let component = null;
-    if (componentName === 'Trocar Foto') {
+    if (componentName === 'Alterar Foto') {
       component = <UserProfile />;
-    } else if (componentName === 'Trocar Dados') {
+    } else if (componentName === 'Alterar Dados') {
       component = <UserData />;
-    } else if (componentName === 'Trocar Senha') {
+    } else if (componentName === 'Alterar Senha') {
       component = <UserPassword />;
     }
     setForm(component);
@@ -25,27 +25,30 @@ const index = () => {
   return (
     <div className={styles.container}>
       <div className={styles.container_background}>
+        <div className={styles.overlay}></div>
         <Image src={Cat} alt="Profile usuário" className={styles.background} />
       </div>
       <div className={styles.container_info}>
-        <div className={styles.container_info_change}>
-          <ButtonComponent
-            value={'Trocar Dados'}
-            onClick={() => handleForm('Trocar Dados')}
-            className={styles.btn}
-          />
-          <ButtonComponent
-            value={'Trocar Foto'}
-            onClick={() => handleForm('Trocar Foto')}
-            className={styles.btn}
-          />
-          <ButtonComponent
-            value={'Trocar Senha'}
-            onClick={() => handleForm('Trocar Senha')}
-            className={styles.btn}
-          />
+        <div className={styles.container_info_content}>
+          <div className={styles.container_info_change}>
+            <ButtonComponent
+              value={'Alterar Dados'}
+              onClick={() => handleForm('Alterar Dados')}
+              className={styles.btn}
+            />
+            <ButtonComponent
+              value={'Alterar Foto'}
+              onClick={() => handleForm('Alterar Foto')}
+              className={styles.btn}
+            />
+            <ButtonComponent
+              value={'Alterar Senha'}
+              onClick={() => handleForm('Alterar Senha')}
+              className={styles.btn}
+            />
+          </div>
+          {form}
         </div>
-        {form}
       </div>
     </div>
   );

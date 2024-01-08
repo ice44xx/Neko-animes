@@ -4,7 +4,7 @@ import Image from 'next/image';
 import firebase from 'firebase/compat/app';
 import Cat from '@/public/assets/cat_profile.png';
 import 'firebase/compat/storage';
-import { Form, FormGroup, Input } from 'reactstrap';
+import { Form, FormGroup, Input, Label } from 'reactstrap';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import users_service, { User } from '../../../../services/users/users.service';
 import { useRouter } from 'next/router';
@@ -82,18 +82,20 @@ const UserProfile = () => {
 
   return (
     <Form className={styles.form} onSubmit={handleUpdateProfile}>
-      <FormGroup className={styles.form_group}>
-        <div className={styles.container_profile}>
-          {image ? (
-            <Image src={image} alt="Foto de perfil" fill className={styles.profile} />
-          ) : (
-            <Image src={Cat} alt="Foto de perfil padrão" />
-          )}
-        </div>
+      <FormGroup className={styles.form_group_profile}>
+        <Label htmlFor="profileImage">
+          <div className={styles.container_profile}>
+            {image ? (
+              <Image src={image} alt="Foto de perfil" fill className={styles.profile} />
+            ) : (
+              <Image src={Cat} alt="Foto de perfil padrão" className={styles.default} />
+            )}
+          </div>
+        </Label>
         <p className={styles.obs}>
           Atenção: <span>NÃO</span> utilize foto inapropriada no site, arquivo max: <span>1MB</span>
         </p>
-        <Input type="file" className={styles.file} onChange={handleImageChange} />
+        <Input type="file" id="profileImage" className={styles.file} onChange={handleImageChange} />
       </FormGroup>
       <ButtonComponent value={'Salvar alterações'} className={styles.btn} />
     </Form>
