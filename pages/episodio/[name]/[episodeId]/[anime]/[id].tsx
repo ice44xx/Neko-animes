@@ -1,22 +1,23 @@
 import styles from './styles.module.scss';
 import Head from 'next/head';
 import Arrow from '@/public/assets/arrowBtn.png';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import episodes_service, { EpisodesGet } from '../../../../../services/episodes/episodes.service';
 import ButtonComponent from '../../../../../components/common/button';
 import Image from 'next/image';
 import SeasonsList from '../../../../../components/common/seasons';
 import Comments from '../../../../../components/common/comments';
+import useLocalStorage from '../../../../../components/hooks/use-local-storage';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import episodes_service, { EpisodesGet } from '../../../../../services/episodes/episodes.service';
 
 const EpisodePage = () => {
   const router = useRouter();
   const { id, episodeId, anime, name } = router.query;
+  const [episodeList, setEpisodeList] = useLocalStorage('episodeList', []);
+  const [selectedEpisode, setSelectedEpisode] = useLocalStorage('selectedEpisode', null);
+  const [currentEpisodeIndex, setCurrentEpisodeIndex] = useLocalStorage('currentEpisodeIndex', 0);
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [episode, setEpisode] = useState<EpisodesGet>();
-  const [episodeList, setEpisodeList] = useState<EpisodesGet[]>([]);
-  const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState<number>(
-    episodeId ? Number(episodeId) : 0,
-  );
 
   useEffect(() => {
     const fetchDataEpisode = async () => {
@@ -27,7 +28,9 @@ const EpisodePage = () => {
         console.log(error);
       }
     };
-    fetchDataEpisode();
+    if (id && episodeId && anime && name) {
+      fetchDataEpisode();
+    }
   }, [id, episodeId, anime, name]);
 
   useEffect(() => {
@@ -37,57 +40,68 @@ const EpisodePage = () => {
         setEpisodeList(res);
 
         const index = res.findIndex((episode: EpisodesGet) => episode.id === Number(episodeId));
-        setCurrentEpisodeIndex(index !== -1 ? index : 0);
+        const currentEpisodeIdx = index !== -1 ? index : 0;
+        setCurrentEpisodeIndex(currentEpisodeIdx);
 
-        if (index !== -1) {
-          setEpisode(res[index]);
-        } else {
-          setEpisode(res[0]);
-        }
+        const selected = index !== -1 ? res[index] : res[0];
+        setSelectedEpisode(selected);
+        setButtonDisabled(currentEpisodeIndex === 0);
       } catch (error) {
         console.log(error);
       }
     };
-
-    fetchData();
-  }, []);
+    if (id) {
+      fetchData();
+    }
+  }, [currentEpisodeIndex]);
 
   const goToNextEpisode = () => {
-    const nextIndex = currentEpisodeIndex + 1;
+    const nextIndex = Number(currentEpisodeIndex) + 1;
+
     if (nextIndex < episodeList.length) {
-      const nextEpisode = episodeList[nextIndex];
-      setEpisode(nextEpisode);
-      router.push(
-        `/episodio/${nextEpisode.name}/${nextEpisode.id}/${anime}/${id}?index=${nextIndex}`,
-        undefined,
-        { shallow: true },
-      );
-      setCurrentEpisodeIndex(nextIndex);
+      const nextEpisode: any = episodeList[nextIndex];
+      if (nextEpisode) {
+        setSelectedEpisode(nextEpisode);
+        setCurrentEpisodeIndex(nextIndex);
+
+        router.push(
+          `/episodio/${nextEpisode.name}/${nextEpisode.id}/${anime}/${id}?index=${nextIndex}`,
+          undefined,
+          { shallow: true },
+        );
+      }
     }
   };
 
   const goToPreviousEpisode = () => {
-    const previousIndex = currentEpisodeIndex - 1;
+    const previousIndex = Number(currentEpisodeIndex) - 1;
+
     if (previousIndex >= 0) {
-      const previousEpisode = episodeList[previousIndex];
-      setEpisode(previousEpisode);
-      router.push(
-        `/episodio/${previousEpisode.name}/${previousEpisode.id}/${anime}/${id}?index=${previousIndex}`,
-        undefined,
-        { shallow: true },
-      );
-      setCurrentEpisodeIndex(previousIndex);
+      const previousEpisode: any = episodeList[previousIndex];
+      if (previousEpisode) {
+        setSelectedEpisode(previousEpisode);
+        setCurrentEpisodeIndex(previousIndex);
+
+        router.push(
+          `/episodio/${previousEpisode.name}/${previousEpisode.id}/${anime}/${id}?index=${previousIndex}`,
+          undefined,
+          { shallow: true },
+        );
+      }
     }
   };
 
-  const handleEpisodeClick = (selectedEpisode: EpisodesGet, index: number) => {
-    setEpisode(selectedEpisode);
-    setCurrentEpisodeIndex(index);
-    router.push(
-      `/episodio/${selectedEpisode.name}/${selectedEpisode.id}/${anime}/${id}`,
-      undefined,
-      { shallow: true },
-    );
+  const handleEpisodeClick = (selectedEpisode: any, index: number) => {
+    if (selectedEpisode) {
+      setSelectedEpisode(selectedEpisode);
+      setCurrentEpisodeIndex(index);
+
+      router.push(
+        `/episodio/${selectedEpisode.name}/${selectedEpisode.id}/${anime}/${id}`,
+        undefined,
+        { shallow: true },
+      );
+    }
   };
 
   return (
@@ -120,7 +134,7 @@ const EpisodePage = () => {
                   value={'Episódio Anterior'}
                   className={styles.btn}
                   onClick={goToPreviousEpisode}
-                  disabled={currentEpisodeIndex === 0}
+                  disabled={buttonDisabled}
                 />
               </div>
               <div className={styles.bar}></div>

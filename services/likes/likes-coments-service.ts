@@ -5,6 +5,11 @@ export interface LikesComment {
   like: boolean;
 }
 
+export interface GetLikes {
+  commentId: number;
+  like: boolean;
+}
+
 const likes_comments_services = {
   get: async () => {
     try {
@@ -19,17 +24,6 @@ const likes_comments_services = {
       }
     } catch (error: any) {
       throw new Error(error.response.data.message || 'Erro ao buscar os likes.');
-    }
-  },
-  getByOne: async (id: number) => {
-    try {
-      const token = sessionStorage.getItem('nekoanimes-token');
-      if (token) {
-        const res = await api.get(`/likes-comments/${id}`);
-        return res.data;
-      }
-    } catch (error: any) {
-      throw new Error(error.response.data.message || 'Erro ao buscar o like.');
     }
   },
   create: async (id: number) => {

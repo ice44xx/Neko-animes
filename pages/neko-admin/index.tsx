@@ -20,7 +20,7 @@ const DashboardLogin = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const login = await auth_service.login({ email, password }, dispatch);
+      const login = await auth_service.loginAdmin({ email, password }, dispatch);
       if (login.success) {
         console.log('Usuário autenticado:', login);
         router.push('/neko-admin/dashboard');

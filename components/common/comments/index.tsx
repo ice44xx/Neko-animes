@@ -11,6 +11,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import { Form } from 'reactstrap';
 import { useRouter } from 'next/router';
 import likes_comments_services, {
+  GetLikes,
   LikesComment,
 } from '../../../services/likes/likes-coments-service';
 import {
@@ -23,6 +24,8 @@ import {
 const Comments = () => {
   const router = useRouter();
   const { episodeId } = router.query;
+  const [loggin, setLoggin] = useState(null);
+  const [likes, setLikes] = useState<GetLikes[]>([]);
   const [data, setData] = useState<CommentsGet[]>([]);
   const [comment, setComment] = useState({
     text: '',
@@ -31,24 +34,41 @@ const Comments = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const token = sessionStorage.getItem('userInfo');
+      if (token) {
+        const tokenData = JSON.parse(token);
+        setLoggin(tokenData.id);
+      }
       try {
-        const res = await comments_service.findCommentsByEpisode(Number(episodeId));
-        setData(res);
+        if (episodeId) {
+          const res = await comments_service.findCommentsByEpisode(Number(episodeId));
+          setData(res);
+        }
       } catch (error) {
         console.log(error);
       }
     };
+
+    const fetchLike = async () => {
+      try {
+        const res = await likes_comments_services.get();
+        setLikes(res);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     if (episodeId) {
       setComment((prevState) => ({ ...prevState, episodeId: Number(episodeId) }));
+      fetchData();
     }
-    fetchData();
+    fetchLike();
   }, [episodeId]);
 
   const handleSubmit = async (e: FormEvent) => {
     try {
       e.preventDefault();
       await comments_service.create(comment);
-      alert('Comentário criado');
       router.reload();
     } catch (error) {
       console.log(error);
@@ -65,32 +85,23 @@ const Comments = () => {
     }
   };
 
-  const getLikesFromSessionStorage = () => {
-    const likes = JSON.parse(sessionStorage.getItem('commentLikes') || '{}');
-    return likes;
-  };
-
   const handleLike = async (commentId: number) => {
     try {
-      const likedComments = await likes_comments_services.get();
-      const commentLiked = likedComments.find(
+      const likedCommentIndex = likes.findIndex(
         (comment: LikesComment) => comment.commentId === commentId,
       );
 
-      const likes = getLikesFromSessionStorage();
-
-      if (commentLiked && commentLiked.like) {
+      if (likedCommentIndex !== -1 && likes[likedCommentIndex].like) {
         await likes_comments_services.delete(commentId);
-        likes[commentId] = false;
       } else {
         await likes_comments_services.create(commentId);
-        likes[commentId] = true;
       }
-
-      sessionStorage.setItem('commentLikes', JSON.stringify(likes));
 
       const updatedComments = await comments_service.findCommentsByEpisode(Number(episodeId));
       setData(updatedComments);
+
+      const updatedLikesFromServer = await likes_comments_services.get();
+      setLikes(updatedLikesFromServer);
     } catch (error) {
       console.log(error);
     }
@@ -121,24 +132,30 @@ const Comments = () => {
         <Image src={Cat} alt="Neko Animes" className={styles.img} />
         <div className={styles.container_create_comment}>
           <div className={styles.container_content_create_comment}>
-            <div className={styles.container_profile}>
-              <Image src={Profile} alt="Neko Animes" className={styles.profile} />
-            </div>
-            <div className={styles.container_comment}>
-              <p className={styles.comment}>Comentar como Neko Animes</p>
-              <Form onSubmit={handleSubmit}>
-                <textarea
-                  className={styles.textarea}
-                  placeholder="Deixe um comentário..."
-                  onChange={(e) =>
-                    setComment((prevState) => ({ ...prevState, text: e.target.value }))
-                  }
-                />
-                <div className={styles.container_btn}>
-                  <ButtonComponent value={'Comentar'} className={styles.btn} />
+            {loggin ? (
+              <>
+                <div className={styles.container_profile}>
+                  <Image src={Profile} alt="Neko Animes" className={styles.profile} />
                 </div>
-              </Form>
-            </div>
+                <div className={styles.container_comment}>
+                  <p className={styles.comment}>Comentar como Neko Animes</p>
+                  <Form onSubmit={handleSubmit}>
+                    <textarea
+                      className={styles.textarea}
+                      placeholder="Deixe um comentário..."
+                      onChange={(e) =>
+                        setComment((prevState) => ({ ...prevState, text: e.target.value }))
+                      }
+                    />
+                    <div className={styles.container_btn}>
+                      <ButtonComponent value={'Comentar'} className={styles.btn} />
+                    </div>
+                  </Form>
+                </div>
+              </>
+            ) : (
+              <p>Ops login amigao</p>
+            )}
           </div>
         </div>
         <div className={styles.container_count_comments}>
@@ -164,27 +181,37 @@ const Comments = () => {
                 </div>
               )}
               <p className={styles.username}>{comment.users.userName}</p>
-              <Image
-                onClick={() => handleDelete(comment.id)}
-                src={Trash}
-                alt="Deletar comentário"
-                className={styles.trash}
-              />
+              {loggin === comment.users.id && (
+                <Image
+                  onClick={() => handleDelete(comment.id)}
+                  src={Trash}
+                  alt="Deletar comentário"
+                  className={styles.trash}
+                />
+              )}
             </div>
             <div className={styles.container_comment}>
               <p>{comment.text}</p>
               <div className={styles.container_like}>
                 <div className={styles.container_content_like}>
-                  <Image
-                    onClick={() => handleLike(comment.id)}
-                    src={getLikesFromSessionStorage()[comment.id] ? LikeConfirmed : Like}
-                    alt={
-                      getLikesFromSessionStorage()[comment.id]
-                        ? 'Descurtir comentário'
-                        : 'Curtir comentário'
-                    }
-                    className={styles.like}
-                  />
+                  {loggin ? (
+                    <Image
+                      onClick={() => handleLike(comment.id)}
+                      src={
+                        likes.find((like: LikesComment) => like.commentId === comment.id)?.like
+                          ? LikeConfirmed
+                          : Like
+                      }
+                      alt={
+                        likes.find((like: LikesComment) => like.commentId === comment.id)?.like
+                          ? 'Descurtir comentário'
+                          : 'Curtir comentário'
+                      }
+                      className={styles.like}
+                    />
+                  ) : (
+                    <Image src={Like} alt={'Curtir comentário'} className={styles.like} />
+                  )}
                   <p className={styles.like_count}>{comment.likes}</p>
                 </div>
                 <p>{formatDistanceToNowInPortuguese(new Date(comment.createdAt))}</p>
